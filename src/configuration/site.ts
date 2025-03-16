@@ -1,6 +1,6 @@
 export const siteConfig = {
-  title: 'Next Template Generic',
-  description: 'A generic Next.js starter project.',
+  title: 'Josh Cobert',
+  description: 'The man, the myth, the developer.',
   url: process.env.NEXT_PUBLIC_SITE_BASE_URL || '',
 } as const
 
