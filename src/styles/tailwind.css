@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background transition dark:bg-almost-black;
+  }
+
+  body,
+  .p {
+    @apply text-almost-black dark:text-almost-white;
+  }
+
+  a {
+    @apply transition;
+  }
+
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  button:focus-visible,
+  a:focus-visible {
+    @apply outline-offset-4 outline-brand;
+  }
+
+  .layout {
+    @apply mx-auto w-[96%] max-w-layout sm:w-11/12;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply dark:disabled:border-brand-extra-dark dark:disabled:bg-brand-extra-dark/50 flex min-h-[2.125rem] w-fit min-w-[6rem] cursor-pointer items-center justify-center gap-2 rounded border border-brand bg-brand px-8 py-3 text-almost-white transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:border-brand/25 disabled:bg-brand/70 dark:border-brand dark:disabled:text-brand/50 max-sm:min-h-[3.375rem] max-sm:w-full max-sm:text-lg sm:px-4 sm:py-1 [&:not(:disabled)]:shadow [&:not(:disabled)]:hover:shadow-sm;
+  }
+
+  .btn-outline {
+    @apply btn hover:dark:bg-brand-extra-light dark:disabled:text-brand-extra-dark/80 border border-brand bg-almost-white text-brand hover:border-brand-dark hover:bg-brand-light/5 hover:text-brand-dark disabled:border-brand/25 disabled:bg-almost-white/60 disabled:text-brand/60 dark:disabled:bg-neutral-500;
+  }
+
+  .btn-text {
+    @apply flex w-fit cursor-pointer items-center justify-center gap-2 rounded border border-transparent p-1 px-8 py-3 text-brand transition hover:text-brand-dark disabled:cursor-not-allowed disabled:text-brand/60 dark:text-brand-light dark:disabled:border-brand/10 dark:disabled:text-brand-dark/60 max-sm:text-lg sm:px-4 sm:py-1 [&:not(:disabled)]:hover:bg-brand/5 [&:not(:disabled)]:dark:hover:text-brand;
+  }
+}
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .top-shadow {
+    box-shadow: 0px -8px 20px rgba(50, 50, 50, 0.25);
+  }
+
+  .animated-underline {
+    background-image: linear-gradient(#33333300, #33333300),
+      linear-gradient(
+        to right,
+        var(--color-primary-400),
+        var(--color-primary-500)
+      );
+    background-size:
+      100% 2px,
+      0 2px;
+    background-position:
+      100% 100%,
+      0 100%;
+    background-repeat: no-repeat;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .animated-underline {
+      transition: 0.3s ease;
+      transition-property: background-size, color, background-color,
+        border-color;
+    }
+  }
+  .animated-underline:hover,
+  .animated-underline:focus-visible {
+    background-size:
+      0 2px,
+      100% 2px;
+  }
+}
