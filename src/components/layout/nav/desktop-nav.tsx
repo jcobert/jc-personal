@@ -32,11 +32,11 @@ const DesktopNav: FC<Props> = ({ navItems, className, children }) => {
       <div className='sm:flex items-center gap-6 layout px-2 sm:px-0'>
         <LogoLink />
 
-        <NavigationMenu.Root className='z-[1] flex justify-center min-h-[42px]'>
+        <NavigationMenu.Root className='z-[1] flex justify-center min-h-[42px] ml-auto'>
           <NavigationMenu.List
             className={cn(
               'm-0 flex gap-2 list-none rounded-[6px] p-1',
-              'divide-x-2 divide-brand-2',
+              // 'divide-x-2 divide-brand-2',
             )}
           >
             {navItems?.map((item, i) => {
@@ -45,11 +45,8 @@ const DesktopNav: FC<Props> = ({ navItems, className, children }) => {
                 <NavigationMenu.Item
                   key={item?.id}
                   className={cn(
-                    'group/navitem mt-px border-b-2__ border-transparent transition',
+                    'group/navitem mt-px border-transparent transition',
                     i > 0 && 'pl-2',
-                    // isActive(item) &&
-                    //   !hasMenu &&
-                    //   '[&:has([data-active])]:border-brand-5 hover:border-transparent',
                   )}
                 >
                   {!hasMenu ? (
@@ -63,25 +60,19 @@ const DesktopNav: FC<Props> = ({ navItems, className, children }) => {
                       {item?.name}
                     </NavLink>
                   ) : (
-                    <NavMenuDropdown
-                      item={item}
-                      // className={cn(
-                      //   isActive(item) && 'font-bold',
-                      //   'min-w-[6.5rem] text-center',
-                      // )}
-                    />
+                    <NavMenuDropdown item={item} />
                   )}
                 </NavigationMenu.Item>
               )
             })}
 
-            <NavigationMenu.Indicator
+            {/* <NavigationMenu.Indicator
               className={cn(
                 'data-[state=visible]:animate-fadeIn data-[state=hidden]:animate-fadeOut top-full z-[1] flex h-[10px] items-end justify-center overflow-hidden transition-[width,transform_250ms_ease]',
               )}
             >
               <div className='relative h-[2px] w-14 rounded bg-brand-5' />
-            </NavigationMenu.Indicator>
+            </NavigationMenu.Indicator> */}
           </NavigationMenu.List>
         </NavigationMenu.Root>
         {children}

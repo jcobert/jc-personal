@@ -163,6 +163,14 @@ export default {
           from: { opacity: '0', transform: 'translateX(-200px)' },
           to: { opacity: '1', transform: 'translateX(0)' },
         },
+        slideInFromRight: {
+          from: { opacity: '0', transform: 'translateX(10px)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
+        },
+        slideInFromLeft: {
+          from: { opacity: '0', transform: 'translateX(-10px)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
+        },
         exitToRight: {
           from: { opacity: '1', transform: 'translateX(0)' },
           to: { opacity: '0', transform: 'translateX(200px)' },
@@ -202,6 +210,8 @@ export default {
         fadeOut: 'fadeOut 200ms ease',
         enterFromLeft: 'enterFromLeft 250ms ease',
         enterFromRight: 'enterFromRight 250ms ease',
+        slideInFromLeft: 'slideInFromLeft 250ms ease',
+        slideInFromRight: 'slideInFromRight 250ms ease',
         exitToLeft: 'exitToLeft 250ms ease',
         exitToRight: 'exitToRight 250ms ease',
       },
