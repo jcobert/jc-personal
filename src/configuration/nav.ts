@@ -1,21 +1,24 @@
-import { HTMLProps } from 'react'
+import { NavItem } from '@/utils/nav'
 
-export type NavLink = {
-  id: string
-  name: string
-  url: string
-  description?: string
-}
-
-export type NavMenu = { links: NavLink[]; img?: HTMLProps<HTMLImageElement> }
-
-export type NavItem = NavLink & { menu?: NavMenu }
-
-export const isActive = (link: NavLink, pathname: string) =>
-  link?.url === pathname
-
-export const getRowSpan = (menu: NavMenu) => {
-  return `row-span-${menu?.links?.length ?? 3}`
-}
-
-export const navItems: NavItem[] = []
+export const NAVIGATION_ITEMS: NavItem[] = [
+  {
+    id: 'projects',
+    name: 'Projects',
+    url: '/projects',
+  },
+  {
+    id: 'blog',
+    name: 'Blog',
+    url: '/blog',
+  },
+  {
+    id: 'about',
+    name: 'About',
+    url: '/about',
+  },
+  {
+    id: 'contact',
+    name: 'Contact',
+    url: '/contact',
+  },
+]
