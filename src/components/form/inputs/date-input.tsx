@@ -40,7 +40,7 @@ const DateInput = forwardRef<DatePicker, DateInputProps>(
         <label
           htmlFor={id || name}
           className={cn([
-            'text-sm text-gray-700 w-fit',
+            'text-sm text-gray-11 w-fit',
             props?.required &&
               "after:content-['*'] after:ml-[0.125rem] after:text-red-400",
             error && 'text-red-500',
@@ -62,7 +62,7 @@ const DateInput = forwardRef<DatePicker, DateInputProps>(
           icon={
             <LuCalendarDays
               className={cn(
-                'mt-1 text-gray-500',
+                'mt-1 text-gray-9',
                 props?.disabled && 'cursor-not-allowed',
               )}
               width={12}
@@ -73,7 +73,7 @@ const DateInput = forwardRef<DatePicker, DateInputProps>(
           customInput={
             <div
               className={cn(
-                'w-full min-w-[18ch] h-10 px-8 py-2 border bg-white border-gray-300 [&:not(:disabled)]:hover:border-gray-400 disabled:text-gray-500 transition rounded disabled:cursor-not-allowed',
+                'w-full min-w-[18ch] h-10 px-8 py-2 border bg-white border-gray-5 [&:not(:disabled)]:hover:border-gray-8 disabled:text-gray-9 transition rounded disabled:cursor-not-allowed',
                 error && 'border-red-500 hover:border-red-500',
                 [inputClassName],
               )}
@@ -81,7 +81,7 @@ const DateInput = forwardRef<DatePicker, DateInputProps>(
               {selected ? (
                 <span>{format(selected, 'MM/dd/yyyy')}</span>
               ) : (
-                <span className='text-gray-400'>Select a date...</span>
+                <span className='text-gray-8'>Select a date...</span>
               )}
             </div>
           }

@@ -9,7 +9,7 @@ const Logo: FC<Props> = ({ className, ...rest }) => {
   return (
     <GiSpinningTop
       className={cn(
-        'text-almost-white border-brand-light border p-px bg-brand rounded-lg text-4xl transition',
+        'text-white border-brand-light border p-px bg-brand-primary rounded-lg text-4xl transition',
         className,
       )}
       {...rest}

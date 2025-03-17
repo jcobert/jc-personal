@@ -7,7 +7,7 @@ import { cn } from '@/utils/style'
 import { useNavigationMenu } from '@/hooks/use-navigation-menu'
 
 export const navLinkClassName =
-  'text-brand transition [&:not([data-active])]:hover:bg-brand-light hover:text-almost-white data-[active]:hover:text-brand-light block select-none rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none no-underline data-[active]:text-brand-dark'
+  'text-brand-primary transition [&:not([data-active])]:hover:bg-brand-light hover:text-white data-[active]:hover:text-brand-light block select-none rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none no-underline data-[active]:text-brand-dark'
 
 const NavLink: FC<NavigationMenu.NavigationMenuLinkProps> = ({
   href = '',

@@ -25,7 +25,7 @@ const DesktopNav: FC<Props> = ({ navItems, className, children }) => {
     <div
       id='desktop-navbar'
       className={cn([
-        'hidden z-50 md:block w-full border-b border-gray-200 dark:border-gray-600 shadow-sm py-2 sticky top-0 background-saturate-150 backdrop-blur-lg',
+        'hidden z-50 md:block w-full border-b border-gray-4 dark:border-gray-10 shadow-sm py-2 sticky top-0 background-saturate-150 backdrop-blur-lg',
         className,
       ])}
     >
@@ -36,7 +36,7 @@ const DesktopNav: FC<Props> = ({ navItems, className, children }) => {
           <NavigationMenu.List
             className={cn(
               'm-0 flex gap-2 list-none rounded-[6px] p-1',
-              'divide-x-2 divide-thm-blue-2',
+              'divide-x-2 divide-brand-2',
             )}
           >
             {navItems?.map((item, i) => {
@@ -49,7 +49,7 @@ const DesktopNav: FC<Props> = ({ navItems, className, children }) => {
                     i > 0 && 'pl-2',
                     // isActive(item) &&
                     //   !hasMenu &&
-                    //   '[&:has([data-active])]:border-thm-blue-5 hover:border-transparent',
+                    //   '[&:has([data-active])]:border-brand-5 hover:border-transparent',
                   )}
                 >
                   {!hasMenu ? (
@@ -80,7 +80,7 @@ const DesktopNav: FC<Props> = ({ navItems, className, children }) => {
                 'data-[state=visible]:animate-fadeIn data-[state=hidden]:animate-fadeOut top-full z-[1] flex h-[10px] items-end justify-center overflow-hidden transition-[width,transform_250ms_ease]',
               )}
             >
-              <div className='relative h-[2px] w-14 rounded bg-thm-blue-5' />
+              <div className='relative h-[2px] w-14 rounded bg-brand-5' />
             </NavigationMenu.Indicator>
           </NavigationMenu.List>
         </NavigationMenu.Root>

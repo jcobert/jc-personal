@@ -30,9 +30,9 @@ const ThemeSelector: FC<Props> = ({ className }) => {
       className={cn(
         'p-2 rounded-full min-w-0 max-sm:w-fit max-sm:min-h-0',
         isLight &&
-          'text-neutral-600 border-neutral-400 hover:text-neutral-700 hover:border-neutral-500',
+          'text-gray-10 border-gray-8 hover:text-gray-11 hover:border-gray-9',
         isDark &&
-          'bg-indigo-900 text-almost-white hover:text-neutral-100 border-almost-white hover:bg-indigo-950 hover:border-neutral-50',
+          'bg-indigo-900 text-white hover:text-gray-3 border-white hover:bg-indigo-950 hover:border-gray-2',
         className,
       )}
       variant='secondary'

@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import twColors from 'tailwindcss/colors'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import plugin from 'tailwindcss/plugin'
 
@@ -21,29 +22,33 @@ export default {
   darkMode: 'selector',
   future: { hoverOnlyWhenSupported: true },
   theme: {
-    // colors: {
-    //   transparent: 'transparent',
-    //   current: 'currentColor',
-    // },
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      orange: twColors.orange,
+      amber: twColors.amber,
+      red: twColors.red,
+      rose: twColors.rose,
+    },
     extend: {
       fontFamily: {
         body: ['Inter', ...defaultTheme.fontFamily.sans],
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        'thm-blue': getColorScale('blue'),
-        'thm-gray': getColorScale('gray'),
+        gray: getColorScale('gray'),
         // Brand
+        brand: getColorScale('blue'),
         'brand-extra-light': 'var(--blue-8)',
         'brand-light': 'var(--blue-11)',
-        brand: 'var(--blue-9)',
+        'brand-primary': 'var(--blue-9)',
         'brand-dark': 'var(--blue-10)',
         'brand-extra-dark': 'var(--blue-12)',
         // Generic
         'medium-gray': '#696A72',
         'dark-gray': '#5B5D6B',
-        'almost-black': '#1F2023',
-        'almost-white': '#FDFDFF',
+        black: '#1F2023',
+        white: '#FDFDFF',
         background: '#FDFDFF',
         // background: '#FAFBFF',
       },

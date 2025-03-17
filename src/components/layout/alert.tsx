@@ -62,7 +62,7 @@ const Alert: FC<Props> = ({
           <AlertDialog.Title className='text-lg font-medium'>
             {title}
           </AlertDialog.Title>
-          <AlertDialog.Description className='mt-4 mb-12 text-gray-800'>
+          <AlertDialog.Description className='mt-4 mb-12 text-gray-12'>
             {description}
           </AlertDialog.Description>
 

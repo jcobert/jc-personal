@@ -36,7 +36,7 @@ const TextAreaInput = forwardRef<HTMLTextAreaElement, TextAreaInputProps>(
         <label
           htmlFor={id || name}
           className={cn([
-            'text-sm text-gray-700 w-fit',
+            'text-sm text-gray-11 w-fit',
             props?.required &&
               "after:content-['*'] after:ml-[0.125rem] after:text-red-400",
             error && 'text-red-500',
@@ -48,7 +48,7 @@ const TextAreaInput = forwardRef<HTMLTextAreaElement, TextAreaInputProps>(
 
         <textarea
           className={cn([
-            'w-full px-[0.875rem] py-2 min-h-fit border border-gray-300 [&:not(:disabled)]:hover:border-gray-400 disabled:text-gray-500 transition rounded disabled:cursor-not-allowed',
+            'w-full px-[0.875rem] py-2 min-h-fit border border-gray-5 [&:not(:disabled)]:hover:border-gray-8 disabled:text-gray-9 transition rounded disabled:cursor-not-allowed',
             error && 'border-red-500 hover:border-red-500',
             inputClassName,
           ])}

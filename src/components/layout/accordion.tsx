@@ -58,13 +58,13 @@ const Accordion: FC<Props> = ({
           <Radix.Item key={i} value={`item-${i + 1}`} className={itemClassName}>
             <Radix.Header
               className={cn(
-                'data-[state=open]:border-b border-gray-100',
+                'data-[state=open]:border-b border-gray-3',
                 headerClassName,
               )}
             >
               <Radix.Trigger
                 className={cn([
-                  'flex w-full items-center justify-between rounded-md gap-2 max-sm:py-2 group font-medium text-lg p-2 bg-almost-white hover:bg-gray-50 data-[state=open]:hover:rounded-b-none transition-all',
+                  'flex w-full items-center justify-between rounded-md gap-2 max-sm:py-2 group font-medium text-lg p-2 bg-white hover:bg-gray-2 data-[state=open]:hover:rounded-b-none transition-all',
                   triggerClassName,
                 ])}
               >
@@ -76,7 +76,7 @@ const Accordion: FC<Props> = ({
             </Radix.Header>
             <Radix.Content
               className={cn(
-                'overflow-hidden rounded-b-md bg-almost-white data-[state=open]:animate-accordionDown data-[state=closed]:animate-accordionUp',
+                'overflow-hidden rounded-b-md bg-white data-[state=open]:animate-accordionDown data-[state=closed]:animate-accordionUp',
                 contentClassName,
               )}
             >

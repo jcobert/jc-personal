@@ -6,7 +6,7 @@ import Spinner from '@/components/general/spinner'
 
 export type StyleVariant = 'primary' | 'secondary' | 'tertiary'
 
-export type ButtonColor = 'danger' | 'brand' | 'general'
+export type ButtonColor = 'danger' | 'brand-primary' | 'general'
 
 export type AdditionalButtonProps = {
   variant?: StyleVariant
@@ -38,11 +38,11 @@ export const buttonColorClassNames: {
   },
   general: {
     primary:
-      'border-gray-600 bg-gray-600 hover:bg-gray-700 disabled:border-gray-600/25 disabled:bg-gray-600/70',
+      'border-gray-10 bg-gray-10 hover:bg-gray-11 disabled:border-gray-10/25 disabled:bg-gray-10/70',
     secondary:
-      'border-gray-600 text-gray-600 hover:border-gray-700 [&:not(:disabled)]:hover:bg-gray-500/5 hover:text-gray-700 disabled:border-gray-600/25 disabled:text-gray-600/60',
+      'border-gray-10 text-gray-10 hover:border-gray-11 [&:not(:disabled)]:hover:bg-gray-9/5 hover:text-gray-11 disabled:border-gray-10/25 disabled:text-gray-10/60',
     tertiary:
-      'text-gray-600 hover:text-gray-700 disabled:text-gray-600/60 [&:not(:disabled)]:hover:bg-gray-600/5',
+      'text-gray-10 hover:text-gray-11 disabled:text-gray-10/60 [&:not(:disabled)]:hover:bg-gray-10/5',
   },
 }
 
@@ -81,8 +81,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           {loading ? (
             <Spinner
               className={cn({
-                'fill-almost-white': variant === 'primary',
-                'fill-brand':
+                'fill-white': variant === 'primary',
+                'fill-brand-primary':
                   (variant === 'secondary' || variant === 'tertiary') &&
                   color === 'brand',
                 'fill-rose-600':

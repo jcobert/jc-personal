@@ -26,7 +26,7 @@ const NavMenuDropdown: FC<Props> = ({ item, className }) => {
       <NavigationMenu.Trigger
         className={cn(
           navLinkClassName,
-          'text-brand hover:border-y-thm-blue-1 group flex select-none items-center justify-between gap-px rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none',
+          'text-brand-primary hover:border-y-brand-1 group flex select-none items-center justify-between gap-px rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none',
           'min-w-[6.5rem] text-center',
           className,
         )}
@@ -34,7 +34,7 @@ const NavMenuDropdown: FC<Props> = ({ item, className }) => {
         <span
           className={cn(
             isActive(item) &&
-              'font-bold text-brand-dark group-hover:text-almost-white transition-colors',
+              'font-bold text-brand-dark group-hover:text-white transition-colors',
             'min-w-16 text-center',
           )}
         >
@@ -78,7 +78,7 @@ const NavMenuDropdown: FC<Props> = ({ item, className }) => {
                       ])}
                       {...item?.menu?.img}
                     />
-                    <div className='text-gray-300 text-center flex flex-col relative -top-full opacity-0 group-hover:opacity-100 h-full rounded transition-opacity bg-almost-black/70 justify-center font-medium'>
+                    <div className='text-gray-5 text-center flex flex-col relative -top-full opacity-0 group-hover:opacity-100 h-full rounded transition-opacity bg-black/70 justify-center font-medium'>
                       <span>View All</span>
                       <span>{item?.name}</span>
                     </div>
@@ -111,7 +111,7 @@ const NavMenuDropdown: FC<Props> = ({ item, className }) => {
               <NavigationMenu.Item key={`${item?.id}.${subItem?.id}`}>
                 <NavLink
                   href={subItem?.url}
-                  className='text-dark-gray h-full transition hover:bg-thm-blue-1 block select-none rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none no-underline group/submenuitem'
+                  className='text-dark-gray h-full transition hover:bg-brand-1 block select-none rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none no-underline group/submenuitem'
                 >
                   <div className='flex flex-col gap-2'>
                     <span
@@ -127,7 +127,7 @@ const NavMenuDropdown: FC<Props> = ({ item, className }) => {
                         className={cn(
                           'font-normal text-medium-gray text-pretty md:min-w-72 transition',
                           !isActive(subItem) &&
-                            'group-hover/submenuitem:text-almost-white',
+                            'group-hover/submenuitem:text-white',
                         )}
                       >
                         {subItem?.description}

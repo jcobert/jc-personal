@@ -27,12 +27,12 @@ const Popover: FC<Props> = ({
         sideOffset={5}
         {...contentProps}
         className={cn(
-          'bg-white rounded border dark:border-gray-500 p-4 shadow dark:bg-black',
+          'bg-white rounded border dark:border-gray-9 p-4 shadow dark:bg-black',
           contentProps?.className,
         )}
       >
         {children}
-        <Radix.Arrow className='fill-gray-200' />
+        <Radix.Arrow className='fill-gray-4' />
       </Radix.Content>
     </Radix.Root>
   )

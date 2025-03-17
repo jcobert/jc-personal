@@ -11,7 +11,7 @@ type Props = {
 const FieldHelper: FC<Props> = ({ text, className }) => {
   if (!text) return null
   return (
-    <span className={cn('text-xs text-gray-600', className)}>
+    <span className={cn('text-xs text-gray-10', className)}>
       {upperFirst(text)}
     </span>
   )

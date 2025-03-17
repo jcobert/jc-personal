@@ -31,7 +31,7 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
       id='mobile-navbar'
       className={cn([
         'md:hidden',
-        'border-b border-gray-200 shadow-sm sticky top-0 bg-almost-white/50 backdrop-blur-lg pb-safe',
+        'border-b border-gray-4 shadow-sm sticky top-0 bg-white/50 backdrop-blur-lg pb-safe',
         className,
       ])}
     >
@@ -66,7 +66,7 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
         <div
           className={cn(
             'w-full p-4 flex items-center',
-            'border-b border-gray-200 shadow-sm py-2 sticky top-0 bg-almost-white/50 backdrop-blur-lg',
+            'border-b border-gray-4 shadow-sm py-2 sticky top-0 bg-white/50 backdrop-blur-lg',
           )}
         >
           {/* Logo */}

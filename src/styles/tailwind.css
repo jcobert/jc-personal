@@ -6,12 +6,12 @@
 
 @layer base {
   body {
-    @apply bg-background transition dark:bg-almost-black;
+    @apply bg-background transition dark:bg-black;
   }
 
   body,
   .p {
-    @apply text-almost-black dark:text-almost-white;
+    @apply text-black dark:text-white;
   }
 
   a {
@@ -33,15 +33,15 @@
 
 @layer components {
   .btn {
-    @apply border-brand bg-brand hover:bg-brand-dark active:bg-brand-extra-dark disabled:border-thm-blue-3 disabled:bg-thm-blue-7 hover:text-thm-gray-1 active:text-thm-gray-2 flex min-h-[2.125rem] w-fit min-w-[6rem] cursor-pointer items-center justify-center gap-2 rounded border px-8 py-3 text-almost-white transition disabled:cursor-not-allowed max-sm:min-h-[3.375rem] max-sm:w-full max-sm:text-lg sm:px-4 sm:py-1 [&:not(:disabled)]:shadow [&:not(:disabled)]:hover:shadow-sm;
+    @apply border-brand-primary bg-brand-primary hover:bg-brand-dark active:bg-brand-extra-dark disabled:border-brand-3 disabled:bg-brand-7 hover:text-gray-1 active:text-gray-2 flex min-h-[2.125rem] w-fit min-w-[6rem] cursor-pointer items-center justify-center gap-2 rounded border px-8 py-3 text-white transition disabled:cursor-not-allowed max-sm:min-h-[3.375rem] max-sm:w-full max-sm:text-lg sm:px-4 sm:py-1 [&:not(:disabled)]:shadow [&:not(:disabled)]:hover:shadow-sm;
   }
 
   .btn-outline {
-    @apply btn hover:bg-thm-blue-2 active:bg-thm-blue-3 border-brand-dark text-brand-dark hover:border-brand-light hover:text-brand-dark disabled:border-thm-blue-5 disabled:text-thm-blue-7 disabled:bg-thm-gray-1 border bg-almost-white;
+    @apply btn hover:bg-brand-2 active:bg-brand-3 border-brand-dark text-brand-dark hover:border-brand-light hover:text-brand-dark disabled:border-brand-5 disabled:text-brand-7 disabled:bg-gray-1 border bg-white;
   }
 
   .btn-text {
-    @apply text-brand hover:text-brand-light active:text-brand-dark disabled:text-thm-blue-7 [&:not(:disabled)]:hover:bg-thm-blue-2 flex w-fit items-center justify-center rounded border border-transparent px-8 py-3 transition disabled:cursor-not-allowed max-sm:text-lg sm:px-4 sm:py-1;
+    @apply text-brand-primary hover:text-brand-light active:text-brand-dark disabled:text-brand-7 [&:not(:disabled)]:hover:bg-brand-2 flex w-fit items-center justify-center rounded border border-transparent px-8 py-3 transition disabled:cursor-not-allowed max-sm:text-lg sm:px-4 sm:py-1;
   }
 }
 

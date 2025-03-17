@@ -34,7 +34,7 @@ const HomePage: FC = () => {
         <div className='flex'>
           <div className='size-48 bg-brand-extra-light'>extra-light</div>
           <div className='size-48 bg-brand-light'>light</div>
-          <div className='size-48 bg-brand'>b</div>
+          <div className='size-48 bg-brand-primary'>b</div>
           <div className='size-48 bg-brand-dark'>dark</div>
           <div className='size-48 bg-brand-extra-dark'>extra-dark</div>
         </div>
@@ -42,7 +42,7 @@ const HomePage: FC = () => {
         <div className='flex'>
           <div className='size-48 bg-brand-extra-light'>a8</div>
           <div className='size-48 bg-brand-light'>a11</div>
-          <div className='size-48 bg-brand'>a9</div>
+          <div className='size-48 bg-brand-primary'>a9</div>
           <div className='size-48 bg-brand-dark'>a10</div>
           <div className='size-48 bg-brand-extra-dark'>a12</div>
         </div>
