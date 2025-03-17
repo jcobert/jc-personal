@@ -6,7 +6,7 @@ import Spinner from '@/components/general/spinner'
 
 export type StyleVariant = 'primary' | 'secondary' | 'tertiary'
 
-export type ButtonColor = 'danger' | 'brand-primary' | 'general'
+export type ButtonColor = 'danger' | 'brand' | 'general'
 
 export type AdditionalButtonProps = {
   variant?: StyleVariant
