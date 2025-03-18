@@ -40,9 +40,9 @@ export const buttonColorClassNames: {
     primary:
       'border-gray-10 bg-gray-10 hover:bg-gray-11 disabled:border-gray-10/25 disabled:bg-gray-10/70',
     secondary:
-      'border-gray-10 text-gray-10 hover:border-gray-11 [&:not(:disabled)]:hover:bg-gray-9/5 hover:text-gray-11 disabled:border-gray-10/25 disabled:text-gray-10/60',
+      'border-gray-10 text-gray-11 hover:border-gray-11 [&:not(:disabled)]:hover:bg-gray-9/5 hover:text-gray-12 active:text-gray-11 disabled:border-gray-10/25 disabled:text-gray-10/60',
     tertiary:
-      'text-gray-10 hover:text-gray-11 disabled:text-gray-10/60 [&:not(:disabled)]:hover:bg-gray-10/5',
+      'text-gray-11 hover:text-gray-12 active:text-gray-11 disabled:text-gray-10/60 [&:not(:disabled)]:hover:bg-gray-10/5',
   },
 }
 

@@ -8,6 +8,7 @@ import ProgressProvider from '@/providers/progress-provider'
 import QueryProvider from '@/providers/query-provider'
 import ThemeProvider from '@/providers/theme-provider'
 
+import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
 import ToasterOven from '@/components/toast/toast-container'
 
@@ -53,7 +54,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <div className='flex flex-col h-0 min-h-dvh'>
               <Header />
               <div className='grow h-full'>{children}</div>
-              {/** @todo Footer here */}
+              <Footer />
             </div>
           </ThemeProvider>
         </QueryProvider>

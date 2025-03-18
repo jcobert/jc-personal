@@ -14,7 +14,7 @@ export type NavLinkProps = NavigationMenu.NavigationMenuLinkProps & {
 }
 
 export const navLinkClassName =
-  'text-brand-primary text-lg transition block select-none px-3 py-2 font-medium leading-none no-underline data-[active]:text-brand-dark hover:text-brand-light rounded [&:not([data-active])]:hover:bg-brand-2'
+  'text-brand-primary text-lg transition block select-none px-3 py-2 font-medium leading-none no-underline data-[active]:text-brand-dark hover:text-brand-light rounded [&:not([data-active])]:hover:bg-brand-2 data-[active]:bg-brand-1__'
 
 const NavLink: FC<NavLinkProps> = ({
   href = '',
@@ -39,7 +39,8 @@ const NavLink: FC<NavLinkProps> = ({
           <TfiLineDotted
             aria-hidden
             className={cn(
-              'text-4xl text-brand-extra-light absolute top-[calc(100%-1.125rem)] opacity-0 peer-hover:opacity-100 transition-opacity',
+              'absolute top-[calc(100%-1.125rem)] text-4xl -z-10',
+              'text-brand-extra-light opacity-0 peer-hover:opacity-100 transition-opacity',
               isActive && 'hidden',
               'peer-hover:animate-slideInFromLeft',
             )}
@@ -47,8 +48,8 @@ const NavLink: FC<NavLinkProps> = ({
           <RxBorderSolid
             aria-hidden
             className={cn(
-              'hidden absolute top-[calc(100%-0.625rem)] text-lg',
-              'text-brand-extra-light',
+              'hidden absolute top-[calc(100%-0.5rem)] text-lg -z-10',
+              'text-brand-primary',
               isActive && 'inline-block',
               'animate-scaleIn',
             )}
