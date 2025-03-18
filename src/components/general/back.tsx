@@ -18,8 +18,8 @@ const Back: FC<Props> = ({ text = '', className = '', ...props }) => {
       )}
       {...props}
     >
-      <IoIosArrowBack className='group-hover:text-dark-gray transition' />
-      <span className='group-hover:text-dark-gray transition'>{text}</span>
+      <IoIosArrowBack className='group-hover:text-gray-11 transition' />
+      <span className='group-hover:text-gray-11 transition'>{text}</span>
     </Link>
   )
 }

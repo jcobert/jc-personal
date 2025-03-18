@@ -34,10 +34,7 @@ const DesktopNav: FC<Props> = ({ navItems, className, children }) => {
 
         <NavigationMenu.Root className='z-[1] flex justify-center min-h-[42px] ml-auto'>
           <NavigationMenu.List
-            className={cn(
-              'm-0 flex gap-2 list-none rounded-[6px] p-1',
-              // 'divide-x-2 divide-brand-2',
-            )}
+            className={cn('m-0 flex gap-2 list-none rounded-[6px] p-1')}
           >
             {navItems?.map((item, i) => {
               const hasMenu = !!item?.menu?.links?.length
@@ -56,6 +53,7 @@ const DesktopNav: FC<Props> = ({ navItems, className, children }) => {
                         isActive(item) && 'font-semibold !text-brand-dark',
                         'min-w-[5.5rem] text-center',
                       )}
+                      withIndicators
                     >
                       {item?.name}
                     </NavLink>
@@ -65,14 +63,6 @@ const DesktopNav: FC<Props> = ({ navItems, className, children }) => {
                 </NavigationMenu.Item>
               )
             })}
-
-            {/* <NavigationMenu.Indicator
-              className={cn(
-                'data-[state=visible]:animate-fadeIn data-[state=hidden]:animate-fadeOut top-full z-[1] flex h-[10px] items-end justify-center overflow-hidden transition-[width,transform_250ms_ease]',
-              )}
-            >
-              <div className='relative h-[2px] w-14 rounded bg-brand-5' />
-            </NavigationMenu.Indicator> */}
           </NavigationMenu.List>
         </NavigationMenu.Root>
         {children}

@@ -36,7 +36,6 @@ export default {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        gray: getColorScale('gray'),
         // Brand
         brand: getColorScale('blue'),
         'brand-extra-light': 'var(--blue-8)',
@@ -45,12 +44,10 @@ export default {
         'brand-dark': 'var(--blue-10)',
         'brand-extra-dark': 'var(--blue-12)',
         // Generic
-        'medium-gray': '#696A72',
-        'dark-gray': '#5B5D6B',
+        gray: getColorScale('gray'),
         black: '#1F2023',
         white: '#FDFDFF',
         background: '#FDFDFF',
-        // background: '#FAFBFF',
       },
       fontSize: {
         '2xs': ['0.625rem', '0.75rem'],

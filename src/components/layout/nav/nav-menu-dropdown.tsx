@@ -50,7 +50,7 @@ const NavMenuDropdown: FC<Props> = ({ item, className }) => {
       <div className='perspective-[2000px] absolute top-full flex justify-center w-[var(--radix-navigation-menu-viewport-width)]'>
         <NavigationMenu.Content className='relative mt-4 data-[state=open]:animate-scaleIn shadow-xl data-[state=closed]:animate-scaleOut h-[var(--radix-navigation-menu-viewport-height)] origin-[top_center] overflow-auto rounded-[6px] bg-white transition-[width,_height] duration-300 w-[var(--radix-navigation-menu-viewport-width)] max-h-[70dvh]'>
           {/* Menu title */}
-          <p className='text-xl -mb-1 px-[22px] mt-[10px] text-dark-gray'>
+          <p className='text-xl -mb-1 px-[22px] mt-[10px] text-gray-11'>
             {item?.name}
           </p>
           {/* Links */}
@@ -111,7 +111,7 @@ const NavMenuDropdown: FC<Props> = ({ item, className }) => {
               <NavigationMenu.Item key={`${item?.id}.${subItem?.id}`}>
                 <NavLink
                   href={subItem?.url}
-                  className='text-dark-gray h-full transition hover:bg-brand-1 block select-none rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none no-underline group/submenuitem'
+                  className='text-gray-11 h-full transition hover:bg-brand-1 block select-none rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none no-underline group/submenuitem'
                 >
                   <div className='flex flex-col gap-2'>
                     <span
@@ -125,7 +125,7 @@ const NavMenuDropdown: FC<Props> = ({ item, className }) => {
                     {!!subItem?.description && (
                       <p
                         className={cn(
-                          'font-normal text-medium-gray text-pretty md:min-w-72 transition',
+                          'font-normal text-gray-10 text-pretty md:min-w-72 transition',
                           !isActive(subItem) &&
                             'group-hover/submenuitem:text-white',
                         )}
