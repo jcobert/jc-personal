@@ -1,15 +1,17 @@
+@import './colors.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-background transition dark:bg-almost-black;
+    @apply bg-background transition dark:bg-black;
   }
 
   body,
   .p {
-    @apply text-almost-black dark:text-almost-white;
+    @apply text-black dark:text-white;
   }
 
   a {
@@ -21,7 +23,7 @@
   select:focus-visible,
   button:focus-visible,
   a:focus-visible {
-    @apply outline-offset-4 outline-brand;
+    @apply outline-brand-dark outline-offset-4;
   }
 
   .layout {
@@ -31,15 +33,15 @@
 
 @layer components {
   .btn {
-    @apply dark:disabled:border-brand-extra-dark dark:disabled:bg-brand-extra-dark/50 flex min-h-[2.125rem] w-fit min-w-[6rem] cursor-pointer items-center justify-center gap-2 rounded border border-brand bg-brand px-8 py-3 text-almost-white transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:border-brand/25 disabled:bg-brand/70 dark:border-brand dark:disabled:text-brand/50 max-sm:min-h-[3.375rem] max-sm:w-full max-sm:text-lg sm:px-4 sm:py-1 [&:not(:disabled)]:shadow [&:not(:disabled)]:hover:shadow-sm;
+    @apply border-brand-primary bg-brand-primary hover:bg-brand-dark active:bg-brand-extra-dark disabled:border-brand-3 disabled:bg-brand-7 hover:text-gray-1 active:text-gray-2 flex min-h-[2.125rem] w-fit min-w-[6rem] cursor-pointer items-center justify-center gap-2 rounded border px-8 py-3 text-white transition disabled:cursor-not-allowed max-sm:min-h-[3.375rem] max-sm:w-full max-sm:text-lg sm:px-4 sm:py-1 [&:not(:disabled)]:shadow [&:not(:disabled)]:hover:shadow-sm;
   }
 
   .btn-outline {
-    @apply btn hover:dark:bg-brand-extra-light dark:disabled:text-brand-extra-dark/80 border border-brand bg-almost-white text-brand hover:border-brand-dark hover:bg-brand-light/5 hover:text-brand-dark disabled:border-brand/25 disabled:bg-almost-white/60 disabled:text-brand/60 dark:disabled:bg-neutral-500;
+    @apply btn hover:bg-brand-2 active:bg-brand-3 border-brand-dark text-brand-dark hover:border-brand-light hover:text-brand-dark disabled:border-brand-5 disabled:text-brand-7 disabled:bg-gray-1 border bg-white;
   }
 
   .btn-text {
-    @apply flex w-fit cursor-pointer items-center justify-center gap-2 rounded border border-transparent p-1 px-8 py-3 text-brand transition hover:text-brand-dark disabled:cursor-not-allowed disabled:text-brand/60 dark:text-brand-light dark:disabled:border-brand/10 dark:disabled:text-brand-dark/60 max-sm:text-lg sm:px-4 sm:py-1 [&:not(:disabled)]:hover:bg-brand/5 [&:not(:disabled)]:dark:hover:text-brand;
+    @apply text-brand-primary hover:text-brand-light active:text-brand-dark disabled:text-brand-7 [&:not(:disabled)]:hover:bg-brand-2 flex w-fit items-center justify-center rounded border border-transparent px-8 py-3 transition disabled:cursor-not-allowed max-sm:text-lg sm:px-4 sm:py-1;
   }
 }
 

@@ -39,7 +39,7 @@ const Drawer: FC<Props> = ({
                 className='absolute top-2 right-2 p-2'
                 aria-label='Close'
               >
-                <CgClose className='text-2xl rounded outline__ outline-2 outline-almost-black' />
+                <CgClose className='text-2xl rounded outline__ outline-2 outline-black' />
               </Dialog.Close>
             )}
             {children}

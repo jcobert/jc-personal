@@ -31,7 +31,7 @@ const Modal: FC<ModalProps> = ({
           <Dialog.Overlay className='fixed inset-0 bg-black/60' />
           <Dialog.Content
             className={cn([
-              'fixed flex flex-col gap-4 -translate-x-1/2 -translate-y-1/2 overflow-auto top-1/2 left-1/2 w-full h-fit max-h-[70dvh] sm:w-[95vw] md:w-[80vw] lg:w-[75vw] xl:max-w-[50vw]__ max-w-2xl sm:max-h-[80dvh] shadow p-4 md:p-8 sm:rounded-md bg-almost-white dark:bg-zinc-700 z-50',
+              'fixed flex flex-col gap-4 -translate-x-1/2 -translate-y-1/2 overflow-auto top-1/2 left-1/2 w-full h-fit max-h-[70dvh] sm:w-[95vw] md:w-[80vw] lg:w-[75vw] xl:max-w-[50vw]__ max-w-2xl sm:max-h-[80dvh] shadow p-4 md:p-8 sm:rounded-md bg-white dark:bg-gray-11 z-50',
               className,
             ])}
           >
@@ -44,7 +44,7 @@ const Modal: FC<ModalProps> = ({
               <div className='flex-auto text-center ml-9'>{title}</div>
               {closeButton && (
                 <Dialog.Close className='' aria-label='Close'>
-                  <CgClose className='text-xl hover:text-gray-600 transition m-2 rounded' />
+                  <CgClose className='text-xl hover:text-gray-10 transition m-2 rounded' />
                 </Dialog.Close>
               )}
             </Dialog.Title>

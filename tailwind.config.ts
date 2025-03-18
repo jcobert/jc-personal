@@ -1,30 +1,57 @@
 import type { Config } from 'tailwindcss'
+import twColors from 'tailwindcss/colors'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import plugin from 'tailwindcss/plugin'
+
+/** Generates Radix CSS color var references. */
+export const getColorScale = (name: string) => {
+  const scale: Record<string, string> = {}
+  for (let i = 1; i <= 12; i++) {
+    scale[i] = `var(--${name}-${i})`
+    scale[`a${i}`] = `var(--${name}-a${i})`
+  }
+  scale['contrast'] = `var(--${name}-contrast)`
+  scale['surface'] = `var(--${name}-surface)`
+  scale['indicator'] = `var(--${name}-indicator)`
+  scale['track'] = `var(--${name}-track)`
+  return scale
+}
 
 export default {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   darkMode: 'selector',
   future: { hoverOnlyWhenSupported: true },
   theme: {
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      orange: twColors.orange,
+      amber: twColors.amber,
+      red: twColors.red,
+      rose: twColors.rose,
+    },
     extend: {
       fontFamily: {
-        body: ['Inter', ...defaultTheme.fontFamily.sans],
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        body: ['var(--font-quicksand-sans)', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-quicksand-sans)', ...defaultTheme.fontFamily.sans],
+        heading: [
+          'var(--font-flamenco-serif)',
+          ...defaultTheme.fontFamily.serif,
+        ],
       },
       colors: {
         // Brand
-        brand: '#4A88EA',
-        'brand-light': '#5D9AF9',
-        'brand-extra-light': '#89B7FF',
-        'brand-dark': '#3D75CE',
-        'brand-extra-dark': '#325A9A',
+        brand: getColorScale('blue'),
+        'brand-extra-light': 'var(--blue-8)',
+        'brand-light': 'var(--blue-11)',
+        'brand-primary': 'var(--blue-9)',
+        'brand-dark': 'var(--blue-10)',
+        'brand-extra-dark': 'var(--blue-12)',
         // Generic
-        'medium-gray': '#696A72',
-        'dark-gray': '#5B5D6B',
-        'almost-black': '#1F2023',
-        'almost-white': '#FDFDFF',
-        background: '#FAFBFF',
+        gray: getColorScale('gray'),
+        black: '#1F2023',
+        white: '#FDFDFF',
+        background: '#FDFDFF',
       },
       fontSize: {
         '2xs': ['0.625rem', '0.75rem'],
@@ -137,6 +164,14 @@ export default {
           from: { opacity: '0', transform: 'translateX(-200px)' },
           to: { opacity: '1', transform: 'translateX(0)' },
         },
+        slideInFromRight: {
+          from: { opacity: '0', transform: 'translateX(10px)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
+        },
+        slideInFromLeft: {
+          from: { opacity: '0', transform: 'translateX(-10px)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
+        },
         exitToRight: {
           from: { opacity: '1', transform: 'translateX(0)' },
           to: { opacity: '0', transform: 'translateX(200px)' },
@@ -176,6 +211,8 @@ export default {
         fadeOut: 'fadeOut 200ms ease',
         enterFromLeft: 'enterFromLeft 250ms ease',
         enterFromRight: 'enterFromRight 250ms ease',
+        slideInFromLeft: 'slideInFromLeft 250ms ease',
+        slideInFromRight: 'slideInFromRight 250ms ease',
         exitToLeft: 'exitToLeft 250ms ease',
         exitToRight: 'exitToRight 250ms ease',
       },

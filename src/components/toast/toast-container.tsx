@@ -24,7 +24,7 @@ const ToasterOven: FC = () => {
                   <span className='text-pretty'>{message}</span>
                 </div>
                 {t.type !== 'loading' ? (
-                  <div className='border-l border-gray-200 pl-2 h-full'>
+                  <div className='border-l border-gray-4 pl-2 h-full'>
                     <Button
                       variant='tertiary'
                       color='general'

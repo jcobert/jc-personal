@@ -1,10 +1,15 @@
 import { Metadata } from 'next'
+import { Flamenco, Quicksand } from 'next/font/google'
 import { ReactNode } from 'react'
+
+import { cn } from '@/utils/style'
 
 import ProgressProvider from '@/providers/progress-provider'
 import QueryProvider from '@/providers/query-provider'
 import ThemeProvider from '@/providers/theme-provider'
 
+import Footer from '@/components/layout/footer'
+import Header from '@/components/layout/header'
 import ToasterOven from '@/components/toast/toast-container'
 
 import { baseOpenGraph, baseTwitter } from '@/configuration/seo'
@@ -25,18 +30,31 @@ export const metadata: Metadata = {
   twitter: { ...baseTwitter },
 }
 
+const quicksand = Quicksand({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-quicksand-sans',
+})
+const flamenco = Flamenco({
+  weight: ['300', '400'],
+  subsets: ['latin'],
+  variable: '--font-flamenco-serif',
+})
+
+const fontVars = cn([quicksand.variable, flamenco.variable])
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang='en' suppressHydrationWarning className={fontVars}>
       <body>
         <QueryProvider>
           <ThemeProvider>
             <ProgressProvider />
             <ToasterOven />
             <div className='flex flex-col h-0 min-h-dvh'>
-              {/** @todo Header here */}
+              <Header />
               <div className='grow h-full'>{children}</div>
-              {/** @todo Footer here */}
+              <Footer />
             </div>
           </ThemeProvider>
         </QueryProvider>

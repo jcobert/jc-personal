@@ -5,7 +5,7 @@ export type NavLink = {
   name: ReactNode
   url: string
   /** Whether route is protected by authentication. */
-  protected: boolean
+  protected?: boolean
   description?: string
   hidden?: boolean
 }
@@ -20,7 +20,7 @@ export type NavItem = NavLink & { menu?: NavMenu }
 export const isActive = (link: NavLink, pathname: string) =>
   link?.url === pathname
 
-export const homeUrl = (loggedIn: boolean) => {
+export const homeUrl = (loggedIn?: boolean) => {
   return loggedIn ? '/dashboard' : '/'
 }
 
