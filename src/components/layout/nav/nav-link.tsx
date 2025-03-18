@@ -14,7 +14,7 @@ export type NavLinkProps = NavigationMenu.NavigationMenuLinkProps & {
 }
 
 export const navLinkClassName =
-  'text-brand-primary transition block select-none px-3 py-2 text-[15px] font-medium leading-none no-underline data-[active]:text-brand-dark hover:text-brand-light rounded [&:not([data-active])]:hover:bg-brand-2'
+  'text-brand-primary text-lg transition block select-none px-3 py-2 font-medium leading-none no-underline data-[active]:text-brand-dark hover:text-brand-light rounded [&:not([data-active])]:hover:bg-brand-2'
 
 const NavLink: FC<NavLinkProps> = ({
   href = '',

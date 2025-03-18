@@ -14,7 +14,7 @@ const LogoLink: FC<Props> = ({ className, href, ...props }) => {
   const url = href || homeUrl()
   return (
     <Link href={url} {...props} className={cn('w-fit', className)}>
-      <Logo className='hover:text-gray-2 hover:bg-brand-dark' />
+      <Logo className='hover:text-gray-2 hover:bg-brand-light' />
     </Link>
   )
 }

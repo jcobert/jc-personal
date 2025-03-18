@@ -52,6 +52,7 @@ const DesktopNav: FC<Props> = ({ navItems, className, children }) => {
                       className={cn(
                         isActive(item) && 'font-semibold !text-brand-dark',
                         'min-w-[5.5rem] text-center',
+                        'font-heading',
                       )}
                       withIndicators
                     >

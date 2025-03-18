@@ -10,7 +10,9 @@ export const metadata: Metadata = {
 }
 
 const HomePage: FC = () => {
-  return <PageLayout></PageLayout>
+  return <PageLayout>
+    <p>lorewakldshlasd flsdhfiosdh fiuadhsfioudash fjasdhfl kjsdah fp9uhpuihsh ofuhasd; lfa </p>
+  </PageLayout>
 }
 
 export default HomePage

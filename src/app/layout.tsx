@@ -1,5 +1,8 @@
 import { Metadata } from 'next'
+import { Flamenco, Quicksand } from 'next/font/google'
 import { ReactNode } from 'react'
+
+import { cn } from '@/utils/style'
 
 import ProgressProvider from '@/providers/progress-provider'
 import QueryProvider from '@/providers/query-provider'
@@ -26,9 +29,22 @@ export const metadata: Metadata = {
   twitter: { ...baseTwitter },
 }
 
+const quicksand = Quicksand({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-quicksand-sans',
+})
+const flamenco = Flamenco({
+  weight: ['300', '400'],
+  subsets: ['latin'],
+  variable: '--font-flamenco-serif',
+})
+
+const fontVars = cn([quicksand.variable, flamenco.variable])
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang='en' suppressHydrationWarning className={fontVars}>
       <body>
         <QueryProvider>
           <ThemeProvider>

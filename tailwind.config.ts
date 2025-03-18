@@ -32,8 +32,12 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['Inter', ...defaultTheme.fontFamily.sans],
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        body: ['var(--font-quicksand-sans)', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-quicksand-sans)', ...defaultTheme.fontFamily.sans],
+        heading: [
+          'var(--font-flamenco-serif)',
+          ...defaultTheme.fontFamily.serif,
+        ],
       },
       colors: {
         // Brand
