@@ -40,7 +40,7 @@ const NavLink: FC<NavLinkProps> = ({
             aria-hidden
             className={cn(
               'absolute top-[calc(100%-1.125rem)] text-4xl -z-10',
-              'text-brand-extra-light opacity-0 peer-hover:opacity-100 transition-opacity',
+              'text-brand-extra-light opacity-0 peer-hover:opacity-100',
               isActive && 'hidden',
               'peer-hover:animate-slideInFromLeft',
             )}
