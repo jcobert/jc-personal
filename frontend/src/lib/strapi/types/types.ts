@@ -2,6 +2,8 @@ import type { Modules, Schema, UID, Utils } from '@strapi/strapi'
 
 type IDProperty = { id: number }
 
+type WithIDProperty<T extends Record<string, unknown>> = T & IDProperty
+
 type InvalidKeys<TSchemaUID extends UID.Schema> = Utils.Object.KeysBy<
   Schema.Attributes<TSchemaUID>,
   Schema.Attribute.Private | Schema.Attribute.Password
@@ -123,7 +125,7 @@ export interface APIResponseData<TContentTypeUID extends UID.ContentType>
 }
 
 export interface APIResponseCollectionMetadata {
-  pagination: {
+  pagination?: {
     page: number
     pageSize: number
     pageCount: number
@@ -139,5 +141,20 @@ export interface APIResponseCollection<
   TContentTypeUID extends UID.ContentType,
 > {
   data: APIResponseData<TContentTypeUID>[]
+  meta: APIResponseCollectionMetadata
+}
+
+type ContentTypeData<TContentTypeUID extends UID.ContentType> = WithIDProperty<
+  APIResponseData<TContentTypeUID>['attributes']
+>
+
+type StrapiAPIResponseData<TContentTypeUID extends UID.ContentType> =
+  UID.IsCollectionType<TContentTypeUID> extends true
+    ? ContentTypeData<TContentTypeUID>[]
+    : ContentTypeData<TContentTypeUID>
+
+/** Response from Strapi API request to fetch content. */
+export type StrapiAPIResponse<TContentTypeUID extends UID.ContentType> = {
+  data: StrapiAPIResponseData<TContentTypeUID>
   meta: APIResponseCollectionMetadata
 }
