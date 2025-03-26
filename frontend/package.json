@@ -18,7 +18,7 @@
     "e2e:ui": "playwright test --ui",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "preinstall": "npx npm-only-allow@latest --PM yarn",
-    "postinstall": "npx patch-package -y",
+    "postinstall": "npx patch-package -y && yarn types:gen",
     "coupling-graph": "npx madge --extensions js,jsx,ts,tsx,css,md,mdx ./ --exclude '.next|tailwind.config.ts|reset.d.ts|prettier.config.js|postcss.config.js|playwright.config.ts|next.config.js|next-env.d.ts|instrumentation.ts|.eslintrc.js' --image graph.svg",
     "strapi:gen-content-types": "node ./scripts/copy-strapi-types.js",
     "strapi:gen-api-types": "openapi-typescript ../cms/src/extensions/documentation/documentation/1.0.0/full_documentation.json -o ./src/lib/strapi/types/api.ts",
