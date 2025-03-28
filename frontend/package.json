@@ -18,8 +18,11 @@
     "e2e:ui": "playwright test --ui",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "preinstall": "npx npm-only-allow@latest --PM yarn",
-    "postinstall": "npx patch-package -y",
-    "coupling-graph": "npx madge --extensions js,jsx,ts,tsx,css,md,mdx ./ --exclude '.next|tailwind.config.ts|reset.d.ts|prettier.config.js|postcss.config.js|playwright.config.ts|next.config.js|next-env.d.ts|instrumentation.ts|.eslintrc.js' --image graph.svg"
+    "postinstall": "npx patch-package -y && yarn types:gen",
+    "coupling-graph": "npx madge --extensions js,jsx,ts,tsx,css,md,mdx ./ --exclude '.next|tailwind.config.ts|reset.d.ts|prettier.config.js|postcss.config.js|playwright.config.ts|next.config.js|next-env.d.ts|instrumentation.ts|.eslintrc.js' --image graph.svg",
+    "strapi:gen-content-types": "node ./scripts/copy-strapi-types.js",
+    "strapi:gen-api-types": "openapi-typescript ../cms/src/extensions/documentation/documentation/1.0.0/full_documentation.json -o ./src/lib/strapi/types/api.ts",
+    "types:gen": "yarn strapi:gen-content-types && yarn strapi:gen-api-types"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.1",
@@ -57,6 +60,8 @@
     "next": "^15.1.7",
     "next-nprogress-bar": "^2.4.7",
     "next-themes": "^0.4.4",
+    "openapi-fetch": "^0.13.5",
+    "qs": "^6.14.0",
     "react": "^18.3.1",
     "react-datepicker": "^8.1.0",
     "react-dom": "^18.3.1",
@@ -83,6 +88,7 @@
     "@opentelemetry/sdk-trace-node": "1.18.1",
     "@opentelemetry/semantic-conventions": "1.18.1",
     "@playwright/test": "^1.40.0",
+    "@strapi/strapi": "^5.11.3",
     "@tailwindcss/typography": "^0.5.15",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
@@ -114,6 +120,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "mkdirp": "^3.0.1",
     "npm-only-allow": "^1.2.6",
+    "openapi-typescript": "^7.6.1",
     "patch-package": "^8.0.0",
     "postcss": "^8.5.3",
     "postinstall-postinstall": "^2.1.0",

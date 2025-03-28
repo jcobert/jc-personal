@@ -88,6 +88,7 @@ export default {
             h1: {
               fontSize: theme('fontSize.4xl'),
               fontWeight: theme('fontWeight.bold'),
+              fontFamily: theme('fontFamily.heading')[0],
             },
             h2: {
               fontSize: theme('fontSize.3xl'),
