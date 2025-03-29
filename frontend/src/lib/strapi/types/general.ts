@@ -1,8 +1,8 @@
 import type { Modules, Schema, UID, Utils } from '@strapi/strapi'
 
-type IDProperty = { id: number }
+type IDProperties = { id: number; documentId: string }
 
-type WithIDProperty<T extends Record<string, unknown>> = T & IDProperty
+type WithIDProperties<T extends Record<string, unknown>> = T & IDProperties
 
 type InvalidKeys<TSchemaUID extends UID.Schema> = Utils.Object.KeysBy<
   Schema.Attributes<TSchemaUID>,
@@ -54,7 +54,7 @@ type ComponentValue<TAttribute extends Schema.Attribute.Attribute> =
     infer TComponentUID,
     infer TRepeatable
   >
-    ? IDProperty &
+    ? IDProperties &
         Utils.If<
           TRepeatable,
           GetValues<TComponentUID>[],
@@ -67,7 +67,7 @@ type DynamicZoneValue<TAttribute extends Schema.Attribute.Attribute> =
     ? Array<
         Utils.Array.Values<TComponentUIDs> extends infer TComponentUID
           ? TComponentUID extends UID.Component
-            ? { __component: TComponentUID } & IDProperty &
+            ? { __component: TComponentUID } & IDProperties &
                 GetValues<TComponentUID>
             : never
           : never
@@ -120,7 +120,7 @@ export type GetValue<TAttribute extends Schema.Attribute.Attribute> = Utils.If<
 >
 
 export interface APIResponseData<TContentTypeUID extends UID.ContentType>
-  extends IDProperty {
+  extends IDProperties {
   attributes: GetValues<TContentTypeUID>
 }
 
@@ -144,9 +144,8 @@ export interface APIResponseCollection<
   meta: APIResponseCollectionMetadata
 }
 
-type ContentTypeData<TContentTypeUID extends UID.ContentType> = WithIDProperty<
-  APIResponseData<TContentTypeUID>['attributes']
->
+type ContentTypeData<TContentTypeUID extends UID.ContentType> =
+  WithIDProperties<APIResponseData<TContentTypeUID>['attributes']>
 
 type StrapiAPIResponseData<TContentTypeUID extends UID.ContentType> =
   UID.IsCollectionType<TContentTypeUID> extends true

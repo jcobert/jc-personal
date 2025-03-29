@@ -3,13 +3,15 @@ import { FC } from 'react'
 
 import { strapiClient } from '@/lib/strapi/fetch'
 
+import ProjectCard from '@/components/features/projects/project-card'
+import { Project } from '@/components/features/projects/types'
 import PageLayout from '@/components/layout/page-layout'
 
 import { buildPageTitle } from '@/configuration/seo'
 
 const loadContent = async () => {
   const res = await strapiClient.GET('/projects')
-  return res?.data?.data
+  return res?.data?.data as Project[]
 }
 
 export const metadata: Metadata = {
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
 }
 
 const Page: FC = async () => {
-  const data = await loadContent()
+  const projects = await loadContent()
 
   const title = 'Projects'
   const description =
@@ -28,6 +30,12 @@ const Page: FC = async () => {
       <section className='prose'>
         <h1>{title}</h1>
         <p>{description}</p>
+      </section>
+
+      <section>
+        {projects?.map((proj) => (
+          <ProjectCard key={proj?.id || proj?.documentId} project={proj} />
+        ))}
       </section>
     </PageLayout>
   )

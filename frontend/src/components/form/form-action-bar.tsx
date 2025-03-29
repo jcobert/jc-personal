@@ -5,7 +5,7 @@ import { cn } from '@/utils/style'
 import Button, { ButtonProps } from '@/components/general/button'
 import StickyContainer, {
   StickyContainerProps,
-} from '@/components/general/sticky-container'
+} from '@/components/layout/sticky-container'
 
 export type FormAction = {
   /** Unique identifier for this action. Used as content of button if `content` prop not provided. */
@@ -41,7 +41,8 @@ const FormActionBar: FC<FormActionBarProps> = ({
   const positioned = position !== 'normal'
   const Comp = positioned ? StickyContainer : Fragment
 
-  const wrapperClassName = 'flex items-center justify-end w-full gap-6 max-sm:flex-col'
+  const wrapperClassName =
+    'flex items-center justify-end w-full gap-6 max-sm:flex-col'
 
   const actionBarProps = {
     ...(positioned
