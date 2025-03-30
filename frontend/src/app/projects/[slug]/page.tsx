@@ -43,7 +43,7 @@ export const generateMetadata = async ({
 
 export const generateStaticParams = async () => {
   const projects = await getProjects()
-  return projects?.map(({ slug }) => ({ slug }))
+  return (projects || [])?.map(({ slug }) => ({ slug }))
 }
 
 const Page: FC<PageProps> = async ({ params }) => {
