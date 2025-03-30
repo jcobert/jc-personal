@@ -2,7 +2,7 @@ import { StrapiAPIResponse, StrapiImage } from '@/lib/strapi/types/general'
 
 export type Technology =
   StrapiAPIResponse<'api::technology.technology'>['data'][number] & {
-    icon?: StrapiImage
+    image?: StrapiImage
   }
 
 export type Project =

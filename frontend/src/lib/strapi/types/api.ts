@@ -1767,7 +1767,7 @@ export interface components {
                 id?: number;
                 documentId?: string;
                 displayName?: string;
-                icon?: {
+                image?: {
                     id?: number;
                     documentId?: string;
                     name?: string;
@@ -1941,7 +1941,7 @@ export interface components {
             data: {
                 displayName: string;
                 /** @example string or id */
-                icon?: number | string;
+                image?: number | string;
                 name: string;
                 locale?: string;
                 localizations?: (number | string)[];
@@ -1962,7 +1962,7 @@ export interface components {
             id?: number;
             documentId?: string;
             displayName: string;
-            icon?: {
+            image?: {
                 id?: number;
                 documentId?: string;
                 name?: string;
@@ -2197,7 +2197,7 @@ export interface components {
                 id?: number;
                 documentId?: string;
                 displayName?: string;
-                icon?: {
+                image?: {
                     id?: number;
                     documentId?: string;
                     name?: string;

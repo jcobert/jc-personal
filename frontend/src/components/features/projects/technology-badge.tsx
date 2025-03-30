@@ -3,22 +3,22 @@ import { FC } from 'react'
 
 import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
-// export const technologyIcons = {
-//   gatsby: GatsbyIcon,
-// }
-
 type Props = {
   technology: Technology
 }
 
 const TechnologyBadge: FC<Props> = ({ technology }) => {
-  const { displayName, icon } = technology || {}
+  const { displayName, image } = technology || {}
 
   return (
     <div className='flex flex-col gap-1 items-center'>
-      {icon?.url ? (
+      {image?.url ? (
         // eslint-disable-next-line jsx-a11y/alt-text, @next/next/no-img-element
-        <img className='size-10' src={getStrapiImageUrl(icon?.url)} />
+        <img
+          aria-hidden
+          className='size-10'
+          src={getStrapiImageUrl(image?.url)}
+        />
       ) : null}
       <span>{displayName}</span>
     </div>
