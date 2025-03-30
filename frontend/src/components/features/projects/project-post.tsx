@@ -24,14 +24,16 @@ const ProjectPost: FC<Props> = ({ project }) => {
         </div>
 
         {/* Image */}
-        <div className='lg:col-start-3 lg:col-span-3 lg:row-span-2 w-full'>
-          <div
-            className='h-60 w-11/12 sm:w-full max-w-xl mx-auto md:h-52 lg:h-72 xl:h-80__ bg-cover border border-gray-5 shadow-md md:shadow-lg'
-            style={{
-              backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
-            }}
-          />
-        </div>
+        {image?.url ? (
+          <div className='lg:col-start-3 lg:col-span-3 lg:row-span-2 w-full'>
+            <div
+              className='h-60 w-11/12 sm:w-full max-w-xl mx-auto md:h-52 lg:h-72 xl:h-80__ bg-cover border border-gray-5 shadow-md md:shadow-lg'
+              style={{
+                backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
+              }}
+            />
+          </div>
+        ) : null}
 
         {/* Technologies */}
         {technologies?.length ? (

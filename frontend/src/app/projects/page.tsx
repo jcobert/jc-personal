@@ -1,19 +1,17 @@
 import { Metadata } from 'next'
 import { FC } from 'react'
 
-import { strapiFetch } from '@/lib/strapi/fetch'
+import { getProjects } from '@/lib/strapi/queries/projects'
 
 import ProjectCard from '@/components/features/projects/project-card'
-import { Project } from '@/components/features/projects/types'
+import Heading from '@/components/layout/heading'
 import PageLayout from '@/components/layout/page-layout'
 
 import { buildPageTitle } from '@/configuration/seo'
 
 const loadContent = async () => {
-  const res = await strapiFetch<Project[]>('/projects', {
-    query: 'populate[technologies][populate][0]=image&populate=image',
-  })
-  return res?.data
+  const projects = await getProjects()
+  return { projects }
 }
 
 export const metadata: Metadata = {
@@ -21,7 +19,7 @@ export const metadata: Metadata = {
 }
 
 const Page: FC = async () => {
-  const projects = await loadContent()
+  const { projects } = await loadContent()
 
   const title = 'Projects'
   const description =
@@ -29,15 +27,15 @@ const Page: FC = async () => {
 
   return (
     <PageLayout>
-      <section className='prose'>
+      {/* <section className='prose'>
         <h1>{title}</h1>
         <p>{description}</p>
-      </section>
+      </section> */}
+      <Heading text={title} description={description} />
+      {/* <p>{description}</p> */}
 
       <section>
-        {projects?.map((proj) => (
-          <ProjectCard key={proj?.id || proj?.documentId} project={proj} />
-        ))}
+        {projects?.map((proj) => <ProjectCard key={proj?.id} project={proj} />)}
       </section>
     </PageLayout>
   )

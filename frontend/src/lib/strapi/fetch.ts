@@ -24,9 +24,14 @@ export type StrapiFetchResponse<TData> = {
 /** Fetches data from the provided Strapi endpoint. */
 export const strapiFetch = async <TData>(
   path: string,
-  options?: { query?: string },
+  options?: { query?: Record<string, unknown> },
 ) => {
-  const query = options?.query ? `?${options?.query}` : ''
+  const queryString = options?.query
+    ? qs.stringify(options?.query, { skipNulls: true, allowEmptyArrays: false })
+    : ''
+
+  const query = queryString ? `?${queryString}` : ''
+
   const baseUrl = process.env.CMS_BASE_URL || ''
   const url = new URL(`/api${path}${query}`, baseUrl)
   const res = await fetch.GET<StrapiFetchResponse<TData>>({ url: url.href })

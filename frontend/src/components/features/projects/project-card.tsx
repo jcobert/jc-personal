@@ -12,10 +12,9 @@ type Props = {
 }
 
 const ProjectCard: FC<Props> = ({ project }) => {
-  const { title, shortDescription, image, documentId, technologies } =
-    project || {}
+  const { title, shortDescription, image, slug, technologies } = project || {}
 
-  const projectLink = `/projects/${documentId}`
+  const projectLink = `/projects/${slug}`
 
   if (!project) return null
 

@@ -1,3 +1,4 @@
+import { paths } from './api'
 import type { Modules, Schema, UID, Utils } from '@strapi/strapi'
 
 type IDProperties = { id: number; documentId: string }
@@ -161,3 +162,5 @@ export type StrapiAPIResponse<TContentTypeUID extends UID.ContentType> = {
 export type StrapiImage = WithIDProperties<
   APIResponse<'plugin::upload.file'>['data']['attributes']
 >
+
+export type StrapiApiPath = keyof paths
