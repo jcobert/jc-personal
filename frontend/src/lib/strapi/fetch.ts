@@ -2,6 +2,8 @@ import { paths } from './types/api'
 import createClient from 'openapi-fetch'
 import qs from 'qs'
 
+import fetch from '@/utils/fetch'
+
 /** Client to fetch data from Strapi API. */
 export const strapiClient = createClient<paths>({
   baseUrl: `${process.env.CMS_BASE_URL}/api`,
@@ -13,9 +15,14 @@ export const strapiClient = createClient<paths>({
   },
 })
 
-// /** Fetches data from the provided Strapi endpoint. */
-// export const strapiFetch = <TData>(path: string) => {
-//   const baseUrl = process.env.CMS_BASE_URL || ''
-//   const url = new URL(`/api${path}`, baseUrl)
-//   return fetch.GET<TData>({ url: url.href })
-// }
+/** Fetches data from the provided Strapi endpoint. */
+export const strapiFetch = async <TData>(
+  path: string,
+  options?: { query?: string },
+) => {
+  const query = options?.query ? `?${options?.query}` : ''
+  const baseUrl = process.env.CMS_BASE_URL || ''
+  const url = new URL(`/api${path}${query}`, baseUrl)
+  const res = await fetch.GET<TData>({ url: url.href })
+  return res?.data
+}

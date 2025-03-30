@@ -1,7 +1,8 @@
 import { Metadata } from 'next'
 import { FC } from 'react'
 
-import { strapiClient } from '@/lib/strapi/fetch'
+import { strapiFetch } from '@/lib/strapi/fetch'
+import { StrapiAPIResponse } from '@/lib/strapi/types/general'
 
 import ProjectCard from '@/components/features/projects/project-card'
 import { Project } from '@/components/features/projects/types'
@@ -10,10 +11,15 @@ import PageLayout from '@/components/layout/page-layout'
 import { buildPageTitle } from '@/configuration/seo'
 
 const loadContent = async () => {
-  const res = await strapiClient.GET('/projects', {
-    params: { query: { populate: '*' } },
-  })
-  return res?.data?.data as Project[]
+  // const res = await strapiClient.GET('/projects', {
+  //   params: { query: {populate: '[0]image'} },
+  // })
+  const res = await strapiFetch<StrapiAPIResponse<'api::project.project'>>(
+    '/projects',
+    { query: 'populate[technologies][populate][0]=icon&populate=image' },
+  )
+
+  return res?.data as Project[]
 }
 
 export const metadata: Metadata = {

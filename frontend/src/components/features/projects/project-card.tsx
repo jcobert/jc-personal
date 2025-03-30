@@ -1,3 +1,4 @@
+import TechnologyBadge from './technology-badge'
 import { Project } from './types'
 import { FC } from 'react'
 import { FaAngleRight } from 'react-icons/fa6'
@@ -11,9 +12,8 @@ type Props = {
 }
 
 const ProjectCard: FC<Props> = ({ project }) => {
-  const { title, shortDescription, image, documentId } = project || {}
-
-  console.log(project)
+  const { title, shortDescription, image, documentId, technologies } =
+    project || {}
 
   if (!project) return null
 
@@ -40,7 +40,11 @@ const ProjectCard: FC<Props> = ({ project }) => {
             <h5 className='font-medium text-gray-11 text-center border border-gray-5 border-x-0'>
               Technologies
             </h5>
-            <div className='flex flex-wrap justify-around gap-8'></div>
+            <div className='flex flex-wrap justify-around gap-8'>
+              {technologies?.map((tech) => (
+                <TechnologyBadge key={tech?.id} technology={tech} />
+              ))}
+            </div>
           </div>
           {/* CTA */}
           <Link href={`/projects/${documentId}`} variant='secondary'>
