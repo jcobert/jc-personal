@@ -10,7 +10,9 @@ import PageLayout from '@/components/layout/page-layout'
 import { buildPageTitle } from '@/configuration/seo'
 
 const loadContent = async () => {
-  const res = await strapiClient.GET('/projects')
+  const res = await strapiClient.GET('/projects', {
+    params: { query: { populate: '*' } },
+  })
   return res?.data?.data as Project[]
 }
 
