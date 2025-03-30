@@ -6,13 +6,13 @@
   "scripts": {
     "build": "strapi build",
     "console": "strapi console",
-    "deploy": "strapi deploy",
     "dev": "strapi develop",
     "develop": "strapi develop",
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "deploy": "flyctl deploy --dockerfile Dockerfile.prod"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.12.0",
