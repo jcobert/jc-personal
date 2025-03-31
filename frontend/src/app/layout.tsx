@@ -53,7 +53,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <ToasterOven />
             <div className='flex flex-col h-0 min-h-dvh'>
               <Header />
-              <div className='grow h-full'>{children}</div>
+              <div className='grow'>{children}</div>
               <Footer />
             </div>
           </ThemeProvider>

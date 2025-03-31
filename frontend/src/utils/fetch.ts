@@ -15,7 +15,11 @@ export type FetchResponse<TData = any> = {
   status?: number
   data?: TData | null
   message?: string
-  error?: { code?: FetchErrorCode; message?: string; details?: ZodFieldErrors | null }
+  error?: {
+    code?: FetchErrorCode
+    message?: string
+    details?: ZodFieldErrors | null
+  }
 }
 
 export const successful = (status?: number) => {
@@ -35,10 +39,10 @@ const GET = async <TData = Record<string, unknown>>({
       method: 'GET',
       ...options,
     })
-    const responseData = (await res.json()) as FetchResponse<TData>
+    const responseData = (await res.json()) as TData
     return {
       status: res.status,
-      ...responseData,
+      data: responseData,
     }
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -72,10 +76,10 @@ const POST = async <
       body: JSON.stringify(payload),
       ...options,
     })
-    const responseData = (await res.json()) as FetchResponse<TResData>
+    const responseData = (await res.json()) as TResData
     return {
       status: res.status,
-      ...responseData,
+      data: responseData,
     }
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -109,10 +113,10 @@ const PUT = async <
       body: JSON.stringify(payload),
       ...options,
     })
-    const responseData = (await res.json()) as FetchResponse<TResData>
+    const responseData = (await res.json()) as TResData
     return {
       status: res.status,
-      ...responseData,
+      data: responseData,
     }
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -146,10 +150,10 @@ const PATCH = async <
       body: JSON.stringify(payload),
       ...options,
     })
-    const responseData = (await res.json()) as FetchResponse<TResData>
+    const responseData = (await res.json()) as TResData
     return {
       status: res.status,
-      ...responseData,
+      data: responseData,
     }
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -179,10 +183,10 @@ const DELETE = async <
       method: 'DELETE',
       ...options,
     })
-    const responseData = (await res.json()) as FetchResponse<TResData>
+    const responseData = (await res.json()) as TResData
     return {
       status: res.status,
-      ...responseData,
+      data: responseData,
     }
   } catch (error) {
     // eslint-disable-next-line no-console
