@@ -4,7 +4,7 @@
 #
 
 app = 'jc-personal-strapi-docker'
-primary_region = 'ewr'
+primary_region = 'iad'
 
 [build]
 
@@ -17,6 +17,6 @@ primary_region = 'ewr'
   processes = ['app']
 
 [[vm]]
-  memory = '2gb'
+  memory = '4gb'
   cpu_kind = 'shared'
   cpus = 1
