@@ -26,16 +26,15 @@ const Page: FC = async () => {
     "Here's a selection of projects that I've worked on - a blend of solo creations and collaborative endeavors."
 
   return (
-    <PageLayout>
-      {/* <section className='prose'>
-        <h1>{title}</h1>
-        <p>{description}</p>
-      </section> */}
+    <PageLayout className='flex flex-col gap-8'>
       <Heading text={title} description={description} />
-      {/* <p>{description}</p> */}
 
       <section>
-        {projects?.map((proj) => <ProjectCard key={proj?.id} project={proj} />)}
+        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12'>
+          {projects?.map((proj) => (
+            <ProjectCard key={proj?.id} project={proj} />
+          ))}
+        </div>
       </section>
     </PageLayout>
   )

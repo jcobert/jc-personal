@@ -19,7 +19,7 @@ const Heading: FC<HeadingProps> = ({
     <div className='flex flex-col gap-4'>
       <h1
         className={cn([
-          'text-3xl sm:text-4xl font-semibold font-heading text-balance text-brand-primary dark:text-brand-light',
+          'text-3xl sm:text-4xl md:text-5xl font-semibold font-heading text-balance text-brand-primary dark:text-brand-light',
           {
             'text-left': alignment === 'left',
             'text-center': alignment === 'center',

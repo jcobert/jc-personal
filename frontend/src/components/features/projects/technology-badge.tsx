@@ -3,11 +3,19 @@ import { FC } from 'react'
 
 import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
+import { cn } from '@/utils/style'
+
 type Props = {
   technology: Technology
+  showText?: boolean
+  size?: 'sm' | 'md' | 'lg'
 }
 
-const TechnologyBadge: FC<Props> = ({ technology }) => {
+const TechnologyBadge: FC<Props> = ({
+  technology,
+  showText = false,
+  size = 'md',
+}) => {
   const { displayName, image } = technology || {}
 
   return (
@@ -25,14 +33,28 @@ const TechnologyBadge: FC<Props> = ({ technology }) => {
 
       {image?.url ? (
         <div
-          className='size-10 bg-cover'
+          className={cn('bg-cover size-10', {
+            'size-8': size === 'sm',
+            'size-10': size === 'md',
+            'size-12': size === 'lg',
+          })}
           style={{
             backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
           }}
         />
       ) : null}
 
-      <span>{displayName}</span>
+      {showText ? (
+        <span
+          className={cn({
+            'text-sm': size === 'sm',
+            'text-base': size === 'md',
+            'text-lg': size === 'lg',
+          })}
+        >
+          {displayName}
+        </span>
+      ) : null}
     </div>
   )
 }
