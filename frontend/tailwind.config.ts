@@ -29,6 +29,7 @@ export default {
       amber: twColors.amber,
       red: twColors.red,
       rose: twColors.rose,
+      blue: twColors.blue,
     },
     extend: {
       fontFamily: {
@@ -81,34 +82,57 @@ export default {
             },
             a: {
               color: theme('colors.blue.700'),
+              '&:visited': {
+                color: theme('colors.brand.9'),
+              },
               '&:hover': {
                 color: theme('colors.blue.600'),
               },
             },
+            p: {
+              marginTop: '0',
+              marginBottom: '0',
+              textWrap: 'pretty',
+            },
             h1: {
-              fontSize: theme('fontSize.4xl'),
+              fontSize: theme('fontSize.5xl'),
               fontWeight: theme('fontWeight.bold'),
               fontFamily: theme('fontFamily.heading')[0],
+              color: theme('colors.brand-primary'),
+              marginTop: '0',
+              marginBottom: '1rem',
+              textWrap: 'balance',
             },
             h2: {
               fontSize: theme('fontSize.3xl'),
               fontWeight: theme('fontWeight.bold'),
+              marginTop: '0',
+              textWrap: 'balance',
             },
             h3: {
               fontSize: theme('fontSize.2xl'),
               fontWeight: theme('fontWeight.bold'),
+              marginTop: '0',
+              textWrap: 'balance',
             },
             h4: {
               fontSize: theme('fontSize.xl'),
               fontWeight: theme('fontWeight.bold'),
+              marginTop: '0',
+              color: theme('colors.brand-dark'),
+              textWrap: 'balance',
             },
             h5: {
               fontSize: theme('fontSize.lg'),
               fontWeight: theme('fontWeight.bold'),
+              marginTop: '0',
+              textWrap: 'pretty',
             },
             h6: {
               fontSize: theme('fontSize.base'),
               fontWeight: theme('fontWeight.bold'),
+              marginTop: '0',
+              textWrap: 'pretty',
             },
           },
         },

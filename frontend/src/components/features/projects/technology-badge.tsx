@@ -12,14 +12,26 @@ const TechnologyBadge: FC<Props> = ({ technology }) => {
 
   return (
     <div className='flex flex-col gap-1 items-center'>
-      {image?.url ? (
-        // eslint-disable-next-line jsx-a11y/alt-text, @next/next/no-img-element
-        <img
+      {/* {image?.url ? (
+        <Image
           aria-hidden
           className='size-10'
           src={getStrapiImageUrl(image?.url)}
+          alt={image?.alternativeText || ''}
+          width={Number(image?.width || 40)}
+          height={Number(image?.height || 40)}
+        />
+      ) : null} */}
+
+      {image?.url ? (
+        <div
+          className='size-10 bg-cover'
+          style={{
+            backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
+          }}
         />
       ) : null}
+
       <span>{displayName}</span>
     </div>
   )
