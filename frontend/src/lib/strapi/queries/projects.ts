@@ -32,6 +32,7 @@ export const getProjects = async <
     query: {
       'populate[technologies][populate][0]': 'image',
       populate: 'image',
+      /** @todo accept additional filters. */
       filters: { slug },
     },
   })

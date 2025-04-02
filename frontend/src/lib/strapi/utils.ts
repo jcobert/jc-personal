@@ -18,8 +18,9 @@ export const getStrapiImageUrl = (url: string | undefined) => {
 
 export const getStrapiApiPath = (
   url: StrapiApiPath,
-  params: Record<string, unknown>,
+  params?: Record<string, unknown>,
 ) => {
+  if (!params) return url
   templateSettings.interpolate = /{([\s\S]+?)}/g
   return template(url)(params)
 }
