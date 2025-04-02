@@ -1,4 +1,4 @@
-import Link, { LinkProps } from 'next/link'
+import Link, { LinkProps } from './link'
 import React, { FC } from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 
@@ -18,7 +18,10 @@ const Back: FC<Props> = ({ text = '', className = '', ...props }) => {
       )}
       {...props}
     >
-      <IoIosArrowBack className='group-hover:text-gray-11 transition' />
+      <IoIosArrowBack
+        aria-label='back arrow'
+        className='group-hover:text-gray-11 transition'
+      />
       <span className='group-hover:text-gray-11 transition'>{text}</span>
     </Link>
   )

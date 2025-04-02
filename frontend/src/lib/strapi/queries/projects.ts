@@ -19,8 +19,9 @@ export const getProjects = async <
 >(options?: {
   slug?: TSlug
   documentId?: TDocumentId
+  filters?: { [key in keyof Project]?: unknown }
 }): Promise<Response<TSlug, TDocumentId> | undefined> => {
-  const { documentId, slug } = options || {}
+  const { documentId, slug, filters } = options || {}
 
   const path = (
     documentId ? '/projects/{id}' : '/projects'
@@ -32,7 +33,8 @@ export const getProjects = async <
     query: {
       'populate[technologies][populate][0]': 'image',
       populate: 'image',
-      filters: { slug },
+      /** @todo accept additional filters. */
+      filters: { slug, ...filters },
     },
   })
 

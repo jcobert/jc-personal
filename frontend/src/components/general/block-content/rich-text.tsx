@@ -1,17 +1,25 @@
 import { BlocksContent, BlocksRenderer } from '@strapi/blocks-react-renderer'
 import { FC } from 'react'
 
+import { cn } from '@/utils/style'
+
 type Props = {
   content?: BlocksContent
+  className?: string
 }
 
-const RichText: FC<Props> = ({ content }) => {
+const RichText: FC<Props> = ({ content, className }) => {
   if (!content) return null
 
   return (
-    <div className='prose'>
+    <div className={cn('prose', className)}>
       <BlocksRenderer
         content={content}
+        /**
+         * Custom blocks currently can't be used -
+         * An issue with the component throws error.
+         * Revisit once fixed by Strapi.
+         */
         // blocks={{
         //   heading: ({ level, children }) => {
         //     switch (level) {

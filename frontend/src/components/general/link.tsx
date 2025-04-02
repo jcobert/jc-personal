@@ -9,12 +9,12 @@ import {
   buttonVariantClassNames,
 } from '@/components/general/button'
 
-type Props = {
+export type LinkProps = {
   //
 } & ComponentPropsWithoutRef<typeof NextLink> &
   Pick<AdditionalButtonProps, 'variant' | 'color'>
 
-const Link: FC<Props> = ({
+const Link: FC<LinkProps> = ({
   children,
   className,
   variant,
