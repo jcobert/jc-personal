@@ -16,7 +16,7 @@ const ProjectPost: FC<Props> = ({ project }) => {
   if (!project) return null
 
   return (
-    <div className='flex flex-col gap-8'>
+    <div className='flex flex-col gap-12'>
       <div className='grid grid-cols-1 lg:grid-rows-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-5'>
         <div className='flex flex-col gap-y-2 md:gap-y-5 lg:col-span-2 prose'>
           <h1>{title}</h1>
@@ -50,7 +50,7 @@ const ProjectPost: FC<Props> = ({ project }) => {
         ) : null}
       </div>
 
-      <RichText content={body} />
+      <RichText className='mx-auto' content={body} />
     </div>
   )
 }
