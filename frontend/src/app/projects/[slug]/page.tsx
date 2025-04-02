@@ -4,6 +4,7 @@ import { FC } from 'react'
 import { getProjects } from '@/lib/strapi/queries/projects'
 
 import ProjectPost from '@/components/features/projects/project-post'
+import Back from '@/components/general/back'
 import PageLayout from '@/components/layout/page-layout'
 
 import { PageParams } from '@/types/general'
@@ -52,7 +53,8 @@ const Page: FC<PageProps> = async ({ params }) => {
   const { project } = await loadContent({ slug })
 
   return (
-    <PageLayout>
+    <PageLayout className='flex flex-col gap-6 sm:gap-8'>
+      <Back href='/projects' text='All projects' />
       <ProjectPost project={project} />
     </PageLayout>
   )

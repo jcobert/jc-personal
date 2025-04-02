@@ -19,7 +19,7 @@ const ProjectPost: FC<Props> = ({ project }) => {
     <div className='flex flex-col gap-12'>
       <div className='grid grid-cols-1 lg:grid-rows-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-5'>
         <div className='flex flex-col gap-y-2 md:gap-y-5 lg:col-span-2 prose'>
-          <h1>{title}</h1>
+          <h1 className='max-sm:text-center'>{title}</h1>
           <p>{shortDescription}</p>
         </div>
 
