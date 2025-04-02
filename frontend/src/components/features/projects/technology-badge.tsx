@@ -33,6 +33,8 @@ const TechnologyBadge: FC<Props> = ({
 
       {image?.url ? (
         <div
+          aria-label={displayName}
+          aria-hidden={showText}
           className={cn('bg-cover size-10', {
             'size-8': size === 'sm',
             'size-10': size === 'md',

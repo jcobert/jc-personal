@@ -5,6 +5,8 @@ import { FaAngleRight } from 'react-icons/fa6'
 
 import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
+import { cn } from '@/utils/style'
+
 import Link from '@/components/general/link'
 
 type Props = {
@@ -19,11 +21,11 @@ const ProjectCard: FC<Props> = ({ project }) => {
   if (!project) return null
 
   return (
-    <div className='md:max-w-2xl mx-auto rounded border border-gray-8 shadow-md flex flex-col justify-between__'>
+    <div className='md:max-w-2xl mx-auto rounded border border-gray-8 shadow-md flex flex-col'>
       {/* Title */}
       <Link
         href={projectLink}
-        className='py-2 text-center font-semibold text-xl text-white bg-brand-primary hover:bg-brand-light hover:text-gray-2 rounded-[.1875rem] rounded-b-none shadow-sm'
+        className='py-2 text-center border-b border-brand-3 font-semibold text-xl bg-brand-1 text-brand-primary hover:bg-brand-2 rounded-[.1875rem] rounded-b-none shadow-sm'
       >
         {title}
       </Link>
@@ -32,22 +34,31 @@ const ProjectCard: FC<Props> = ({ project }) => {
         {/* Description */}
         <p className='sm:text-lg text-pretty'>{shortDescription}</p>
         {/* Preview Image */}
-        <div
-          className='max-w-xs aspect-video bg-cover border border-gray-5 shadow-sm w-full mx-auto lg:flex-initial'
+        <Link
+          aria-hidden
+          href={projectLink}
+          className='max-w-xs aspect-video bg-cover border border-gray-5 hover:border-brand-6 shadow-sm w-full mx-auto lg:flex-initial'
           style={{
             backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
           }}
         />
         {/* Technologies */}
         <div className='flex flex-col gap-y-6 py-4'>
-          {/* <h5 className='font-medium text-gray-11 text-center border border-gray-5 border-x-0'>
-            Technologies  
-          </h5> */}
-          <div className='flex flex-wrap justify-around gap-2 w-full max-w-xs mx-auto'>
+          <h4
+            className={cn(
+              'sr-only',
+              // 'font-medium text-gray-11 text-center border border-gray-5 border-x-0',
+            )}
+          >
+            Technologies
+          </h4>
+          <ul className='flex flex-wrap justify-around gap-2 w-full max-w-xs mx-auto'>
             {technologies?.map((tech) => (
-              <TechnologyBadge key={tech?.id} technology={tech} size='sm' />
+              <li key={tech?.id}>
+                <TechnologyBadge technology={tech} size='sm' />
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
         {/* CTA */}
         <Link href={projectLink} variant='secondary' className='mx-auto'>
