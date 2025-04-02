@@ -17,8 +17,8 @@ const ProjectPost: FC<Props> = ({ project }) => {
 
   return (
     <div className='flex flex-col gap-8'>
-      <div className='grid grid-cols-1 lg:grid-rows-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-5 lg:mb-16__ xl:mb-20__ mt-8__ md:mt-20__'>
-        <div className='flex flex-col gap-y-8 md:gap-y-10 lg:col-span-2'>
+      <div className='grid grid-cols-1 lg:grid-rows-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-5'>
+        <div className='flex flex-col gap-y-2 md:gap-y-5 lg:col-span-2 prose'>
           <h1>{title}</h1>
           <p>{shortDescription}</p>
         </div>
@@ -27,7 +27,7 @@ const ProjectPost: FC<Props> = ({ project }) => {
         {image?.url ? (
           <div className='lg:col-start-3 lg:col-span-3 lg:row-span-2 w-full'>
             <div
-              className='h-60 w-11/12 sm:w-full max-w-xl mx-auto md:h-52 lg:h-72 xl:h-80__ bg-cover border border-gray-5 shadow-md md:shadow-lg'
+              className='h-60 w-11/12 sm:w-full max-w-xl mx-auto md:h-52 lg:h-72 bg-cover border border-gray-5 shadow-md md:shadow-lg'
               style={{
                 backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
               }}
@@ -37,22 +37,20 @@ const ProjectPost: FC<Props> = ({ project }) => {
 
         {/* Technologies */}
         {technologies?.length ? (
-          <div className='flex flex-col gap-y-6 py-4__ md:col-span-2 lg:col-span-2 w-11/12 md:w-10/12 lg:w-11/12 mx-auto lg:mx-0__ md:mt-2__ lg:mt-10__ lg:py-0__'>
+          <div className='flex flex-col gap-y-6 md:col-span-2 lg:col-span-2 w-11/12 md:w-10/12 lg:w-11/12 mx-auto'>
             <h5 className='font-medium text-gray-11 text-center border border-gray-5 border-x-0'>
               Technologies
             </h5>
             <div className='flex flex-wrap justify-around gap-8'>
               {technologies?.map((tech) => (
-                <TechnologyBadge key={tech?.id} technology={tech} />
+                <TechnologyBadge key={tech?.id} technology={tech} showText />
               ))}
             </div>
           </div>
         ) : null}
       </div>
 
-      <div>
-        <RichText content={body} />
-      </div>
+      <RichText content={body} />
     </div>
   )
 }
