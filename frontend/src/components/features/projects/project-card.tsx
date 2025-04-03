@@ -21,7 +21,7 @@ const ProjectCard: FC<Props> = ({ project }) => {
   if (!project) return null
 
   return (
-    <div className='md:max-w-2xl mx-auto rounded border border-gray-8 shadow-md flex flex-col'>
+    <div className='md:max-w-2xl w-full mx-auto rounded border border-gray-8 shadow-md flex flex-col'>
       {/* Title */}
       <Link
         href={projectLink}
