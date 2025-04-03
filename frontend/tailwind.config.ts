@@ -54,6 +54,9 @@ export default {
         white: '#FDFDFF',
         background: '#FDFDFF',
       },
+      borderColor: ({ theme }) => ({
+        DEFAULT: theme('colors.gray.5'),
+      }),
       fontSize: {
         '2xs': ['0.625rem', '0.75rem'],
       },

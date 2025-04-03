@@ -4,6 +4,7 @@ import { FC } from 'react'
 import { getProjects } from '@/lib/strapi/queries/projects'
 
 import ProjectCard from '@/components/features/projects/project-card'
+import ProjectCollection from '@/components/features/projects/project-collection'
 import Heading from '@/components/layout/heading'
 import PageLayout from '@/components/layout/page-layout'
 
@@ -30,11 +31,7 @@ const Page: FC = async () => {
       <Heading text={title} description={description} />
 
       <section>
-        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12'>
-          {projects?.map((proj) => (
-            <ProjectCard key={proj?.id} project={proj} />
-          ))}
-        </div>
+        <ProjectCollection projects={projects} />
       </section>
     </PageLayout>
   )
