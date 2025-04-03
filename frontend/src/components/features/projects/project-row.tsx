@@ -25,7 +25,7 @@ const ProjectRow: FC<Props> = ({ project }) => {
       <Link
         href={projectLink}
         className={cn(
-          'group transition w-full flex max-sm:flex-col gap-x-8 sm:items-center gap-y-4 hover:bg-brand-1 p-4 border hover:border-brand-7 rounded',
+          'group hover:shadow transition w-full flex max-sm:flex-col gap-x-8 sm:items-center gap-y-4 hover:bg-brand-1 p-4 border hover:border-brand-7 rounded',
         )}
       >
         <div className='max-sm:w-full w-36 flex-none'>
@@ -58,6 +58,11 @@ const ProjectRow: FC<Props> = ({ project }) => {
             </div>
           ) : null}
         </div>
+
+        <FaAngleRight
+          aria-hidden
+          className='text-brand-primary ml-auto mr-2 lg:mr-5 xl:mr-8 flex-none group-hover:scale-125 transition-transform'
+        />
       </Link>
     </>
   )

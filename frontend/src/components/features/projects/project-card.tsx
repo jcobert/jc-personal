@@ -21,7 +21,7 @@ const ProjectCard: FC<Props> = ({ project }) => {
   if (!project) return null
 
   return (
-    <div className='md:max-w-2xl w-full mx-auto rounded border border-gray-8 shadow-md flex flex-col'>
+    <div className='md:max-w-2xl w-full mx-auto rounded border border-gray-8 shadow flex flex-col'>
       {/* Title */}
       <Link
         href={projectLink}
@@ -31,8 +31,6 @@ const ProjectCard: FC<Props> = ({ project }) => {
       </Link>
       {/* Body */}
       <div className='flex flex-1 py-6 flex-col gap-y-6 text-left px-8 md:py-8 justify-between'>
-        {/* Description */}
-        <p className='sm:text-lg text-pretty'>{shortDescription}</p>
         {/* Preview Image */}
         <Link
           aria-hidden
@@ -42,24 +40,28 @@ const ProjectCard: FC<Props> = ({ project }) => {
             backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
           }}
         />
+        {/* Description */}
+        <p className='sm:text-lg text-pretty grow'>{shortDescription}</p>
         {/* Technologies */}
-        <div className='flex flex-col gap-y-6 py-4'>
-          <h4
-            className={cn(
-              'sr-only',
-              // 'font-medium text-gray-11 text-center border border-gray-5 border-x-0',
-            )}
-          >
-            Technologies
-          </h4>
-          <ul className='flex flex-wrap justify-around gap-2 w-full max-w-xs mx-auto'>
-            {technologies?.map((tech) => (
-              <li key={tech?.id}>
-                <TechnologyBadge technology={tech} size='sm' />
-              </li>
-            ))}
-          </ul>
-        </div>
+        {technologies?.length ? (
+          <div className='flex flex-col gap-y-6 mb-4'>
+            <h4
+              className={cn(
+                'sr-only',
+                // 'font-medium text-gray-11 text-center border border-gray-5 border-x-0',
+              )}
+            >
+              Technologies
+            </h4>
+            <ul className='flex flex-wrap justify-around gap-2 w-full max-w-xs mx-auto'>
+              {technologies?.map((tech) => (
+                <li key={tech?.id}>
+                  <TechnologyBadge technology={tech} size='sm' />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
         {/* CTA */}
         <Link href={projectLink} variant='secondary' className='mx-auto'>
           <span>Check it out</span>
