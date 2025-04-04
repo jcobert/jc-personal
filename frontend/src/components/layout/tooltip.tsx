@@ -25,9 +25,14 @@ const Tooltip: FC<TooltipProps> = ({
       <Tip.Root {...rootProps}>
         <Tip.Trigger {...triggerProps}>{trigger}</Tip.Trigger>
         <Tip.Portal {...portalProps}>
-          <Tip.Content {...contentProps}>
+          <Tip.Content
+            className='bg-[#3e3e3ef7] z-50 text-white text-sm text-balance px-4 py-2 rounded'
+            sideOffset={4}
+            collisionPadding={{ top: 24 }}
+            {...contentProps}
+          >
             {content}
-            <Tip.Arrow {...arrowProps} />
+            <Tip.Arrow className='fill-[#3e3e3ef7]' {...arrowProps} />
           </Tip.Content>
         </Tip.Portal>
       </Tip.Root>

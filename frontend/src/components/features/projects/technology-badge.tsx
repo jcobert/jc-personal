@@ -5,58 +5,56 @@ import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
 import { cn } from '@/utils/style'
 
+import Tooltip from '@/components/layout/tooltip'
+
 type Props = {
   technology: Technology
   showText?: boolean
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'xs' | 'sm' | 'md' | 'lg'
+  tooltip?: boolean
 }
 
-const TechnologyBadge: FC<Props> = ({
-  technology,
-  showText = false,
-  size = 'md',
-}) => {
+const BadgeIcon: FC<Props> = ({ technology, showText, size }) => {
+  const { image } = technology || {}
+  if (!image) return null
+  return (
+    <div
+      // aria-label={displayName}
+      aria-hidden={showText}
+      className={cn([
+        'bg-cover size-10 cursor-auto',
+        size === 'xs' && 'size-6',
+        size === 'sm' && 'size-8',
+        size === 'md' && 'size-10',
+        size === 'lg' && 'size-12',
+      ])}
+      style={{
+        backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
+      }}
+    />
+  )
+}
+
+const TechnologyBadge: FC<Props> = (props) => {
+  const { technology, showText = false, size = 'md' } = props
   const { displayName, image } = technology || {}
 
-  return (
+  return !showText ? (
+    <Tooltip content={displayName} trigger={<BadgeIcon {...props} />} />
+  ) : (
     <div className='flex flex-col gap-1 items-center'>
-      {/* {image?.url ? (
-        <Image
-          aria-hidden
-          className='size-10'
-          src={getStrapiImageUrl(image?.url)}
-          alt={image?.alternativeText || ''}
-          width={Number(image?.width || 40)}
-          height={Number(image?.height || 40)}
-        />
-      ) : null} */}
+      {image?.url ? <BadgeIcon {...props} /> : null}
 
-      {image?.url ? (
-        <div
-          aria-label={displayName}
-          aria-hidden={showText}
-          className={cn('bg-cover size-10', {
-            'size-8': size === 'sm',
-            'size-10': size === 'md',
-            'size-12': size === 'lg',
-          })}
-          style={{
-            backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
-          }}
-        />
-      ) : null}
-
-      {showText ? (
-        <span
-          className={cn({
-            'text-sm': size === 'sm',
-            'text-base': size === 'md',
-            'text-lg': size === 'lg',
-          })}
-        >
-          {displayName}
-        </span>
-      ) : null}
+      <span
+        className={cn([
+          size === 'xs' && 'text-xs',
+          size === 'sm' && 'text-sm',
+          size === 'md' && 'text-base',
+          size === 'lg' && 'text-lg',
+        ])}
+      >
+        {displayName}
+      </span>
     </div>
   )
 }

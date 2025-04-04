@@ -52,7 +52,7 @@ const ProjectRow: FC<Props> = ({ project }) => {
             <div className='mt-2'>
               <div className='flex items-center gap-x-6 gap-y-2 flex-wrap'>
                 {technologies?.map((t) => (
-                  <TechnologyBadge key={t?.id} technology={t} size='sm' />
+                  <TechnologyBadge key={t?.id} technology={t} size='xs' />
                 ))}
               </div>
             </div>
