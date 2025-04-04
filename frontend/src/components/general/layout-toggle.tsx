@@ -8,11 +8,17 @@ export type LayoutType = 'list' | 'grid'
 type Props = {
   layout: LayoutType
   setLayout: (layout: LayoutType) => void
+  className?: string
 }
 
-const LayoutToggle: FC<Props> = ({ layout, setLayout }) => {
+const LayoutToggle: FC<Props> = ({ layout, setLayout, className }) => {
   return (
-    <div className='flex text-gray-11 items-center gap-4 rounded text-xl w-fit self-end'>
+    <div
+      className={cn(
+        'flex text-gray-11 items-center gap-2 rounded text-xl w-fit',
+        className,
+      )}
+    >
       <button
         type='button'
         className={cn([

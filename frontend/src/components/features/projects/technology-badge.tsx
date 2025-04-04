@@ -8,10 +8,11 @@ import { cn } from '@/utils/style'
 import Tooltip from '@/components/layout/tooltip'
 
 type Props = {
-  technology: Technology
+  technology: Technology | undefined
   showText?: boolean
   size?: 'xs' | 'sm' | 'md' | 'lg'
   tooltip?: boolean
+  className?: string
 }
 
 const BadgeIcon: FC<Props> = ({ technology, showText, size }) => {
@@ -36,12 +37,20 @@ const BadgeIcon: FC<Props> = ({ technology, showText, size }) => {
 }
 
 const TechnologyBadge: FC<Props> = (props) => {
-  const { technology, showText = false, size = 'md' } = props
+  const { technology, showText = false, size = 'md', tooltip = true } = props
   const { displayName, image } = technology || {}
 
-  return !showText ? (
-    <Tooltip content={displayName} trigger={<BadgeIcon {...props} />} />
-  ) : (
+  if (!technology) return null
+
+  if (!showText) {
+    return tooltip ? (
+      <Tooltip content={displayName} trigger={<BadgeIcon {...props} />} />
+    ) : (
+      <BadgeIcon {...props} />
+    )
+  }
+
+  return (
     <div className='flex flex-col gap-1 items-center'>
       {image?.url ? <BadgeIcon {...props} /> : null}
 
