@@ -28,7 +28,7 @@ const Tooltip: FC<TooltipProps> = ({
           <Tip.Content
             className='bg-[#3e3e3ef7] z-50 text-white text-sm text-balance px-4 py-2 rounded'
             sideOffset={4}
-            collisionPadding={{ top: 24 }}
+            collisionPadding={{ top: 60 }} // Accounts for header
             {...contentProps}
           >
             {content}

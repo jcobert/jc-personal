@@ -33,7 +33,7 @@ const HomePage: FC = async () => {
             <h1 className='text-6xl'>{title}</h1>
             <ProfilePhoto image={profilePhoto} />
           </div>
-          <p className='max-w-prose'>{description}</p>
+          <p className='max-w-[64ch]'>{description}</p>
         </div>
       </section>
 
