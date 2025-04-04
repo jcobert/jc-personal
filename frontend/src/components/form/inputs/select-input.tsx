@@ -68,7 +68,7 @@ const SelectInput = forwardRef<SelectInstance, SelectInputProps>(
     if (!isMounted) return null
 
     return (
-      <div className={cn(['flex flex-col', className])}>
+      <div className={cn(['flex flex-col gap-1', className])}>
         <label
           htmlFor={id || name}
           aria-label={!label ? ariaLabel || id : ariaLabel}
@@ -100,7 +100,7 @@ const SelectInput = forwardRef<SelectInstance, SelectInputProps>(
             menu: () => 'dark:bg-gray-12',
             option: (props) =>
               cn({
-                'dark:bg-gray-11 !bg-brand-extra-light':
+                'dark:bg-gray-11 !bg-brand-4':
                   props.isFocused && !props.isSelected,
                 '!bg-brand-primary': props.isSelected,
               }),
@@ -155,7 +155,7 @@ const SelectInput = forwardRef<SelectInstance, SelectInputProps>(
 export default SelectInput
 
 export type SelectOption<
-  T extends ReactNode = string,
+  T extends unknown = string,
   U extends ReactNode = ReactNode,
 > = {
   value: T

@@ -33,7 +33,7 @@ const HomePage: FC = async () => {
             <h1 className='text-6xl'>{title}</h1>
             <ProfilePhoto image={profilePhoto} />
           </div>
-          <p className='max-w-prose'>{description}</p>
+          <p className='max-w-[64ch]'>{description}</p>
         </div>
       </section>
 
@@ -52,16 +52,17 @@ const HomePage: FC = async () => {
           <div className='flex flex-col gap-12'>
             <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12'>
               {projects?.map((p) => <ProjectCard key={p?.id} project={p} />)}
+              <div className='md:max-w-2xl rounded md:border xl:border-none bg-brand-1 border-gray-4 flex items-center xl:col-start-2'>
+                <Link
+                  href='/projects'
+                  variant='primary'
+                  className='mx-auto sm:py-3 sm: px-6 self-center'
+                >
+                  <span>View all projects</span>
+                  {/* <FaAngleRight aria-hidden /> */}
+                </Link>
+              </div>
             </div>
-
-            <Link
-              href='/projects'
-              variant='primary'
-              className='mx-auto sm:py-3 sm: px-6'
-            >
-              <span>View all projects</span>
-              {/* <FaAngleRight aria-hidden /> */}
-            </Link>
           </div>
         </div>
       </section>
