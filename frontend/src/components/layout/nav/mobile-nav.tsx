@@ -28,17 +28,18 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
 
   return (
     <div
-      id='mobile-navbar'
+      id='mobile-navigation'
+      data-open={isMenuOpen}
       className={cn([
         'md:hidden',
-        'border-b border-gray-4 shadow-sm sticky top-0 bg-white/50 backdrop-blur-lg pb-safe',
+        'border-b border-gray-4 shadow-sm sticky top-0 bg-white/50 backdrop-blur-lg',
         className,
       ])}
     >
       <div
         className={cn(
           'w-full p-4 py-2 flex items-center',
-          'z-[51]',
+          // 'z-[51]',
           isMenuOpen && 'invisible',
         )}
       >

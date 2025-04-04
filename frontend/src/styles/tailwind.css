@@ -9,6 +9,10 @@
     @apply bg-background transition dark:bg-black;
   }
 
+  body:has(#mobile-navigation[data-open='true']) {
+    overflow: hidden;
+  }
+
   body,
   .p {
     @apply text-black dark:text-white;
@@ -23,7 +27,7 @@
   select:focus-visible,
   button:focus-visible,
   a:focus-visible {
-    @apply outline-brand-dark outline-offset-4;
+    @apply outline-offset-4 outline-brand-dark;
   }
 
   .layout {
@@ -33,15 +37,15 @@
 
 @layer components {
   .btn {
-    @apply border-brand-primary bg-brand-primary hover:bg-brand-dark active:bg-brand-extra-dark disabled:border-brand-3 disabled:bg-brand-7 hover:text-gray-1 active:text-gray-2 flex min-h-[2.125rem] w-fit min-w-[6rem] cursor-pointer items-center justify-center gap-2 rounded border px-8 py-3 text-white transition disabled:cursor-not-allowed max-sm:min-h-[3.375rem] max-sm:w-full max-sm:text-lg sm:px-4 sm:py-1 [&:not(:disabled)]:shadow [&:not(:disabled)]:hover:shadow-sm;
+    @apply flex min-h-[2.125rem] w-fit min-w-[6rem] cursor-pointer items-center justify-center gap-2 rounded border border-brand-primary bg-brand-primary px-8 py-3 text-white transition hover:bg-brand-dark hover:text-gray-1 active:bg-brand-extra-dark active:text-gray-2 disabled:cursor-not-allowed disabled:border-brand-3 disabled:bg-brand-7 max-sm:min-h-[3.375rem] max-sm:w-full max-sm:text-lg sm:px-4 sm:py-1 [&:not(:disabled)]:shadow [&:not(:disabled)]:hover:shadow-sm;
   }
 
   .btn-outline {
-    @apply btn hover:bg-brand-2 active:bg-brand-3 border-brand-dark text-brand-dark hover:border-brand-light hover:text-brand-dark disabled:border-brand-5 disabled:text-brand-7 disabled:bg-gray-1 border bg-white;
+    @apply btn border border-brand-dark bg-white text-brand-dark hover:border-brand-light hover:bg-brand-2 hover:text-brand-dark active:bg-brand-3 disabled:border-brand-5 disabled:bg-gray-1 disabled:text-brand-7;
   }
 
   .btn-text {
-    @apply text-brand-primary hover:text-brand-light active:text-brand-dark disabled:text-brand-7 [&:not(:disabled)]:hover:bg-brand-2 flex w-fit items-center justify-center rounded border border-transparent px-8 py-3 transition disabled:cursor-not-allowed max-sm:text-lg sm:px-4 sm:py-1;
+    @apply flex w-fit items-center justify-center rounded border border-transparent px-8 py-3 text-brand-primary transition hover:text-brand-light active:text-brand-dark disabled:cursor-not-allowed disabled:text-brand-7 max-sm:text-lg sm:px-4 sm:py-1 [&:not(:disabled)]:hover:bg-brand-2;
   }
 }
 
