@@ -1,9 +1,13 @@
 import { paths } from './api'
 import type { Modules, Schema, UID, Utils } from '@strapi/strapi'
 
-type IDProperties = { id: number; documentId: string }
+export type IDProperties = { id: number; documentId: string }
 
-type WithIDProperties<T extends Record<string, unknown>> = T & IDProperties
+export type WithIDProperty<T extends Record<string, unknown>> = T &
+  Pick<IDProperties, 'id'>
+
+export type WithIDProperties<T extends Record<string, unknown>> = T &
+  IDProperties
 
 type InvalidKeys<TSchemaUID extends UID.Schema> = Utils.Object.KeysBy<
   Schema.Attributes<TSchemaUID>,

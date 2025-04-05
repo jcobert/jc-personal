@@ -45,7 +45,7 @@
   }
 
   .btn-text {
-    @apply flex w-fit items-center justify-center rounded border border-transparent px-8 py-3 text-brand-primary transition hover:text-brand-light active:text-brand-dark disabled:cursor-not-allowed disabled:text-brand-7 max-sm:text-lg sm:px-4 sm:py-1 [&:not(:disabled)]:hover:bg-brand-2;
+    @apply flex w-fit items-center justify-center gap-2 rounded border border-transparent px-8 py-3 text-brand-primary transition hover:text-brand-light active:text-brand-dark disabled:cursor-not-allowed disabled:text-brand-7 max-sm:text-lg sm:px-4 sm:py-1 [&:not(:disabled)]:hover:bg-brand-2;
   }
 }
 

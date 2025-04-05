@@ -6,6 +6,7 @@ import { getProjects } from '@/lib/strapi/queries/projects'
 
 import ProfilePhoto from '@/components/features/home-page/profile-photo'
 import ProjectCard from '@/components/features/projects/project-card'
+import Divider from '@/components/general/divider'
 import Link from '@/components/general/link'
 import PageLayout from '@/components/layout/page-layout'
 
@@ -26,8 +27,8 @@ const HomePage: FC = async () => {
   const { title, description, profilePhoto } = homePage || {}
 
   return (
-    <PageLayout className='flex flex-col gap-10 sm:gap-16'>
-      <section className='md:px-12__ lg:px-24__ md:pt-8'>
+    <PageLayout className='flex flex-col gap-12 sm:gap-16 md:gap-24'>
+      <section className='md:pt-8'>
         <div className='prose max-w-none flex flex-col gap-8 max-md:mx-auto'>
           <div className='flex max-w-2xl items-center md:items-end max-md:flex-col gap-x-8 gap-y-4'>
             <h1 className='text-6xl'>{title}</h1>
@@ -38,15 +39,12 @@ const HomePage: FC = async () => {
       </section>
 
       <section>
-        <div className='flex flex-col gap-6'>
+        <div className='flex flex-col gap-6 md:gap-10'>
           <div className='prose max-w-none'>
             <h2 className='text-brand-primary font-semibold text-center mb-3'>
               My Projects
             </h2>
-            <div
-              aria-hidden
-              className='h-px bg-gradient-to-r from-transparent via-brand-6 w-1/2 mx-auto'
-            />
+            <Divider />
           </div>
 
           <div className='flex flex-col gap-12'>

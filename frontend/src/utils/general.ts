@@ -134,3 +134,25 @@ export const asyncDelay = <T = FetchResponse>(time = 1000, res?: T) => {
   })
   return promise
 }
+
+/** Returns what position the provided integer falls in an infinite repeating sequence of specified `cycleLength`.
+ *
+ * @example
+ * // Any integer gets mapped to corresponding step in sequence
+ * // 1, 2, 3, 4, 5, 6, 7, 8, ...
+ * // maps to:
+ * // 1, 2, 3, 4, 1, 2, 3, 4, ...
+ * getPositionInSequence(5,4) // => 1
+ * getPositionInSequence(8,4) // => 4
+ */
+export const getPositionInSequence = (
+  num: number | string | undefined,
+  cycleLength: number,
+) => {
+  const n = Number(num)
+  if (!Number.isInteger(n) || n <= 0) {
+    return undefined
+  }
+  const remainder = (n - 1) % cycleLength
+  return remainder + 1
+}

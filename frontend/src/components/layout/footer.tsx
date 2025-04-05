@@ -21,8 +21,8 @@ const Footer: FC = () => {
 
         <Link
           href={repoLink}
-          variant='secondary'
-          className='text-sm sm:text-xs font-medium'
+          variant='tertiary'
+          className='text-sm sm:text-xs font-medium text-white no-hover:active:text-gray-4'
           color='general'
         >
           <FaCodeBranch aria-hidden />
