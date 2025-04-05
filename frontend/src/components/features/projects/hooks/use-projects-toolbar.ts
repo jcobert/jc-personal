@@ -3,9 +3,12 @@ import { sortBy, uniqBy } from 'lodash'
 import { useMemo, useState } from 'react'
 
 import { SelectOption } from '@/components/form/inputs/select-input'
+import { LayoutType } from '@/components/general/layout-toggle'
 
-export const useProjectFilters = (projects: Project[] | undefined) => {
+export const useProjectsToolbar = (projects: Project[] | undefined) => {
   const [filterValue, setFilterValue] = useState<Technology>()
+  const [filterMenuOpen, setFilterMenuOpen] = useState(false)
+  const [layout, setLayout] = useState<LayoutType>('list')
 
   const filterOptions = useMemo(() => {
     const techs = uniqBy(
@@ -37,5 +40,16 @@ export const useProjectFilters = (projects: Project[] | undefined) => {
     )
   }, [projects, filterValue])
 
-  return { filterOptions, filteredProjects, filterValue, setFilterValue }
+  return {
+    filterOptions,
+    filteredProjects,
+    filterValue,
+    setFilterValue,
+    filterMenuOpen,
+    setFilterMenuOpen,
+    layout,
+    setLayout,
+  }
 }
+
+export type UseProjectsToolbarReturn = ReturnType<typeof useProjectsToolbar>
