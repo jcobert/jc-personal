@@ -1,12 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { FC, useState } from 'react'
 import { CgClose } from 'react-icons/cg'
 import { RxHamburgerMenu } from 'react-icons/rx'
 
-import { NavItem, isActive } from '@/utils/nav'
+import { NavItem } from '@/utils/nav'
 import { cn } from '@/utils/style'
 
 import Accordion from '@/components/layout/accordion'
@@ -22,9 +21,8 @@ type Props = {
 
 const MobileNav: FC<Props> = ({ navItems, className }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const pathname = usePathname()
 
-  const { isActive: isActiveMenu } = useNavigationMenu()
+  const { isActive } = useNavigationMenu()
 
   return (
     <div
@@ -94,12 +92,13 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
             {navItems?.map((item, i) => {
               const hasMenu = !!item?.menu?.links?.length
               const isLast = i === navItems.length - 1
+
               return (
                 <div
                   key={item?.id}
                   className={cn([
                     'text-right text-xl border-gray-10/15 pb-2 flex justify-end text-gray-11',
-                    isActive(item, pathname) && 'text-brand-dark',
+                    isActive(item) && 'text-brand-dark',
                     !isLast && 'border-b',
                   ])}
                 >
@@ -117,7 +116,7 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
                       className='border-none pr-0 w-full rounded-none'
                       triggerClassName={cn([
                         '!justify-end rounded-none font-semibold text-xl text-gray-11 data-[state=open]:font-bold hover:bg-background bg-background p-0',
-                        isActiveMenu(item) && 'text-brand-dark',
+                        isActive(item) && 'text-brand-dark',
                       ])}
                       itemClassName='!p-0 -mr-2'
                       contentClassName='bg-gray-11/5'

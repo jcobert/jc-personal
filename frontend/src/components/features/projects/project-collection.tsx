@@ -13,6 +13,7 @@ import { TbFilterSearch } from 'react-icons/tb'
 import { cn } from '@/utils/style'
 
 import SelectInput from '@/components/form/inputs/select-input'
+import Button from '@/components/general/button'
 import LayoutToggle, { LayoutType } from '@/components/general/layout-toggle'
 import Tag from '@/components/general/tag'
 import Popover from '@/components/layout/popover'
@@ -57,8 +58,9 @@ const ProjectCollection: FC<Props> = ({ projects }) => {
       <div className='flex items-center justify-end gap-2'>
         <div
           className={cn([
-            'flex items-center flex-wrap',
-            !!filterValue && 'rounded sm:outline outline-gray-5 outline-offset-4',
+            'flex items-center flex-wrap max-sm:gap-4 max-sm:w-full',
+            !!filterValue &&
+              'rounded sm:outline outline-gray-5 outline-offset-4',
           ])}
         >
           {/* Active filter values */}
@@ -81,7 +83,7 @@ const ProjectCollection: FC<Props> = ({ projects }) => {
                   >
                     <IoCloseOutline
                       aria-label='remove filter'
-                      className='text-lg text-gray-10 hover:text-gray-11'
+                      className='text-lg text-gray-10 hover:text-gray-12 transition'
                     />
                   </button>
                 </div>
@@ -93,19 +95,16 @@ const ProjectCollection: FC<Props> = ({ projects }) => {
           <Popover
             open={filterMenuOpen}
             onOpenChange={setFilterMenuOpen}
+            contentProps={{ className: 'max-sm:w-[90dvw]' }}
             triggerProps={{ asChild: true }}
             trigger={
-              <button
-                type='button'
-                aria-label='filter menu'
-                className={cn(
-                  'border p-2 rounded text-gray-11 bg-white hover:bg-gray-2 transition',
-                  !!filterValue &&
-                    'text-white bg-brand-primary hover:bg-brand-dark hover:text-gray-3',
-                )}
+              <Button
+                aria-label='open filter menu'
+                variant={filterValue ? 'primary' : 'secondary'}
+                className='py-2 min-h-0 max-sm:flex-1 sm:w-fit'
               >
                 <TbFilterSearch aria-hidden className='text-xl' />
-              </button>
+              </Button>
             }
           >
             <SelectInput
@@ -133,6 +132,8 @@ const ProjectCollection: FC<Props> = ({ projects }) => {
                 setFilterMenuOpen(false)
               }}
               isClearable
+              isSearchable={false}
+              menuPosition='fixed'
             />
           </Popover>
         </div>
@@ -148,6 +149,31 @@ const ProjectCollection: FC<Props> = ({ projects }) => {
           className='max-sm:hidden self-center'
         />
       </div>
+
+      {filterValue ? (
+        <Tag className='whitespace-pre-line w-fit sm:hidden'>
+          <div className='flex items-center justify-between gap-4 sm:gap-2'>
+            <div className='flex items-center gap-2'>
+              <TechnologyBadge
+                technology={filterValue}
+                size='xs'
+                tooltip={false}
+              />
+              {filterValue?.displayName}
+            </div>
+            <button
+              onClick={() => {
+                setFilterValue(undefined)
+              }}
+            >
+              <IoCloseOutline
+                aria-label='remove filter'
+                className='text-lg text-gray-10 hover:text-gray-12 transition'
+              />
+            </button>
+          </div>
+        </Tag>
+      ) : null}
 
       {layout === 'list' ? (
         <>

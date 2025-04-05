@@ -41,7 +41,7 @@
   }
 
   .btn-outline {
-    @apply btn border border-brand-dark bg-white text-brand-dark hover:border-brand-light hover:bg-brand-2 hover:text-brand-dark active:bg-brand-3 disabled:border-brand-5 disabled:bg-gray-1 disabled:text-brand-7;
+    @apply btn border border-brand-dark bg-white text-brand-dark hover:border-brand-light hover:bg-brand-2 hover:text-brand-dark active:bg-brand-3 active:text-brand-dark disabled:border-brand-5 disabled:bg-gray-1 disabled:text-brand-7;
   }
 
   .btn-text {
