@@ -53,7 +53,7 @@ const PageLayout: FC<PageLayoutProps> = ({
           ])}
         >
           {heading ? pageHeading : null}
-          <div className={cn('h-full px-4 md:px-12 xl:px-24', className)}>{children}</div>
+          <div className={cn('h-full px-4 md:px-12 xl:px-24 sm:pb-8', className)}>{children}</div>
         </div>
       </div>
     </main>

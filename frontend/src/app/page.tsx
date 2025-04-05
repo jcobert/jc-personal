@@ -6,6 +6,7 @@ import { getProjects } from '@/lib/strapi/queries/projects'
 
 import ProfilePhoto from '@/components/features/home-page/profile-photo'
 import ProjectCard from '@/components/features/projects/project-card'
+import Divider from '@/components/general/divider'
 import Link from '@/components/general/link'
 import PageLayout from '@/components/layout/page-layout'
 
@@ -38,15 +39,12 @@ const HomePage: FC = async () => {
       </section>
 
       <section>
-        <div className='flex flex-col gap-6'>
+        <div className='flex flex-col gap-6 md:gap-10'>
           <div className='prose max-w-none'>
             <h2 className='text-brand-primary font-semibold text-center mb-3'>
               My Projects
             </h2>
-            <div
-              aria-hidden
-              className='h-px bg-gradient-to-r from-transparent via-brand-6 w-1/2 mx-auto'
-            />
+            <Divider />
           </div>
 
           <div className='flex flex-col gap-12'>
