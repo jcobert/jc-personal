@@ -37,7 +37,7 @@ const Page: FC<Props> = async () => {
       <section>
         <div className='flex flex-col gap-y-12 mx-auto'>
           {contentBlocks?.map((block, i) => (
-            <div key={block?.id} className='flex flex-col gap-10 xl:gap-12'>
+            <div key={block?.id} className='flex flex-col gap-10 md:gap-12'>
               <ContentBlock seq={i} content={block} />
               {i < contentBlocks?.length - 1 ? <Divider /> : null}
             </div>

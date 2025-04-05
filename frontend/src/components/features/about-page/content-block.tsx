@@ -1,29 +1,21 @@
 import { FC } from 'react'
 
-import { ContentBlock as CB } from '@/lib/strapi/queries/about-page'
+import { ContentBlock as Block } from '@/lib/strapi/queries/about-page'
 import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
+import { getPositionInSequence } from '@/utils/general'
 import { cn } from '@/utils/style'
 
 import RichText from '@/components/general/block-content/rich-text'
 
-const getPositionInSequence = (num: number | string | undefined, step = 4) => {
-  const n = Number(num)
-  if (!Number.isInteger(n) || n <= 0) {
-    return undefined
-  }
-  const remainder = (n - 1) % step
-  return remainder + 1
-}
-
 type Props = {
-  content: CB | undefined
+  content: Block | undefined
   seq: number
 }
 
 const ContentBlock: FC<Props> = ({ content, seq }) => {
   const { body, image } = content || {}
-  const position = getPositionInSequence(seq + 1)
+  const position = getPositionInSequence(seq + 1, 4)
 
   if (!content) return null
   return (
@@ -35,8 +27,10 @@ const ContentBlock: FC<Props> = ({ content, seq }) => {
       ])}
     >
       <div
+        aria-hidden
         className={cn([
           'flex-none size-20 md:size-24 mb-4 sm:my-auto bg-contain bg-center bg-no-repeat',
+          'border-4 border-brand-4 shadow-sm rounded-full',
         ])}
         style={{ backgroundImage: `url(${getStrapiImageUrl(image?.url)})` }}
       />
