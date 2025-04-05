@@ -34,7 +34,7 @@ const Page: FC<Props> = async () => {
       <Heading text={heading} description={description} />
 
       <section>
-        <div className='flex flex-col gap-y-20 sm:gap-y-16 w-11/12 md:w-10/12 lg:w-8/12 xl:w-7/12 mx-auto'>
+        <div className='flex flex-col gap-y-20 sm:gap-y-16 xl:gap-y-24 mx-auto'>
           {contentBlocks?.map((block, i) => (
             <ContentBlock key={block?.id} seq={i} content={block} />
           ))}

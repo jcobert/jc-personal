@@ -26,8 +26,8 @@ const HomePage: FC = async () => {
   const { title, description, profilePhoto } = homePage || {}
 
   return (
-    <PageLayout className='flex flex-col gap-10 sm:gap-16'>
-      <section className='md:px-12__ lg:px-24__ md:pt-8'>
+    <PageLayout className='flex flex-col gap-12 sm:gap-16 md:gap-24'>
+      <section className='md:pt-8'>
         <div className='prose max-w-none flex flex-col gap-8 max-md:mx-auto'>
           <div className='flex max-w-2xl items-center md:items-end max-md:flex-col gap-x-8 gap-y-4'>
             <h1 className='text-6xl'>{title}</h1>

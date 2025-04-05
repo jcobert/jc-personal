@@ -24,33 +24,23 @@ type Props = {
 const ContentBlock: FC<Props> = ({ content, seq }) => {
   const { body, image } = content || {}
   const position = getPositionInSequence(seq + 1)
-  const isEven = (position || 0) % 2 === 0
 
   if (!content) return null
   return (
     <div
       className={cn([
-        'mx-auto__',
-        position === 1 && 'lg:relative xl:left-20',
-        position === 3 && 'lg:relative xl:right-20',
+        'flex max-sm:flex-col items-center gap-2 sm:gap-6 w-full justify-center',
+        position === 1 && 'xl:-ml-28',
+        position === 3 && 'xl:ml-28',
       ])}
     >
       <div
         className={cn([
-          'size-20 md:size-24 lg:size-32 mb-4 mx-auto sm:ml-0 sm:mr-4 sm:my-auto float-none sm:float-left bg-contain bg-center bg-no-repeat',
-          isEven && 'md:mr-0 md:ml-4 md:float-right',
+          'flex-none size-20 md:size-24 mb-4 sm:my-auto bg-contain bg-center bg-no-repeat',
         ])}
         style={{ backgroundImage: `url(${getStrapiImageUrl(image?.url)})` }}
       />
-      <RichText
-        content={body}
-        className={cn([
-          // isEven && 'md:ml-auto'
-          'md:pt-4 lg:pt-2',
-          isEven && 'pr-8',
-          // position !== 2 && 'md:pl-12 xl:pl-16',
-        ])}
-      />
+      <RichText content={body} />
     </div>
   )
 }
