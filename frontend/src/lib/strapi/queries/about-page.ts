@@ -1,7 +1,5 @@
 import { strapiFetch } from '../fetch'
-import { ContentContentBlock } from '../types/components'
 import {
-  GetValues,
   StrapiAPIResponse,
   StrapiImage,
   WithIDProperty,
@@ -9,7 +7,12 @@ import {
 import { getStrapiApiPath } from '../utils'
 
 export type ContentBlock = WithIDProperty<
-  Omit<GetValues<ContentContentBlock['uid']>, 'image'> & {
+  Omit<
+    NonNullable<
+      StrapiAPIResponse<'api::about-page.about-page'>['data']['contentBlocks']
+    >[number],
+    'image'
+  > & {
     image?: StrapiImage
   }
 >

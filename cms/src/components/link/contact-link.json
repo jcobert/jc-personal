@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_link_contact_links",
+  "info": {
+    "displayName": "Contact Link",
+    "icon": "discuss",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "name": {
+      "type": "enumeration",
+      "enum": [
+        "email",
+        "linkedin",
+        "github",
+        "instagram",
+        "facebook",
+        "twitter"
+      ],
+      "required": true
+    }
+  }
+}

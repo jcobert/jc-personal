@@ -14,10 +14,29 @@ export interface ContentContentBlock extends Struct.ComponentSchema {
   };
 }
 
+export interface LinkContactLink extends Struct.ComponentSchema {
+  collectionName: 'components_link_contact_links';
+  info: {
+    description: '';
+    displayName: 'Contact Link';
+    icon: 'discuss';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    name: Schema.Attribute.Enumeration<
+      ['email', 'linkedin', 'github', 'instagram', 'facebook', 'twitter']
+    > &
+      Schema.Attribute.Required;
+    text: Schema.Attribute.String;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'content.content-block': ContentContentBlock;
+      'link.contact-link': LinkContactLink;
     }
   }
 }
