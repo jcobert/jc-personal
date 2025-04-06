@@ -11,7 +11,7 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string",
       "required": true
     },
@@ -21,7 +21,6 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "Title",
       "required": true
     },
     "image": {

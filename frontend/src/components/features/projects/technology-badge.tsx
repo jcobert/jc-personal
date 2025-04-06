@@ -1,6 +1,6 @@
-import { Technology } from './types'
 import { FC } from 'react'
 
+import { Technology } from '@/lib/strapi/types/common'
 import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
 import { cn } from '@/utils/style'

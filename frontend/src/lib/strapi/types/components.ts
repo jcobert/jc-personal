@@ -32,11 +32,23 @@ export interface LinkContactLink extends Struct.ComponentSchema {
   };
 }
 
+export interface MetaTag extends Struct.ComponentSchema {
+  collectionName: 'components_meta_tags';
+  info: {
+    displayName: 'Tag';
+    icon: 'folder';
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'content.content-block': ContentContentBlock;
       'link.contact-link': LinkContactLink;
+      'meta.tag': MetaTag;
     }
   }
 }

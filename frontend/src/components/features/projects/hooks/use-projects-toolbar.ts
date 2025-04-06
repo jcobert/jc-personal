@@ -1,6 +1,8 @@
-import { Project, Technology } from '../types'
+import { Project } from '../types'
 import { sortBy, uniqBy } from 'lodash'
 import { useMemo, useState } from 'react'
+
+import { Technology } from '@/lib/strapi/types/common'
 
 import { SelectOption } from '@/components/form/inputs/select-input'
 import { LayoutType } from '@/components/general/layout-toggle'
