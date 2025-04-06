@@ -3,6 +3,7 @@ import { FC } from 'react'
 
 import { getPosts } from '@/lib/strapi/queries/posts'
 
+import PostCollection from '@/components/features/blog/post-collection'
 import Heading from '@/components/layout/heading'
 import PageLayout from '@/components/layout/page-layout'
 
@@ -28,7 +29,9 @@ const Page: FC = async () => {
     <PageLayout className='flex flex-col gap-8'>
       <Heading text={heading} description={description} />
 
-      <section></section>
+      <section>
+        <PostCollection posts={posts} />
+      </section>
     </PageLayout>
   )
 }

@@ -3,6 +3,7 @@ import { FC } from 'react'
 
 import { getPosts } from '@/lib/strapi/queries/posts'
 
+import BlogPost from '@/components/features/blog/blog-post'
 import Back from '@/components/general/back'
 import PageLayout from '@/components/layout/page-layout'
 
@@ -53,6 +54,7 @@ const Page: FC<PageProps> = async ({ params }) => {
   return (
     <PageLayout className='flex flex-col gap-6 sm:gap-8'>
       <Back href='/blog' text='All Posts' />
+      <BlogPost post={post} />
     </PageLayout>
   )
 }
