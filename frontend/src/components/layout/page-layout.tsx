@@ -48,7 +48,7 @@ const PageLayout: FC<PageLayoutProps> = ({
         <div
           className={cn([
             'flex flex-col gap-2 h-full',
-            defaultLayout && 'layout py-6',
+            defaultLayout && 'layout py-6 md:py-10',
             pageClassName,
           ])}
         >

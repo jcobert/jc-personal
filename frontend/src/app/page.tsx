@@ -31,7 +31,9 @@ const HomePage: FC = async () => {
       <section className='md:pt-8'>
         <div className='prose max-w-none flex flex-col gap-8 max-md:mx-auto'>
           <div className='flex max-w-2xl items-center md:items-end max-md:flex-col gap-x-8 gap-y-4'>
-            <h1 className='text-6xl'>{title}</h1>
+            <h1 className='max-sm:text-[2.625rem] sm:text-6xl text-balance'>
+              {title}
+            </h1>
             <ProfilePhoto image={profilePhoto} />
           </div>
           <p className='max-w-[64ch]'>{description}</p>
