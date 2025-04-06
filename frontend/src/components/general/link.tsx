@@ -30,7 +30,7 @@ const Link: FC<LinkProps> = ({
   return (
     <NextLink
       {...props}
-      className={cn([variantStyle, emphasisStyle, className])}
+      className={cn([variantStyle, emphasisStyle, 'no-underline', className])}
     >
       {children}
     </NextLink>
