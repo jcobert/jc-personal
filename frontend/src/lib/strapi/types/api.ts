@@ -2050,6 +2050,8 @@ export interface components {
                 image?: number | string;
                 tags?: components["schemas"]["MetaTagComponent"][];
                 technologies?: (number | string)[];
+                description?: string;
+                featured?: boolean;
                 locale?: string;
                 localizations?: (number | string)[];
             };
@@ -2359,6 +2361,8 @@ export interface components {
                     documentId?: string;
                 }[];
             }[];
+            description?: string;
+            featured?: boolean;
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
@@ -2432,6 +2436,8 @@ export interface components {
                     id?: number;
                     documentId?: string;
                 }[];
+                description?: string;
+                featured?: boolean;
                 /** Format: date-time */
                 createdAt?: string;
                 /** Format: date-time */

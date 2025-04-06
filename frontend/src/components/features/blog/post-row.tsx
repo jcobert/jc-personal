@@ -14,7 +14,7 @@ type Props = {
 }
 
 const PostRow: FC<Props> = ({ post }) => {
-  const { title, image, slug, technologies } = post || {}
+  const { title, description, image, slug, technologies } = post || {}
 
   const postLink = `/blog/${slug}`
 
@@ -46,6 +46,7 @@ const PostRow: FC<Props> = ({ post }) => {
           <h2 className='text-balance text-brand-primary max-w-prose text-xl max-sm:text-center font-medium group-hover:text-brand-dark transition'>
             {title}
           </h2>
+          <p className='sm:text-lg text-pretty'>{description}</p>
 
           {technologies?.length ? (
             <div className='mt-2'>

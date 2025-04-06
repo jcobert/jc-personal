@@ -24,8 +24,10 @@ export const getPosts = async <
   const res = await strapiFetch<TDocumentId extends string ? Post : Post[]>(
     getStrapiApiPath(path, { id: documentId }),
     {
+      /** @todo not getting tags. figure out query. */
       query: {
         'populate[technologies][populate][0]': 'image',
+        'populate[0]': 'tags',
         populate: 'image',
         /** @todo accept additional filters. */
         filters: { slug, ...filters },

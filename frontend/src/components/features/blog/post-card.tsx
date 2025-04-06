@@ -1,5 +1,6 @@
 import TechnologyBadge from '../projects/technology-badge'
 import { Post } from './types'
+import { format } from 'date-fns'
 import { FC } from 'react'
 import { FaAngleRight } from 'react-icons/fa6'
 
@@ -8,13 +9,15 @@ import { getStrapiImageUrl } from '@/lib/strapi/utils'
 import { cn } from '@/utils/style'
 
 import Link from '@/components/general/link'
+import Tag from '@/components/general/tag'
 
 type Props = {
   post?: Post
 }
 
 const PostCard: FC<Props> = ({ post }) => {
-  const { title, image, slug, technologies } = post || {}
+  const { title, description, image, slug, technologies, tags, createdAt } =
+    post || {}
 
   const postLink = `/blog/${slug}`
 
@@ -40,6 +43,13 @@ const PostCard: FC<Props> = ({ post }) => {
             backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
           }}
         />
+        {/* Description */}
+        <p className='sm:text-lg text-pretty grow'>{description}</p>
+        {createdAt ? (
+          <p className='text-xs text-gray-11 text-center'>
+            {format(createdAt, 'MMM dd, yyyy')}
+          </p>
+        ) : null}
         {/* Technologies */}
         {technologies?.length ? (
           <div className='flex flex-col gap-y-6 mb-4'>
@@ -60,6 +70,9 @@ const PostCard: FC<Props> = ({ post }) => {
             </ul>
           </div>
         ) : null}
+
+        {tags?.length ? tags?.map((tag) => <Tag key={tag?.id} />) : null}
+
         {/* CTA */}
         <Link href={postLink} variant='secondary' className='mx-auto'>
           <span>Check it out</span>

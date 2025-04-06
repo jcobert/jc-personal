@@ -43,6 +43,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::technology.technology"
+    },
+    "description": {
+      "type": "text"
+    },
+    "featured": {
+      "type": "boolean"
     }
   }
 }
