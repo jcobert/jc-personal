@@ -33,9 +33,9 @@ const PostGrid: FC<Props> = ({ posts, className }) => {
 const PostList: FC<Props> = ({ posts, className }) => {
   if (!posts?.length) return null
   return (
-    <div className={cn('flex flex-col gap-10', className)}>
+    <div className={cn('flex flex-col gap-6', className)}>
       {posts?.map((p, i) => (
-        <div key={p?.id} className='flex flex-col gap-12'>
+        <div key={p?.id} className='flex flex-col gap-6'>
           <PostRow post={p} />
           {i < posts?.length - 1 ? <Divider /> : null}
         </div>

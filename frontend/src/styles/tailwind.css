@@ -80,28 +80,30 @@
     mask-image: linear-gradient(to right, white 40%, transparent);
   }
 
-  .animated-underline {
+  .animated-underline h2 {
     background-image: linear-gradient(#33333300, #33333300),
-      linear-gradient(to right, var(--color-brand-7), var(--color-brand-9));
+      linear-gradient(to right, var(--blue-8), var(--blue-8));
     background-size:
       100% 2px,
-      0 2px;
+      1ch 2px;
     background-position:
       100% 100%,
       0 100%;
     background-repeat: no-repeat;
   }
   @media (prefers-reduced-motion: no-preference) {
-    .animated-underline {
+    .animated-underline h2 {
       transition: 0.3s ease;
       transition-property: background-size, color, background-color,
         border-color;
     }
   }
-  .animated-underline:hover,
-  .animated-underline:focus-visible {
+  .animated-underline:hover h2,
+  .animated-underline:focus-visible h2 {
     background-size:
       0 2px,
       100% 2px;
+    background-image: linear-gradient(#33333300, #33333300),
+      linear-gradient(to right, var(--blue-8), var(--blue-11));
   }
 }
