@@ -9,12 +9,15 @@ import { FC } from 'react'
 
 import { cn } from '@/utils/style'
 
+import Divider from '@/components/general/divider'
+
 type Props = {
   posts: Post[] | undefined
   className?: string
 }
 
 const PostGrid: FC<Props> = ({ posts, className }) => {
+  if (!posts?.length) return null
   return (
     <div
       className={cn(
@@ -28,9 +31,15 @@ const PostGrid: FC<Props> = ({ posts, className }) => {
 }
 
 const PostList: FC<Props> = ({ posts, className }) => {
+  if (!posts?.length) return null
   return (
-    <div className={cn('flex flex-col gap-8', className)}>
-      {posts?.map((p) => <PostRow key={p?.id} post={p} />)}
+    <div className={cn('flex flex-col gap-10', className)}>
+      {posts?.map((p, i) => (
+        <div key={p?.id} className='flex flex-col gap-12'>
+          <PostRow post={p} />
+          {i < posts?.length - 1 ? <Divider /> : null}
+        </div>
+      ))}
     </div>
   )
 }
@@ -42,7 +51,7 @@ const PostCollection: FC<Props> = ({ posts }) => {
   if (!posts?.length) return null
 
   return (
-    <div className='flex flex-col gap-6'>
+    <div className='flex flex-col gap-6 overflow-hidden__'>
       <ProjectsToolbar filters={filters} />
 
       {layout === 'list' ? (
