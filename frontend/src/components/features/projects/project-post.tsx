@@ -43,7 +43,12 @@ const ProjectPost: FC<Props> = ({ project }) => {
             </h5>
             <div className='flex flex-wrap justify-around gap-8'>
               {technologies?.map((tech) => (
-                <TechnologyBadge key={tech?.id} technology={tech} showText />
+                <TechnologyBadge
+                  key={tech?.id}
+                  technology={tech}
+                  size='sm'
+                  showText
+                />
               ))}
             </div>
           </div>

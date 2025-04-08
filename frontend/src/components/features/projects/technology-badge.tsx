@@ -55,7 +55,7 @@ const TechnologyBadge: FC<Props> = (props) => {
       {image?.url ? <BadgeIcon {...props} /> : null}
 
       <span
-        className={cn([
+        className={cn(['font-medium',
           size === 'xs' && 'text-xs',
           size === 'sm' && 'text-sm',
           size === 'md' && 'text-base',
