@@ -5,6 +5,9 @@ import { FC } from 'react'
 
 import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
+import { fullName } from '@/utils/string'
+
+import Avatar from '@/components/general/avatar'
 import RichText from '@/components/general/block-content/rich-text'
 import Divider from '@/components/general/divider'
 import Tag from '@/components/general/tag'
@@ -14,7 +17,8 @@ type Props = {
 }
 
 const BlogPost: FC<Props> = ({ post }) => {
-  const { title, body, image, technologies, tags, createdAt } = post || {}
+  const { title, body, image, technologies, tags, createdAt, author } =
+    post || {}
 
   if (!post) return null
 
@@ -38,9 +42,18 @@ const BlogPost: FC<Props> = ({ post }) => {
         ) : null}
 
         {createdAt ? (
-          <span className='text-center text-sm text-gray-11'>
-            {`${format(createdAt, 'MMM dd, yyyy')} by Josh Cobert`}
-          </span>
+          <div className='flex items-center gap-2'>
+            {author ? (
+              <Avatar
+                image={getStrapiImageUrl(author?.photo?.url)}
+                name={author?.firstName}
+                size='xs'
+              />
+            ) : null}
+            <span className='text-center text-sm text-gray-11'>
+              {`${format(createdAt, 'MMM dd, yyyy')}${author ? ` by ${fullName(author?.firstName, author?.lastName)}` : ''}`}
+            </span>
+          </div>
         ) : null}
 
         {/* Technologies */}
@@ -52,7 +65,7 @@ const BlogPost: FC<Props> = ({ post }) => {
                   key={tech?.id}
                   technology={tech}
                   size='xs'
-                  showText
+                  // showText
                 />
               ))}
               {(tags || [])?.map((t) => (

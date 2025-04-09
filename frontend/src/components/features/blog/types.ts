@@ -1,9 +1,14 @@
 import { Technology } from '@/lib/strapi/types/common'
 import {
   StrapiAPIResponse,
-  StrapiImage,
+  StrapiMediaImage,
   WithIDProperty,
 } from '@/lib/strapi/types/general'
+
+export type Person = Omit<
+  StrapiAPIResponse<'api::person.person'>['data'][number],
+  'photo'
+> & { photo?: StrapiMediaImage }
 
 export type PostTag = WithIDProperty<
   NonNullable<
@@ -13,10 +18,11 @@ export type PostTag = WithIDProperty<
 
 export type Post = Omit<
   StrapiAPIResponse<'api::post.post'>['data'][number],
-  'image' | 'technologies' | 'tags' | 'createdAt'
+  'image' | 'technologies' | 'tags' | 'createdAt' | 'author'
 > & {
-  image?: StrapiImage
+  image?: StrapiMediaImage
   technologies?: Technology[]
   tags?: PostTag[]
   createdAt: string
+  author?: Person
 }

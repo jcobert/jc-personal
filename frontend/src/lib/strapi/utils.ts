@@ -1,4 +1,4 @@
-import { StrapiApiPath, StrapiImage } from './types/general'
+import { StrapiApiPath, StrapiMediaImage } from './types/general'
 import { template, templateSettings } from 'lodash'
 
 export const getStrapiUrl = () => {
@@ -25,7 +25,7 @@ export const getStrapiApiPath = (
   return template(url)(params)
 }
 
-export const buildStrapiImage = (image: StrapiImage | undefined) => {
+export const buildStrapiImage = (image: StrapiMediaImage | undefined) => {
   if (!image?.url) return undefined
   return {
     ...image,
@@ -33,5 +33,5 @@ export const buildStrapiImage = (image: StrapiImage | undefined) => {
     alternativeText: image?.alternativeText || '',
     width: Number(image?.width),
     height: Number(image?.height),
-  } satisfies Partial<StrapiImage>
+  } satisfies Partial<StrapiMediaImage>
 }

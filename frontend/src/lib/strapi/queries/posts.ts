@@ -28,6 +28,7 @@ export const getPosts = async <
         'populate[image]': true,
         'populate[tags][populate]': '*',
         'populate[technologies][populate][image]': true,
+        'populate[author][populate][photo]': true,
         filters: { slug, ...filters },
       },
     },

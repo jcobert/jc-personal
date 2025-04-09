@@ -1,9 +1,9 @@
 import { strapiFetch } from '../fetch'
-import { StrapiAPIResponse, StrapiImage } from '../types/general'
+import { StrapiAPIResponse, StrapiMediaImage } from '../types/general'
 import { getStrapiApiPath } from '../utils'
 
 export type HomePage = StrapiAPIResponse<'api::home-page.home-page'>['data'] & {
-  profilePhoto?: StrapiImage
+  profilePhoto?: StrapiMediaImage
 }
 
 export const getHomePage = async (): Promise<HomePage | undefined> => {

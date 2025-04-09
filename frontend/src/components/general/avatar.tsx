@@ -17,7 +17,26 @@ const Avatar: FC<Props> = ({
   className,
   textClassName,
 }) => {
-  if (!name)
+  if (image) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        className={cn('flex-none rounded-full bg-gray-3 border', [
+          size === '2xs' && 'size-8',
+          size === 'xs' && 'size-12',
+          size === 'sm' && 'size-16',
+          size === 'md' && 'size-20',
+          size === 'lg' && 'size-24',
+          size === 'xl' && 'size-28',
+          className,
+        ])}
+        src={image}
+        alt={name}
+      />
+    )
+  }
+
+  if (!name) {
     return (
       <div
         className={cn('flex-none rounded-full bg-gray-3 border', [
@@ -31,23 +50,9 @@ const Avatar: FC<Props> = ({
         ])}
       />
     )
+  }
 
-  return image ? (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      className={cn('flex-none rounded-full bg-gray-3 border', [
-        size === '2xs' && 'size-8',
-        size === 'xs' && 'size-12',
-        size === 'sm' && 'size-16',
-        size === 'md' && 'size-20',
-        size === 'lg' && 'size-24',
-        size === 'xl' && 'size-28',
-        className,
-      ])}
-      src={image}
-      alt={name}
-    />
-  ) : (
+  return (
     <div
       className={cn(
         'flex-none rounded-full bg-gray-3 border flex justify-center items-center',
