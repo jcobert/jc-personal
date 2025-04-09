@@ -20,51 +20,92 @@ type Props = {
 const BlogToolbar: FC<Props> = ({
   filters: {
     filterOptions,
-    filterValue,
-    setFilterValue,
+    filterValues,
+    setFilterValues,
     layout,
     setLayout,
     filterMenuOpen,
     setFilterMenuOpen,
   },
 }) => {
+  const hasActiveFilter = !!Object.values(filterValues)?.filter(Boolean)?.length
+  const { tag: activeTag, technology: activeTechnology } = filterValues
+
   return (
     <>
       <div className='flex items-center justify-end gap-2'>
         <div
           className={cn([
             'flex items-center flex-wrap max-sm:gap-4 max-sm:w-full',
-            !!filterValue &&
+            hasActiveFilter &&
               'rounded sm:outline outline-gray-5 outline-offset-4',
           ])}
         >
           {/* Active filters - desktop */}
-          {filterValue ? (
-            <div className='flex items-center max-sm:hidden'>
-              <Tag className='whitespace-pre-line'>
-                <div className='flex items-center justify-between gap-4 sm:gap-2'>
-                  <div className='flex items-center gap-2'>
-                    <TechnologyBadge
-                      technology={filterValue}
-                      size='xs'
-                      tooltip={false}
-                    />
-                    {filterValue?.displayName}
-                  </div>
-                  <button
-                    onClick={() => {
-                      setFilterValue(undefined)
-                    }}
-                  >
-                    <IoCloseOutline
-                      aria-label='remove filter'
-                      className='text-lg text-gray-10 hover:text-gray-12 transition'
-                    />
-                  </button>
+          {hasActiveFilter ? (
+            <div className='flex items-center gap-2 max-sm:hidden'>
+              {activeTechnology ? (
+                <div className='flex items-center'>
+                  <Tag className='whitespace-pre-line'>
+                    <div className='flex items-center justify-between gap-4 sm:gap-2'>
+                      <div className='flex items-center gap-2'>
+                        <TechnologyBadge
+                          technology={activeTechnology}
+                          size='2xs'
+                          tooltip={false}
+                        />
+                        {activeTechnology?.displayName}
+                      </div>
+                      <button
+                        onClick={() => {
+                          setFilterValues((prev) => ({
+                            ...prev,
+                            technology: undefined,
+                          }))
+                        }}
+                      >
+                        <IoCloseOutline
+                          aria-label='remove filter'
+                          className='text-lg text-gray-10 hover:text-gray-12 transition'
+                        />
+                      </button>
+                    </div>
+                  </Tag>
                 </div>
-              </Tag>
-              <RxDividerVertical aria-hidden className='text-2xl text-gray-5' />
+              ) : null}
+
+              {activeTag ? (
+                <div className='flex items-center'>
+                  <Tag className='whitespace-pre-line'>
+                    <div className='flex items-center justify-between gap-4 sm:gap-2'>
+                      <div className='flex items-center gap-2'>
+                        {activeTag?.name}
+                      </div>
+                      <button
+                        onClick={() => {
+                          setFilterValues((prev) => ({
+                            ...prev,
+                            tag: undefined,
+                          }))
+                        }}
+                      >
+                        <IoCloseOutline
+                          aria-label='remove filter'
+                          className='text-lg text-gray-10 hover:text-gray-12 transition'
+                        />
+                      </button>
+                    </div>
+                  </Tag>
+                </div>
+              ) : null}
             </div>
+          ) : null}
+
+          {hasActiveFilter ? (
+            <RxDividerVertical
+              aria-hidden
+              className='text-2xl text-gray-5 max-sm:hidden'
+            />
           ) : null}
 
           <Popover
@@ -75,41 +116,72 @@ const BlogToolbar: FC<Props> = ({
             trigger={
               <Button
                 aria-label='open filter menu'
-                variant={filterValue ? 'primary' : 'secondary'}
+                variant={hasActiveFilter ? 'primary' : 'secondary'}
                 className='py-2 min-h-0 max-sm:flex-1 sm:w-fit'
               >
                 <TbFilterSearch aria-hidden className='text-xl' />
               </Button>
             }
           >
-            <SelectInput
-              label='Technology'
-              className='min-w-48'
-              options={filterOptions}
-              value={filterOptions?.find(
-                (opt) => opt?.value?.documentId === filterValue?.documentId,
-              )}
-              formatOptionLabel={(opt) => {
-                const tech = (opt as (typeof filterOptions)[number])?.value
-                return (
-                  <div className='flex items-center gap-2'>
-                    <TechnologyBadge
-                      technology={tech}
-                      size='xs'
-                      tooltip={false}
-                    />
-                    {tech?.displayName}
-                  </div>
-                )
-              }}
-              onChange={(opt: (typeof filterOptions)[number]) => {
-                setFilterValue(opt?.value)
-                setFilterMenuOpen(false)
-              }}
-              isClearable
-              isSearchable={false}
-              menuPosition='fixed'
-            />
+            <div className='flex gap-4 max-sm:flex-col'>
+              {/* Tag */}
+              <SelectInput
+                label='Category'
+                className='min-w-48'
+                options={filterOptions?.tag}
+                value={filterOptions?.tag?.find(
+                  (opt) => opt?.value?.id === filterValues?.tag?.id,
+                )}
+                formatOptionLabel={(opt) => {
+                  const tag = (opt as (typeof filterOptions.tag)[number])?.value
+                  return <span className='capitalize'>{tag?.name}</span>
+                }}
+                onChange={(opt: (typeof filterOptions.tag)[number]) => {
+                  setFilterValues((prev) => ({ ...prev, tag: opt?.value }))
+                  setFilterMenuOpen(false)
+                }}
+                isClearable
+                isSearchable={false}
+                menuPosition='fixed'
+              />
+
+              {/* Technology */}
+              <SelectInput
+                label='Technology'
+                className='min-w-48'
+                options={filterOptions?.technology}
+                value={filterOptions?.technology?.find(
+                  (opt) =>
+                    opt?.value?.documentId ===
+                    filterValues?.technology?.documentId,
+                )}
+                formatOptionLabel={(opt) => {
+                  const tech = (
+                    opt as (typeof filterOptions.technology)[number]
+                  )?.value
+                  return (
+                    <div className='flex items-center gap-2'>
+                      <TechnologyBadge
+                        technology={tech}
+                        size='xs'
+                        tooltip={false}
+                      />
+                      {tech?.displayName}
+                    </div>
+                  )
+                }}
+                onChange={(opt: (typeof filterOptions.technology)[number]) => {
+                  setFilterValues((prev) => ({
+                    ...prev,
+                    technology: opt?.value,
+                  }))
+                  setFilterMenuOpen(false)
+                }}
+                isClearable
+                isSearchable={false}
+                menuPosition='fixed'
+              />
+            </div>
           </Popover>
         </div>
 
@@ -126,29 +198,59 @@ const BlogToolbar: FC<Props> = ({
       </div>
 
       {/* Active filters - mobile */}
-      {filterValue ? (
-        <Tag className='whitespace-pre-line w-fit sm:hidden'>
-          <div className='flex items-center justify-between gap-4 sm:gap-2'>
-            <div className='flex items-center gap-2'>
-              <TechnologyBadge
-                technology={filterValue}
-                size='xs'
-                tooltip={false}
-              />
-              {filterValue?.displayName}
-            </div>
-            <button
-              onClick={() => {
-                setFilterValue(undefined)
-              }}
-            >
-              <IoCloseOutline
-                aria-label='remove filter'
-                className='text-lg text-gray-10 hover:text-gray-12 transition'
-              />
-            </button>
-          </div>
-        </Tag>
+      {hasActiveFilter ? (
+        <div className='sm:hidden flex items-center gap-2 flex-wrap'>
+          {activeTechnology ? (
+            <Tag className='whitespace-pre-line w-fit sm:hidden'>
+              <div className='flex items-center justify-between gap-4 sm:gap-2'>
+                <div className='flex items-center gap-2'>
+                  <TechnologyBadge
+                    technology={filterValues?.technology}
+                    size='2xs'
+                    tooltip={false}
+                  />
+                  {filterValues?.technology?.displayName}
+                </div>
+                <button
+                  onClick={() => {
+                    setFilterValues((prev) => ({
+                      ...prev,
+                      technology: undefined,
+                    }))
+                  }}
+                >
+                  <IoCloseOutline
+                    aria-label='remove filter'
+                    className='text-lg text-gray-10 hover:text-gray-12 transition'
+                  />
+                </button>
+              </div>
+            </Tag>
+          ) : null}
+
+          {activeTag ? (
+            <Tag className='whitespace-pre-line w-fit sm:hidden'>
+              <div className='flex items-center justify-between gap-4 sm:gap-2'>
+                <div className='flex items-center gap-2'>
+                  {filterValues?.tag?.name}
+                </div>
+                <button
+                  onClick={() => {
+                    setFilterValues((prev) => ({
+                      ...prev,
+                      tag: undefined,
+                    }))
+                  }}
+                >
+                  <IoCloseOutline
+                    aria-label='remove filter'
+                    className='text-lg text-gray-10 hover:text-gray-12 transition'
+                  />
+                </button>
+              </div>
+            </Tag>
+          ) : null}
+        </div>
       ) : null}
     </>
   )

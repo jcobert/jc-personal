@@ -51,7 +51,7 @@ const PostCollection: FC<Props> = ({ posts }) => {
   if (!posts?.length) return null
 
   return (
-    <div className='flex flex-col gap-6 overflow-hidden__'>
+    <div className='flex flex-col gap-6'>
       <ProjectsToolbar filters={filters} />
 
       {layout === 'list' ? (

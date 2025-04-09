@@ -1,5 +1,5 @@
-import { Post } from '../types'
-import { sortBy, uniqBy } from 'lodash'
+import { Post, PostTag } from '../types'
+import { intersectionWith, sortBy, uniqBy } from 'lodash'
 import { useMemo, useState } from 'react'
 
 import { Technology } from '@/lib/strapi/types/common'
@@ -8,7 +8,10 @@ import { SelectOption } from '@/components/form/inputs/select-input'
 import { LayoutType } from '@/components/general/layout-toggle'
 
 export const useBlogToolbar = (posts: Post[] | undefined) => {
-  const [filterValue, setFilterValue] = useState<Technology>()
+  const [filterValues, setFilterValues] = useState<{
+    technology?: Technology
+    tag?: PostTag
+  }>({})
   const [filterMenuOpen, setFilterMenuOpen] = useState(false)
   const [layout, setLayout] = useState<LayoutType>('list')
 
@@ -18,9 +21,8 @@ export const useBlogToolbar = (posts: Post[] | undefined) => {
       (tech) => tech?.documentId,
     )?.filter(Boolean)
 
-    if (!techs?.length) return []
-    return sortBy(
-      techs?.map(
+    const technology = sortBy(
+      (techs || [])?.map(
         (t) =>
           ({
             label: t?.displayName,
@@ -29,24 +31,61 @@ export const useBlogToolbar = (posts: Post[] | undefined) => {
       ),
       (t) => t?.value?.displayName,
     )
+
+    const tags = uniqBy(
+      (posts || [])?.flatMap((p) => p?.tags),
+      (tag) => tag?.id,
+    )?.filter(Boolean)
+
+    const tag = sortBy(
+      (tags || [])?.map(
+        (t) =>
+          ({
+            label: t?.name,
+            value: t,
+          }) satisfies SelectOption<PostTag>,
+      ),
+      (t) => t?.value?.name,
+    )
+
+    return { technology, tag }
   }, [posts])
 
   const filteredPosts = useMemo(() => {
-    if (!filterValue) return posts
-    return (
-      posts?.filter((p) =>
-        (p?.technologies || [])?.some(
-          (t) => t?.documentId === filterValue?.documentId,
-        ),
-      ) || []
-    )
-  }, [posts, filterValue])
+    if (!Object.keys(filterValues || {})) return posts || []
+    const withTag =
+      posts?.filter((p) => {
+        return (p?.tags || [])?.some((t) => {
+          return t?.id === filterValues?.tag?.id
+        })
+      }) || []
+
+    const withTech =
+      posts?.filter((p) => {
+        return (p?.technologies || [])?.some((t) => {
+          return t?.documentId === filterValues?.technology?.documentId
+        })
+      }) || []
+
+    if (filterValues?.tag && filterValues?.technology) {
+      return intersectionWith(
+        withTag,
+        withTech,
+        (pTag, pTech) => pTag?.documentId === pTech?.documentId,
+      )
+    } else if (filterValues?.tag) {
+      return withTag
+    } else if (filterValues?.technology) {
+      return withTech
+    }
+    return posts || []
+  }, [posts, filterValues?.tag, filterValues?.technology])
 
   return {
     filterOptions,
     filteredPosts,
-    filterValue,
-    setFilterValue,
+    filterValues,
+    setFilterValues,
     filterMenuOpen,
     setFilterMenuOpen,
     layout,
