@@ -26,9 +26,10 @@ const BlogToolbar: FC<Props> = ({
     setLayout,
     filterMenuOpen,
     setFilterMenuOpen,
+    hasActiveFilter,
+    resetAllFilters,
   },
 }) => {
-  const hasActiveFilter = !!Object.values(filterValues)?.filter(Boolean)?.length
   const { tag: activeTag, technology: activeTechnology } = filterValues
 
   return (
@@ -123,64 +124,80 @@ const BlogToolbar: FC<Props> = ({
               </Button>
             }
           >
-            <div className='flex gap-4 max-sm:flex-col'>
-              {/* Tag */}
-              <SelectInput
-                label='Category'
-                className='min-w-48'
-                options={filterOptions?.tag}
-                value={filterOptions?.tag?.find(
-                  (opt) => opt?.value?.id === filterValues?.tag?.id,
-                )}
-                formatOptionLabel={(opt) => {
-                  const tag = (opt as (typeof filterOptions.tag)[number])?.value
-                  return <span className='capitalize'>{tag?.name}</span>
-                }}
-                onChange={(opt: (typeof filterOptions.tag)[number]) => {
-                  setFilterValues((prev) => ({ ...prev, tag: opt?.value }))
-                  setFilterMenuOpen(false)
-                }}
-                isClearable
-                isSearchable={false}
-                menuPosition='fixed'
-              />
+            <div className='flex flex-col gap-4'>
+              <div className='flex gap-4 max-sm:flex-col'>
+                {/* Tag */}
+                <SelectInput
+                  label='Category'
+                  className='min-w-48'
+                  options={filterOptions?.tag}
+                  value={filterOptions?.tag?.find(
+                    (opt) => opt?.value?.id === filterValues?.tag?.id,
+                  )}
+                  formatOptionLabel={(opt) => {
+                    const tag = (opt as (typeof filterOptions.tag)[number])
+                      ?.value
+                    return <span className='capitalize'>{tag?.name}</span>
+                  }}
+                  onChange={(opt: (typeof filterOptions.tag)[number]) => {
+                    setFilterValues((prev) => ({ ...prev, tag: opt?.value }))
+                    setFilterMenuOpen(false)
+                  }}
+                  isClearable
+                  isSearchable={false}
+                  menuPosition='fixed'
+                />
 
-              {/* Technology */}
-              <SelectInput
-                label='Technology'
-                className='min-w-48'
-                options={filterOptions?.technology}
-                value={filterOptions?.technology?.find(
-                  (opt) =>
-                    opt?.value?.documentId ===
-                    filterValues?.technology?.documentId,
-                )}
-                formatOptionLabel={(opt) => {
-                  const tech = (
-                    opt as (typeof filterOptions.technology)[number]
-                  )?.value
-                  return (
-                    <div className='flex items-center gap-2'>
-                      <TechnologyBadge
-                        technology={tech}
-                        size='xs'
-                        tooltip={false}
-                      />
-                      {tech?.displayName}
-                    </div>
-                  )
-                }}
-                onChange={(opt: (typeof filterOptions.technology)[number]) => {
-                  setFilterValues((prev) => ({
-                    ...prev,
-                    technology: opt?.value,
-                  }))
+                {/* Technology */}
+                <SelectInput
+                  label='Technology'
+                  className='min-w-48'
+                  options={filterOptions?.technology}
+                  value={filterOptions?.technology?.find(
+                    (opt) =>
+                      opt?.value?.documentId ===
+                      filterValues?.technology?.documentId,
+                  )}
+                  formatOptionLabel={(opt) => {
+                    const tech = (
+                      opt as (typeof filterOptions.technology)[number]
+                    )?.value
+                    return (
+                      <div className='flex items-center gap-2'>
+                        <TechnologyBadge
+                          technology={tech}
+                          size='xs'
+                          tooltip={false}
+                        />
+                        {tech?.displayName}
+                      </div>
+                    )
+                  }}
+                  onChange={(
+                    opt: (typeof filterOptions.technology)[number],
+                  ) => {
+                    setFilterValues((prev) => ({
+                      ...prev,
+                      technology: opt?.value,
+                    }))
+                    setFilterMenuOpen(false)
+                  }}
+                  isClearable
+                  isSearchable={false}
+                  menuPosition='fixed'
+                />
+              </div>
+              <Button
+                className='max-sm:mx-auto sm:self-end'
+                disabled={!hasActiveFilter}
+                variant='tertiary'
+                onClick={() => {
+                  resetAllFilters()
                   setFilterMenuOpen(false)
                 }}
-                isClearable
-                isSearchable={false}
-                menuPosition='fixed'
-              />
+              >
+                Clear all
+              </Button>
             </div>
           </Popover>
         </div>

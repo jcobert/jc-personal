@@ -15,6 +15,10 @@ export const useBlogToolbar = (posts: Post[] | undefined) => {
   const [filterMenuOpen, setFilterMenuOpen] = useState(false)
   const [layout, setLayout] = useState<LayoutType>('list')
 
+  const resetAllFilters = () => {
+    setFilterValues({})
+  }
+
   const filterOptions = useMemo(() => {
     const techs = uniqBy(
       (posts || [])?.flatMap((p) => p?.technologies),
@@ -81,6 +85,8 @@ export const useBlogToolbar = (posts: Post[] | undefined) => {
     return posts || []
   }, [posts, filterValues?.tag, filterValues?.technology])
 
+  const hasActiveFilter = !!Object.values(filterValues)?.filter(Boolean)?.length
+
   return {
     filterOptions,
     filteredPosts,
@@ -90,6 +96,8 @@ export const useBlogToolbar = (posts: Post[] | undefined) => {
     setFilterMenuOpen,
     layout,
     setLayout,
+    hasActiveFilter,
+    resetAllFilters,
   }
 }
 
