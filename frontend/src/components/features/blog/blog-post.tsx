@@ -58,8 +58,8 @@ const BlogPost: FC<Props> = ({ post }) => {
 
         {/* Technologies */}
         {technologies?.length || tags?.length ? (
-          <div className='flex flex-col gap-4 w-fit mx-auto'>
-            <div className='flex flex-wrap justify-evenly gap-4'>
+          <div className='flex flex-col gap-4 w-full mx-auto overflow-auto fade-out-r'>
+            <div className='flex justify-center gap-4'>
               {(technologies || [])?.map((tech) => (
                 <TechnologyBadge
                   key={tech?.id}

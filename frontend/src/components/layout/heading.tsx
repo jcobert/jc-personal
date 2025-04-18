@@ -32,7 +32,9 @@ const Heading: FC<HeadingProps> = ({
         {text}
       </h1>
       {description ? (
-        <p className='max-w-prose text-pretty text-lg'>{description}</p>
+        <p className='max-w-prose text-pretty text-lg font-medium text-brand-12'>
+          {description}
+        </p>
       ) : null}
     </div>
   )

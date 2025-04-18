@@ -15,6 +15,7 @@ import { buildPageTitle } from '@/configuration/seo'
 const loadContent = async () => {
   const homePage = await getHomePage()
   const projects = await getProjects({ filters: { featured: true } })
+  // const posts = await getPosts({ pagination: { limit: 3 } })
   return { homePage, projects }
 }
 
@@ -40,32 +41,61 @@ const HomePage: FC = async () => {
         </div>
       </section>
 
-      <section>
-        <div className='flex flex-col gap-6 md:gap-10'>
-          <div className='prose max-w-none'>
-            <h2 className='text-brand-primary font-semibold text-center mb-3'>
-              My Projects
-            </h2>
-            <Divider />
-          </div>
+      {projects?.length ? (
+        <section>
+          <div className='flex flex-col gap-6 md:gap-10'>
+            <div className='prose max-w-none'>
+              <h2 className='text-brand-primary font-semibold text-center mb-3'>
+                My Projects
+              </h2>
+              <Divider />
+            </div>
 
-          <div className='flex flex-col gap-12'>
-            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12'>
-              {projects?.map((p) => <ProjectCard key={p?.id} project={p} />)}
-              <div className='md:max-w-2xl rounded md:border xl:border-none bg-brand-1 border-gray-4 flex items-center xl:col-start-2'>
-                <Link
-                  href='/projects'
-                  variant='primary'
-                  className='mx-auto sm:py-3 sm: px-6 self-center'
-                >
-                  <span>View all projects</span>
-                  {/* <FaAngleRight aria-hidden /> */}
-                </Link>
+            <div className='flex flex-col gap-12'>
+              <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12'>
+                {projects?.map((p) => <ProjectCard key={p?.id} project={p} />)}
+                <div className='md:max-w-2xl rounded md:border xl:border-none bg-brand-1 border-gray-4 flex items-center xl:col-start-2'>
+                  <Link
+                    href='/projects'
+                    variant='primary'
+                    className='mx-auto sm:py-3 sm: px-6 self-center'
+                  >
+                    <span>View all projects</span>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
+
+      {/* {posts?.length ? (
+        <section>
+          <div className='flex flex-col gap-6 md:gap-10'>
+            <div className='prose max-w-none'>
+              <h2 className='text-brand-primary font-semibold text-center mb-3'>
+                Blog Posts
+              </h2>
+              <Divider />
+            </div>
+
+            <div className='flex flex-col gap-12'>
+              <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12'>
+                {posts?.map((p) => <PostCard key={p?.id} post={p} />)}
+                <div className='md:max-w-2xl rounded md:border xl:border-none bg-brand-1 border-gray-4 flex items-center xl:col-start-2'>
+                  <Link
+                    href='/projects'
+                    variant='primary'
+                    className='mx-auto sm:py-3 sm: px-6 self-center'
+                  >
+                    <span>View all posts</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null} */}
     </PageLayout>
   )
 }

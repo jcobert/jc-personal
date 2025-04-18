@@ -1,4 +1,4 @@
-import { strapiFetch } from '../fetch'
+import { StrapiFetchOptions, strapiFetch } from '../fetch'
 import { StrapiApiPath } from '../types/general'
 import { getStrapiApiPath } from '../utils'
 
@@ -12,12 +12,13 @@ type Response<
 export const getPosts = async <
   TSlug extends string | undefined = undefined,
   TDocumentId extends string | undefined = undefined,
->(options?: {
-  slug?: TSlug
-  documentId?: TDocumentId
-  filters?: { [key in keyof Post]?: unknown }
-}): Promise<Response<TSlug, TDocumentId> | undefined> => {
-  const { documentId, slug, filters } = options || {}
+>(
+  options?: StrapiFetchOptions<Response>['query'] & {
+    slug?: TSlug
+    documentId?: TDocumentId
+  },
+): Promise<Response<TSlug, TDocumentId> | undefined> => {
+  const { documentId, slug, filters, ...params } = options || {}
 
   const path = (documentId ? '/posts/{id}' : '/posts') satisfies StrapiApiPath
 
@@ -30,6 +31,7 @@ export const getPosts = async <
         'populate[technologies][populate][image]': true,
         'populate[author][populate][photo]': true,
         filters: { slug, ...filters },
+        ...params,
       },
     },
   )

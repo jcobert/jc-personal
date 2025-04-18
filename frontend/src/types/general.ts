@@ -39,3 +39,5 @@ export type GenericValue = PrimitiveValue | PrimitiveValue[] | null | undefined
 
 /** Commonly used to identify the request type/action of the form. */
 export type FormMode = 'create' | 'update' | 'delete' | 'search'
+
+export type IsArray<T> = T extends any[] ? true : false

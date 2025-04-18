@@ -40,7 +40,7 @@ const PostList: FC<Props> = ({ posts, className }) => {
       {posts?.map((p, i) => (
         <div key={p?.id} className='flex flex-col gap-6'>
           <PostRow post={p} />
-          {i < posts?.length - 1 ? <Divider /> : null}
+          {i < posts?.length - 1 ? <Divider className='my-2' /> : null}
         </div>
       ))}
     </div>
@@ -73,22 +73,23 @@ const PostCollection: FC<Props> = ({ posts }) => {
       {!filteredPosts?.length ? (
         <NoResults
           className='my-16'
+          title='No posts'
           subtitle='😕'
-          // description={`We couldn't find any${tag?.name ? ` ${startCase(tag?.name)}` : ''}${technology?.displayName ? `${tag?.name ? ',' : ''} ${technology?.displayName}` : ''} posts.`}
-          description={
-            <p className='inline-flex gap-1 text-balance justify-center'>
-              <span>We couldn't find any</span>
-              {tag?.name ? (
-                <span className='text-brand-12 font-medium'>{`${startCase(tag?.name)}${technology?.displayName ? ',' : ''}`}</span>
-              ) : null}
-              {technology?.displayName ? (
-                <span className='text-brand-12 font-medium'>
-                  {technology?.displayName}
-                </span>
-              ) : null}
-              <span>posts.</span>
-            </p>
-          }
+          description={`We couldn't find any${tag?.name ? ` ${startCase(tag?.name)}` : ''}${technology?.displayName ? `${tag?.name ? ',' : ''} ${technology?.displayName}` : ''} posts.`}
+          // description={
+          //   <p className='inline-flex gap-1 text-balance justify-center'>
+          //     <span>{`We couldn't find any`}</span>
+          //     {tag?.name ? (
+          //       <span className='text-brand-12 font-medium'>{`${startCase(tag?.name)}${technology?.displayName ? ',' : ''}`}</span>
+          //     ) : null}
+          //     {technology?.displayName ? (
+          //       <span className='text-brand-12 font-medium'>
+          //         {technology?.displayName}
+          //       </span>
+          //     ) : null}
+          //     <span>posts.</span>
+          //   </p>
+          // }
           actions={
             <Button
               variant='secondary'
@@ -103,10 +104,7 @@ const PostCollection: FC<Props> = ({ posts }) => {
       ) : null}
 
       {layout === 'list' ? (
-        <>
-          <PostList posts={filteredPosts} className='max-sm:hidden' />
-          <PostGrid posts={filteredPosts} className='sm:hidden' />
-        </>
+        <PostList posts={filteredPosts} />
       ) : (
         <PostGrid posts={filteredPosts} />
       )}

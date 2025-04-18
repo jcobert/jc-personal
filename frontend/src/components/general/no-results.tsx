@@ -20,7 +20,7 @@ const NoResults: FC<Props> = ({
   return (
     <div
       className={cn(
-        'flex flex-col w-full text-center prose text-balance mx-auto',
+        'flex flex-col gap-2 w-full text-center prose text-balance mx-auto',
         className,
       )}
     >

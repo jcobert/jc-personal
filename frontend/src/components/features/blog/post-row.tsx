@@ -41,7 +41,7 @@ const PostRow: FC<Props> = ({ post }) => {
               className='group/link flex flex-col gap-4 items-center rounded-md w-full animated-underline'
             >
               {/* Title */}
-              <div className='text-balance text-brand-primary animated-underline__ hover:text-brand-light max-w-prose text-2xl max-sm:text-center font-medium transition'>
+              <div className='text-balance text-brand-primary animated-underline__ hover:text-brand-light max-w-prose text-2xl max-sm:text-center__ font-medium transition'>
                 <h2>{title}</h2>
               </div>
               {/* Image */}
@@ -56,7 +56,7 @@ const PostRow: FC<Props> = ({ post }) => {
             {/* Meta */}
             <div className='flex items-center gap-4 text-xs text-gray-12'>
               {createdAt ? (
-                <span className='text-center'>
+                <span className='text-center flex-none'>
                   {format(createdAt, 'MMM dd, yyyy')}
                 </span>
               ) : null}
@@ -66,7 +66,7 @@ const PostRow: FC<Props> = ({ post }) => {
                 </span>
               ) : null}
               {technologies?.length || tags?.length ? (
-                <div className='flex items-center gap-x-4 gap-y-2 flex-wrap'>
+                <div className='flex items-center gap-x-4 gap-y-2 overflow-auto fade-out-r'>
                   {(technologies || [])?.map((t) => (
                     <TechnologyBadge key={t?.id} technology={t} size='xs' />
                   ))}

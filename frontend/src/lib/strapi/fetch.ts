@@ -21,10 +21,32 @@ export type StrapiFetchResponse<TData> = {
   meta: APIResponseCollectionMetadata
 }
 
+export type StrapiFetchOptions<
+  TData extends Record<string, unknown> | Record<string, unknown>[],
+> = {
+  query?: {
+    fields?: keyof (TData extends any[] ? TData[number] : TData)[]
+    sort?: keyof (TData extends any[] ? TData[number] : TData)[]
+    filters?: {
+      [key in keyof (TData extends any[] ? TData[number] : TData)]?: unknown
+    }
+    pagination?: {
+      limit?: number
+      start?: number
+      pageSize?: number
+      page?: number
+    }
+    [key: string]: unknown
+  }
+}
+
 /** Fetches data from the provided Strapi endpoint. */
-export const strapiFetch = async <TData>(
+export const strapiFetch = async <
+  TData extends Record<string, unknown> | Record<string, unknown>[],
+  // TQuery = Record<string, unknown>,
+>(
   path: string,
-  options?: { query?: Record<string, unknown> },
+  options?: StrapiFetchOptions<TData>,
 ) => {
   const queryString = options?.query
     ? qs.stringify(options?.query, { skipNulls: true, allowEmptyArrays: false })

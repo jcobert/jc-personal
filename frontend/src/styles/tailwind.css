@@ -73,11 +73,11 @@
   }
   .fade-out-l {
     mask-mode: luminance;
-    mask-image: linear-gradient(to left, white 40%, transparent);
+    mask-image: linear-gradient(to left, white 95%, transparent);
   }
   .fade-out-r {
     mask-mode: luminance;
-    mask-image: linear-gradient(to right, white 40%, transparent);
+    mask-image: linear-gradient(to right, white 95%, transparent);
   }
 
   .animated-underline h2 {

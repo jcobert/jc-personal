@@ -39,7 +39,7 @@ const BlogToolbar: FC<Props> = ({
           className={cn([
             'flex items-center flex-wrap max-sm:gap-4 max-sm:w-full',
             hasActiveFilter &&
-              'rounded sm:outline outline-gray-5 outline-offset-4',
+              'rounded sm:outline outline-gray-5 outline-offset-4 sm:pl-1',
           ])}
         >
           {/* Active filters - desktop */}
@@ -141,7 +141,7 @@ const BlogToolbar: FC<Props> = ({
                   }}
                   onChange={(opt: (typeof filterOptions.tag)[number]) => {
                     setFilterValues((prev) => ({ ...prev, tag: opt?.value }))
-                    setFilterMenuOpen(false)
+                    // setFilterMenuOpen(false)
                   }}
                   isClearable
                   isSearchable={false}
@@ -180,7 +180,7 @@ const BlogToolbar: FC<Props> = ({
                       ...prev,
                       technology: opt?.value,
                     }))
-                    setFilterMenuOpen(false)
+                    // setFilterMenuOpen(false)
                   }}
                   isClearable
                   isSearchable={false}
