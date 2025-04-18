@@ -31,9 +31,8 @@ export const getProjects = async <
     TDocumentId extends string ? Project : Project[]
   >(getStrapiApiPath(path, { id: documentId }), {
     query: {
-      'populate[technologies][populate][0]': 'image',
-      populate: 'image',
-      /** @todo accept additional filters. */
+      'populate[image]': true,
+      'populate[technologies][populate][image]': true,
       filters: { slug, ...filters },
     },
   })

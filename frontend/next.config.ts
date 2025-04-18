@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: process.env.NODE_ENV === 'development' ? 'http' : 'https',
+        protocol: 'https',
         hostname: process.env.CMS_IMAGE_DOMAIN || '',
       },
     ],

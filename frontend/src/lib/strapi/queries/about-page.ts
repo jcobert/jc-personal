@@ -1,7 +1,7 @@
 import { strapiFetch } from '../fetch'
 import {
   StrapiAPIResponse,
-  StrapiImage,
+  StrapiMediaImage,
   WithIDProperty,
 } from '../types/general'
 import { getStrapiApiPath } from '../utils'
@@ -13,7 +13,7 @@ export type ContentBlock = WithIDProperty<
     >[number],
     'image'
   > & {
-    image?: StrapiImage
+    image?: StrapiMediaImage
   }
 >
 

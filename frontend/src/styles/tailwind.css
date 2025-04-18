@@ -58,32 +58,52 @@
     box-shadow: 0px -8px 20px rgba(50, 50, 50, 0.25);
   }
 
-  .animated-underline {
+  .vignette {
+    /* mask-mode: luminance; */
+    mask-image: radial-gradient(circle, white, white 25%, transparent 98%);
+  }
+
+  .fade-out-t {
+    mask-mode: luminance;
+    mask-image: linear-gradient(to top, white 40%, transparent);
+  }
+  .fade-out-b {
+    mask-mode: luminance;
+    mask-image: linear-gradient(to bottom, white 40%, transparent);
+  }
+  .fade-out-l {
+    mask-mode: luminance;
+    mask-image: linear-gradient(to left, white 95%, transparent);
+  }
+  .fade-out-r {
+    mask-mode: luminance;
+    mask-image: linear-gradient(to right, white 95%, transparent);
+  }
+
+  .animated-underline h2 {
     background-image: linear-gradient(#33333300, #33333300),
-      linear-gradient(
-        to right,
-        var(--color-primary-400),
-        var(--color-primary-500)
-      );
+      linear-gradient(to right, var(--blue-8), var(--blue-8));
     background-size:
       100% 2px,
-      0 2px;
+      1ch 2px;
     background-position:
       100% 100%,
       0 100%;
     background-repeat: no-repeat;
   }
   @media (prefers-reduced-motion: no-preference) {
-    .animated-underline {
+    .animated-underline h2 {
       transition: 0.3s ease;
       transition-property: background-size, color, background-color,
         border-color;
     }
   }
-  .animated-underline:hover,
-  .animated-underline:focus-visible {
+  .animated-underline:hover h2,
+  .animated-underline:focus-visible h2 {
     background-size:
       0 2px,
       100% 2px;
+    background-image: linear-gradient(#33333300, #33333300),
+      linear-gradient(to right, var(--blue-8), var(--blue-11));
   }
 }

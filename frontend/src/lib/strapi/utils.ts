@@ -1,4 +1,4 @@
-import { StrapiApiPath } from './types/general'
+import { StrapiApiPath, StrapiMediaImage } from './types/general'
 import { template, templateSettings } from 'lodash'
 
 export const getStrapiUrl = () => {
@@ -23,4 +23,15 @@ export const getStrapiApiPath = (
   if (!params) return url
   templateSettings.interpolate = /{([\s\S]+?)}/g
   return template(url)(params)
+}
+
+export const buildStrapiImage = (image: StrapiMediaImage | undefined) => {
+  if (!image?.url) return undefined
+  return {
+    ...image,
+    url: getStrapiImageUrl(image?.url),
+    alternativeText: image?.alternativeText || '',
+    width: Number(image?.width),
+    height: Number(image?.height),
+  } satisfies Partial<StrapiMediaImage>
 }

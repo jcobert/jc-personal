@@ -163,7 +163,7 @@ export type StrapiAPIResponse<TContentTypeUID extends UID.ContentType> = {
   meta: APIResponseCollectionMetadata
 }
 
-export type StrapiImage = WithIDProperties<
+export type StrapiMediaImage = WithIDProperties<
   APIResponse<'plugin::upload.file'>['data']['attributes']
 >
 

@@ -1,6 +1,6 @@
-import { Technology } from './types'
 import { FC } from 'react'
 
+import { Technology } from '@/lib/strapi/types/common'
 import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
 import { cn } from '@/utils/style'
@@ -10,7 +10,7 @@ import Tooltip from '@/components/layout/tooltip'
 type Props = {
   technology: Technology | undefined
   showText?: boolean
-  size?: 'xs' | 'sm' | 'md' | 'lg'
+  size?: '2xs' | 'xs' | 'sm' | 'md' | 'lg'
   tooltip?: boolean
   className?: string
 }
@@ -24,6 +24,7 @@ const BadgeIcon: FC<Props> = ({ technology, showText, size }) => {
       aria-hidden={showText}
       className={cn([
         'bg-cover size-10 cursor-auto',
+        size === '2xs' && 'size-4',
         size === 'xs' && 'size-6',
         size === 'sm' && 'size-8',
         size === 'md' && 'size-10',
@@ -56,6 +57,8 @@ const TechnologyBadge: FC<Props> = (props) => {
 
       <span
         className={cn([
+          'font-medium',
+          size === '2xs' && 'text-2xs',
           size === 'xs' && 'text-xs',
           size === 'sm' && 'text-sm',
           size === 'md' && 'text-base',

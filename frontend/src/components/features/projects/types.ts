@@ -1,16 +1,10 @@
-import { StrapiAPIResponse, StrapiImage } from '@/lib/strapi/types/general'
-
-export type Technology = Omit<
-  StrapiAPIResponse<'api::technology.technology'>['data'][number],
-  'image'
-> & {
-  image?: StrapiImage
-}
+import { Technology } from '@/lib/strapi/types/common'
+import { StrapiAPIResponse, StrapiMediaImage } from '@/lib/strapi/types/general'
 
 export type Project = Omit<
   StrapiAPIResponse<'api::project.project'>['data'][number],
   'image' | 'technologies'
 > & {
-  image?: StrapiImage
+  image?: StrapiMediaImage
   technologies?: Technology[]
 }
