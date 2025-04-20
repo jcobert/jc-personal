@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { FC } from 'react'
 
 import { getAboutPage } from '@/lib/strapi/queries/about-page'
+import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
 import ContentBlock from '@/components/features/about-page/content-block'
 import Divider from '@/components/general/divider'
@@ -18,11 +19,32 @@ const loadContent = async () => {
   return { aboutPage }
 }
 
-export const metadata: Metadata = generatePageMeta({
-  title: 'About',
-  description: '',
-  url: canonicalUrl('/about'),
-})
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getAboutPage()
+
+  const { heading, description, seo } = page || {}
+  const { metaTitle, metaDescription, keywords, metaImage, openGraph } =
+    seo || {}
+
+  return generatePageMeta({
+    title: metaTitle || heading,
+    description: metaDescription || description,
+    url: canonicalUrl('/about'),
+    keywords,
+    images: [
+      {
+        url: getStrapiImageUrl(metaImage?.url),
+        width: metaImage?.width,
+        height: metaImage?.height,
+        alt: metaImage?.alternativeText,
+      },
+    ],
+    openGraph: {
+      title: openGraph?.ogTitle,
+      description: openGraph?.ogDescription,
+    },
+  })
+}
 
 type Props = PageParams
 

@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { FC } from 'react'
 
 import { getContactPage } from '@/lib/strapi/queries/contact-page'
+import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
 import ContactLink from '@/components/features/contact-page/contact-link'
 import Heading from '@/components/layout/heading'
@@ -17,11 +18,32 @@ const loadContent = async () => {
   return { contactPage }
 }
 
-export const metadata: Metadata = generatePageMeta({
-  title: 'Contact',
-  description: '',
-  url: canonicalUrl('/contact'),
-})
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getContactPage()
+
+  const { heading, description, seo } = page || {}
+  const { metaTitle, metaDescription, keywords, metaImage, openGraph } =
+    seo || {}
+
+  return generatePageMeta({
+    title: metaTitle || heading,
+    description: metaDescription || description,
+    url: canonicalUrl('/contact'),
+    keywords,
+    images: [
+      {
+        url: getStrapiImageUrl(metaImage?.url),
+        width: metaImage?.width,
+        height: metaImage?.height,
+        alt: metaImage?.alternativeText,
+      },
+    ],
+    openGraph: {
+      title: openGraph?.ogTitle,
+      description: openGraph?.ogDescription,
+    },
+  })
+}
 
 type Props = PageParams
 

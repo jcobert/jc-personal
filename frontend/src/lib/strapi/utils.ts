@@ -1,3 +1,4 @@
+import { StrapiFetchOptions } from './fetch'
 import { StrapiApiPath, StrapiMediaImage } from './types/general'
 import { template, templateSettings } from 'lodash'
 
@@ -34,4 +35,15 @@ export const buildStrapiImage = (image: StrapiMediaImage | undefined) => {
     width: Number(image?.width),
     height: Number(image?.height),
   } satisfies Partial<StrapiMediaImage>
+}
+
+/** Includes the necessary query params for fetching the seo component. */
+export const queryWithSeo = <TData extends Record<string, unknown>>(
+  query?: StrapiFetchOptions<TData>['query'],
+) => {
+  return {
+    'populate[seo][populate][metaImage]': true,
+    'populate[seo][populate][openGraph][populate][ogImage]': true,
+    ...query,
+  }
 }

@@ -4,8 +4,8 @@ import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types'
 import { siteConfig } from '@/configuration/site'
 
 /** Appends site name to provided page title. */
-export const buildPageTitle = (title?: string) =>
-  !title ? siteConfig?.title : `${title} | ${siteConfig?.title}`
+export const buildPageTitle = (title?: string, separator = ' | ') =>
+  !title ? siteConfig?.title : `${title}${separator}${siteConfig?.title}`
 
 export const baseOpenGraph: Metadata['openGraph'] = {
   url: siteConfig.url,

@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "about_pages",
+  "collectionName": "projects_pages",
   "info": {
-    "singularName": "about-page",
-    "pluralName": "about-pages",
-    "displayName": "About Page",
+    "singularName": "projects-page",
+    "pluralName": "projects-pages",
+    "displayName": "Projects Page",
     "description": ""
   },
   "options": {
@@ -12,16 +12,10 @@
   },
   "attributes": {
     "heading": {
-      "type": "string",
-      "required": false
+      "type": "string"
     },
     "description": {
       "type": "text"
-    },
-    "contentBlocks": {
-      "type": "component",
-      "repeatable": true,
-      "component": "content.content-block"
     },
     "seo": {
       "type": "component",

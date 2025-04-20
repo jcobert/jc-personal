@@ -1,11 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "contact_pages",
+  "collectionName": "blog_pages",
   "info": {
-    "singularName": "contact-page",
-    "pluralName": "contact-pages",
-    "displayName": "Contact Page",
-    "description": ""
+    "singularName": "blog-page",
+    "pluralName": "blog-pages",
+    "displayName": "Blog Page"
   },
   "options": {
     "draftAndPublish": true
@@ -16,11 +15,6 @@
     },
     "description": {
       "type": "text"
-    },
-    "links": {
-      "type": "component",
-      "repeatable": true,
-      "component": "link.contact-link"
     },
     "seo": {
       "type": "component",
