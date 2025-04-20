@@ -6,7 +6,7 @@ import { getStrapiApiPath } from '../utils'
 export type HomePage = WithSeo<
   Omit<
     StrapiAPIResponse<'api::home-page.home-page'>['data'],
-    'profilePhoto' | 'seo'
+    'profilePhoto'
   > & {
     profilePhoto?: StrapiMediaImage
   }

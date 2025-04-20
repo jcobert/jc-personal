@@ -22,9 +22,9 @@ const loadContent = async () => {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const homePage = await getHomePage()
+  const page = await getHomePage()
 
-  const { heading, description, profilePhoto, seo } = homePage || {}
+  const { heading, description, profilePhoto, seo } = page || {}
   const { metaTitle, metaDescription, metaImage, keywords, openGraph } =
     seo || {}
 
