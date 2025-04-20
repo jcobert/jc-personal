@@ -3,6 +3,7 @@ import { FC } from 'react'
 
 import { getHomePage } from '@/lib/strapi/queries/home-page'
 import { getProjects } from '@/lib/strapi/queries/projects'
+import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
 import ProfilePhoto from '@/components/features/home-page/profile-photo'
 import ProjectCard from '@/components/features/projects/project-card'
@@ -10,7 +11,8 @@ import Divider from '@/components/general/divider'
 import Link from '@/components/general/link'
 import PageLayout from '@/components/layout/page-layout'
 
-import { buildPageTitle } from '@/configuration/seo'
+import { generatePageMeta } from '@/configuration/seo'
+import { canonicalUrl } from '@/configuration/site'
 
 const loadContent = async () => {
   const homePage = await getHomePage()
@@ -19,13 +21,38 @@ const loadContent = async () => {
   return { homePage, projects }
 }
 
-export const metadata: Metadata = {
-  title: buildPageTitle('Home'),
+export async function generateMetadata(): Promise<Metadata> {
+  const homePage = await getHomePage()
+
+  const { heading, description, profilePhoto, seo } = homePage || {}
+  const { metaTitle, metaDescription, metaImage, keywords, openGraph } =
+    seo || {}
+
+  const image = metaImage || profilePhoto
+
+  return generatePageMeta({
+    title: metaTitle || heading,
+    description: metaDescription || description,
+    url: canonicalUrl(),
+    keywords,
+    images: [
+      {
+        url: getStrapiImageUrl(image?.url),
+        width: image?.width,
+        height: image?.height,
+        alt: image?.alternativeText,
+      },
+    ],
+    openGraph: {
+      title: openGraph?.ogTitle,
+      description: openGraph?.ogDescription,
+    },
+  })
 }
 
 const HomePage: FC = async () => {
   const { homePage, projects } = await loadContent()
-  const { title, description, profilePhoto } = homePage || {}
+  const { heading, description, profilePhoto } = homePage || {}
 
   return (
     <PageLayout className='flex flex-col gap-12 sm:gap-16 md:gap-24'>
@@ -33,7 +60,7 @@ const HomePage: FC = async () => {
         <div className='prose max-w-none flex flex-col gap-8 max-md:mx-auto'>
           <div className='flex max-w-2xl items-center md:items-end max-md:flex-col gap-x-8 gap-y-4'>
             <h1 className='max-sm:text-[2.625rem] sm:text-6xl text-balance'>
-              {title}
+              {heading}
             </h1>
             <ProfilePhoto image={profilePhoto} />
           </div>

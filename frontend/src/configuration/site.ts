@@ -5,4 +5,5 @@ export const siteConfig = {
 } as const
 
 /** Appends the provided pathname to the site's base URL. */
-export const canonicalUrl = (path: string) => `${siteConfig?.url}${path}`
+export const canonicalUrl = (path?: string) =>
+  path ? `${siteConfig?.url}${path}` : siteConfig?.url

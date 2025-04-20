@@ -1,4 +1,5 @@
 import { strapiFetch } from '../fetch'
+import { WithSeo } from '../types/common'
 import {
   StrapiAPIResponse,
   StrapiMediaImage,
@@ -17,19 +18,21 @@ export type ContentBlock = WithIDProperty<
   }
 >
 
-export type AboutPage = Omit<
-  StrapiAPIResponse<'api::about-page.about-page'>['data'],
-  'contentBlocks'
-> & {
-  contentBlocks?: ContentBlock[]
-}
+export type AboutPage = WithSeo<
+  Omit<
+    StrapiAPIResponse<'api::about-page.about-page'>['data'],
+    'contentBlocks'
+  > & {
+    contentBlocks?: ContentBlock[]
+  }
+>
 
 export const getAboutPage = async (): Promise<AboutPage | undefined> => {
   const res = await strapiFetch<AboutPage>(getStrapiApiPath('/about-page'), {
     query: {
-      'populate[0]': 'contentBlocks',
-      'populate[1]': 'contentBlocks.image',
+      'populate[contentBlocks][populate][image]': true,
     },
+    seo: true,
   })
   return res?.data
 }

@@ -1,5 +1,6 @@
 import { paths } from './types/api'
 import { APIResponseCollectionMetadata } from './types/general'
+import { queryWithSeo } from './utils'
 import createClient from 'openapi-fetch'
 import qs from 'qs'
 
@@ -38,6 +39,7 @@ export type StrapiFetchOptions<
     }
     [key: string]: unknown
   }
+  seo?: boolean
 }
 
 /** Fetches data from the provided Strapi endpoint. */
@@ -48,8 +50,12 @@ export const strapiFetch = async <
   path: string,
   options?: StrapiFetchOptions<TData>,
 ) => {
-  const queryString = options?.query
-    ? qs.stringify(options?.query, { skipNulls: true, allowEmptyArrays: false })
+  const queryParams = options?.seo
+    ? queryWithSeo(options?.query)
+    : options?.query
+
+  const queryString = queryParams
+    ? qs.stringify(queryParams, { skipNulls: true, allowEmptyArrays: false })
     : ''
 
   const query = queryString ? `?${queryString}` : ''
