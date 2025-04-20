@@ -1,4 +1,4 @@
-import { strapiFetch } from '../fetch'
+import { StrapiFetchOptions, strapiFetch } from '../fetch'
 import { StrapiApiPath } from '../types/general'
 import { getStrapiApiPath } from '../utils'
 
@@ -16,11 +16,12 @@ type Response<
 export const getProjects = async <
   TSlug extends string | undefined = undefined,
   TDocumentId extends string | undefined = undefined,
->(options?: {
-  slug?: TSlug
-  documentId?: TDocumentId
-  filters?: { [key in keyof Project]?: unknown }
-}): Promise<Response<TSlug, TDocumentId> | undefined> => {
+>(
+  options?: StrapiFetchOptions<Response>['query'] & {
+    slug?: TSlug
+    documentId?: TDocumentId
+  },
+): Promise<Response<TSlug, TDocumentId> | undefined> => {
   const { documentId, slug, filters } = options || {}
 
   const path = (

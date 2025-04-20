@@ -3,6 +3,8 @@ import { FC } from 'react'
 
 import { getPosts } from '@/lib/strapi/queries/posts'
 
+import { fullName } from '@/utils/string'
+
 import BlogPost from '@/components/features/blog/blog-post'
 import Back from '@/components/general/back'
 import PageLayout from '@/components/layout/page-layout'
@@ -10,7 +12,7 @@ import PageLayout from '@/components/layout/page-layout'
 import { PageParams } from '@/types/general'
 
 import { generatePageMeta } from '@/configuration/seo'
-import { canonicalUrl } from '@/configuration/site'
+import { canonicalUrl, siteConfig } from '@/configuration/site'
 
 type PageProps = PageParams<{ slug: string }>
 
@@ -25,11 +27,16 @@ export const generateMetadata = async ({
   const { slug } = await params
   const { post } = await loadContent({ slug })
 
-  const { title, image } = post || {}
+  const { title, description, image, author } = post || {}
 
   return generatePageMeta({
     title: `Blog - ${title}`,
+    description,
     url: canonicalUrl(`/blog/${slug}`),
+    authors: {
+      name: fullName(author?.firstName, author?.lastName),
+      url: siteConfig?.url,
+    },
     images: [
       {
         url: image?.url || '',
