@@ -1,8 +1,8 @@
+import { aboutPageJsonLd, aboutPageMeta } from './meta'
 import { Metadata } from 'next'
 import { FC } from 'react'
 
 import { getAboutPage } from '@/lib/strapi/queries/about-page'
-import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
 import ContentBlock from '@/components/features/about-page/content-block'
 import Divider from '@/components/general/divider'
@@ -11,46 +11,23 @@ import PageLayout from '@/components/layout/page-layout'
 
 import { PageParams } from '@/types/general'
 
-import { generatePageMeta } from '@/configuration/seo'
-import { canonicalUrl } from '@/configuration/site'
-
 const loadContent = async () => {
-  const aboutPage = await getAboutPage()
-  return { aboutPage }
+  const page = await getAboutPage()
+  return { page }
 }
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getAboutPage()
-
-  const { heading, description, seo } = page || {}
-  const { metaTitle, metaDescription, keywords, metaImage, openGraph } =
-    seo || {}
-
-  return generatePageMeta({
-    title: metaTitle || heading,
-    description: metaDescription || description,
-    url: canonicalUrl('/about'),
-    keywords,
-    images: [
-      {
-        url: getStrapiImageUrl(metaImage?.url),
-        width: metaImage?.width,
-        height: metaImage?.height,
-        alt: metaImage?.alternativeText,
-      },
-    ],
-    openGraph: {
-      title: openGraph?.ogTitle,
-      description: openGraph?.ogDescription,
-    },
-  })
+  return aboutPageMeta(page)
 }
 
 type Props = PageParams
 
 const Page: FC<Props> = async () => {
-  const { aboutPage } = await loadContent()
-  const { heading, description, contentBlocks } = aboutPage || {}
+  const { page } = await loadContent()
+  const { heading, description, contentBlocks } = page || {}
+
+  const jsonLd = aboutPageJsonLd(page)
 
   return (
     <PageLayout className='flex flex-col gap-12 md:gap-24'>
@@ -66,6 +43,11 @@ const Page: FC<Props> = async () => {
           ))}
         </div>
       </section>
+
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </PageLayout>
   )
 }

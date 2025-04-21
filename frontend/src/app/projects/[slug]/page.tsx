@@ -1,3 +1,4 @@
+import { projectPageJsonLd, projectPageMeta } from './meta'
 import { Metadata } from 'next'
 import { FC } from 'react'
 
@@ -8,9 +9,6 @@ import Back from '@/components/general/back'
 import PageLayout from '@/components/layout/page-layout'
 
 import { PageParams } from '@/types/general'
-
-import { generatePageMeta } from '@/configuration/seo'
-import { canonicalUrl } from '@/configuration/site'
 
 type PageProps = PageParams<{ slug: string }>
 
@@ -24,22 +22,7 @@ export const generateMetadata = async ({
 }: PageProps): Promise<Metadata> => {
   const { slug } = await params
   const { project } = await loadContent({ slug })
-
-  const { title, shortDescription, image } = project || {}
-
-  return generatePageMeta({
-    title: `Projects - ${title}`,
-    description: shortDescription,
-    url: canonicalUrl(`/projects/${slug}`),
-    images: [
-      {
-        url: image?.url || '',
-        width: image?.width,
-        height: image?.height,
-        alt: image?.alternativeText,
-      },
-    ],
-  })
+  return projectPageMeta(slug, project)
 }
 
 export const generateStaticParams = async () => {
@@ -52,10 +35,17 @@ const Page: FC<PageProps> = async ({ params }) => {
 
   const { project } = await loadContent({ slug })
 
+  const jsonLd = projectPageJsonLd(slug, project)
+
   return (
     <PageLayout className='flex flex-col gap-6 sm:gap-8'>
       <Back href='/projects' text='All projects' />
       <ProjectPost project={project} />
+
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </PageLayout>
   )
 }

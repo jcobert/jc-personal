@@ -1,9 +1,9 @@
+import { homePageJsonLd, homePageMeta } from './meta'
 import { Metadata } from 'next'
 import { FC } from 'react'
 
 import { getHomePage } from '@/lib/strapi/queries/home-page'
 import { getProjects } from '@/lib/strapi/queries/projects'
-import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
 import ProfilePhoto from '@/components/features/home-page/profile-photo'
 import ProjectCard from '@/components/features/projects/project-card'
@@ -11,48 +11,23 @@ import Divider from '@/components/general/divider'
 import Link from '@/components/general/link'
 import PageLayout from '@/components/layout/page-layout'
 
-import { generatePageMeta } from '@/configuration/seo'
-import { canonicalUrl } from '@/configuration/site'
-
 const loadContent = async () => {
-  const homePage = await getHomePage()
+  const page = await getHomePage()
   const projects = await getProjects({ filters: { featured: true } })
   // const posts = await getPosts({ pagination: { limit: 3 } })
-  return { homePage, projects }
+  return { page, projects }
 }
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getHomePage()
-
-  const { heading, description, profilePhoto, seo } = page || {}
-  const { metaTitle, metaDescription, metaImage, keywords, openGraph } =
-    seo || {}
-
-  const image = metaImage || profilePhoto
-
-  return generatePageMeta({
-    title: metaTitle || heading,
-    description: metaDescription || description,
-    url: canonicalUrl(),
-    keywords,
-    images: [
-      {
-        url: getStrapiImageUrl(image?.url),
-        width: image?.width,
-        height: image?.height,
-        alt: image?.alternativeText,
-      },
-    ],
-    openGraph: {
-      title: openGraph?.ogTitle,
-      description: openGraph?.ogDescription,
-    },
-  })
+  return homePageMeta(page)
 }
 
 const HomePage: FC = async () => {
-  const { homePage, projects } = await loadContent()
-  const { heading, description, profilePhoto } = homePage || {}
+  const { page, projects } = await loadContent()
+  const { heading, description, profilePhoto } = page || {}
+
+  const jsonLd = homePageJsonLd(page)
 
   return (
     <PageLayout className='flex flex-col gap-12 sm:gap-16 md:gap-24'>
@@ -123,6 +98,11 @@ const HomePage: FC = async () => {
           </div>
         </section>
       ) : null} */}
+
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </PageLayout>
   )
 }
