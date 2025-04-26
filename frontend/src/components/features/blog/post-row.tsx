@@ -1,6 +1,7 @@
 import TechnologyBadge from '../projects/technology-badge'
 import { Post } from './types'
 import { format } from 'date-fns'
+import { sortBy } from 'lodash'
 import { FC } from 'react'
 import { FaAngleRight } from 'react-icons/fa6'
 
@@ -54,7 +55,12 @@ const PostRow: FC<Props> = ({ post }) => {
             </Link>
 
             {/* Meta */}
-            <div className='flex items-center gap-4 text-xs text-gray-12'>
+            <div
+              className={cn(
+                'flex items-center gap-4 text-xs text-gray-12 w-full fade-out-r',
+                !technologies?.length && !tags?.length && 'justify-center',
+              )}
+            >
               {createdAt ? (
                 <span className='text-center flex-none'>
                   {format(createdAt, 'MMM dd, yyyy')}
@@ -66,11 +72,14 @@ const PostRow: FC<Props> = ({ post }) => {
                 </span>
               ) : null}
               {technologies?.length || tags?.length ? (
-                <div className='flex items-center gap-x-4 gap-y-2 overflow-auto fade-out-r'>
-                  {(technologies || [])?.map((t) => (
-                    <TechnologyBadge key={t?.id} technology={t} size='xs' />
-                  ))}
-                  {(tags || [])?.map((t) => (
+                /** @todo Only fade out when overflowing. */
+                <div className='flex items-center gap-x-4 gap-y-2 overflow-auto fade-out-r__'>
+                  {sortBy(technologies || [], (t) => t?.displayName)?.map(
+                    (t) => (
+                      <TechnologyBadge key={t?.id} technology={t} size='xs' />
+                    ),
+                  )}
+                  {sortBy(tags || [], (t) => t?.name)?.map((t) => (
                     <Tag key={t?.id} className='text-xs'>
                       {t?.name}
                     </Tag>

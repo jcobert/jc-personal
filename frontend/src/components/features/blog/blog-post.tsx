@@ -33,7 +33,7 @@ const BlogPost: FC<Props> = ({ post }) => {
         {image?.url ? (
           <div className='w-full'>
             <div
-              className='h-60 w-11/12 sm:w-full max-w-lg mx-auto md:h-72 lg:h-72 bg-cover border border-gray-5 rounded shadow-md md:shadow-lg'
+              className='h-60 w-11/12 sm:w-full max-w-lg mx-auto md:h-72 lg:h-72 bg-center bg-cover border border-gray-5 rounded shadow-md md:shadow-lg'
               style={{
                 backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
               }}
@@ -41,7 +41,7 @@ const BlogPost: FC<Props> = ({ post }) => {
           </div>
         ) : null}
 
-        {createdAt ? (
+        {createdAt || author ? (
           <div className='flex items-center gap-2'>
             {author ? (
               <Avatar
@@ -50,9 +50,14 @@ const BlogPost: FC<Props> = ({ post }) => {
                 size='xs'
               />
             ) : null}
-            <span className='text-center text-sm text-gray-11'>
-              {`${format(createdAt, 'MMM dd, yyyy')}${author ? ` by ${fullName(author?.firstName, author?.lastName)}` : ''}`}
-            </span>
+            {createdAt ? (
+              <div className='flex flex-col text-sm text-gray-11'>
+                <span>{format(createdAt, 'MMM dd, yyyy')}</span>
+                <span className='text-gray-12'>
+                  {fullName(author?.firstName, author?.lastName)}
+                </span>
+              </div>
+            ) : null}
           </div>
         ) : null}
 

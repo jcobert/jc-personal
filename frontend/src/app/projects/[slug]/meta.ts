@@ -1,4 +1,4 @@
-import { CreativeWork, WithContext } from 'schema-dts'
+import { BlogPosting, WithContext } from 'schema-dts'
 
 import { Project } from '@/components/features/projects/types'
 
@@ -32,9 +32,9 @@ export const projectPageJsonLd = (
 
   const url = meta?.openGraph?.url as string
 
-  const webPage: WithContext<CreativeWork> = {
+  const webPage: WithContext<BlogPosting> = {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
+    '@type': 'BlogPosting',
     '@id': url,
     name: meta?.title as string,
     description: meta?.description as string,
