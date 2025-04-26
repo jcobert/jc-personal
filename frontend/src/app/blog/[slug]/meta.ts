@@ -1,5 +1,7 @@
 import { BlogPosting, WithContext } from 'schema-dts'
 
+import { getStrapiImageUrl } from '@/lib/strapi/utils'
+
 import { fullName } from '@/utils/string'
 
 import { Post } from '@/components/features/blog/types'
@@ -44,6 +46,8 @@ export const postPageJsonLd = (...params: Parameters<typeof postPageMeta>) => {
     '@type': 'BlogPosting',
     '@id': url,
     name: meta?.title as string,
+    headline: meta?.title as string,
+    image: getStrapiImageUrl(post?.image?.url),
     description: meta?.description as string,
     url,
     author: personJsonLd(),
