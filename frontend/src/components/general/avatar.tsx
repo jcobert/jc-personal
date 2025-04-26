@@ -23,7 +23,7 @@ const Avatar: FC<Props> = ({
       <img
         className={cn('flex-none rounded-full bg-gray-3 border', [
           size === '2xs' && 'size-8',
-          size === 'xs' && 'size-12',
+          size === 'xs' && 'size-10',
           size === 'sm' && 'size-16',
           size === 'md' && 'size-20',
           size === 'lg' && 'size-24',
@@ -41,7 +41,7 @@ const Avatar: FC<Props> = ({
       <div
         className={cn('flex-none rounded-full bg-gray-3 border', [
           size === '2xs' && 'size-8',
-          size === 'xs' && 'size-12',
+          size === 'xs' && 'size-10',
           size === 'sm' && 'size-16',
           size === 'md' && 'size-20',
           size === 'lg' && 'size-24',
@@ -58,7 +58,7 @@ const Avatar: FC<Props> = ({
         'flex-none rounded-full bg-gray-3 border flex justify-center items-center',
         [
           size === '2xs' && 'size-8',
-          size === 'xs' && 'size-12',
+          size === 'xs' && 'size-10',
           size === 'sm' && 'size-16',
           size === 'md' && 'size-20',
           size === 'lg' && 'size-24',
@@ -69,7 +69,7 @@ const Avatar: FC<Props> = ({
     >
       <div
         className={cn('text-gray-9', [
-          size === '2xs' && 'text-2xl',
+          size === '2xs' && 'text-xl',
           size === 'xs' && 'text-3xl',
           size === 'sm' && 'text-4xl',
           size === 'md' && 'text-4xl',

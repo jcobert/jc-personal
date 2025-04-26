@@ -1,11 +1,9 @@
-import TechnologyBadge from './technology-badge'
+import TechnologiesGroup from './technologies-group'
 import { Project } from './types'
 import { FC } from 'react'
 import { FaAngleRight } from 'react-icons/fa6'
 
 import { getStrapiImageUrl } from '@/lib/strapi/utils'
-
-import { cn } from '@/utils/style'
 
 import Link from '@/components/general/link'
 
@@ -45,21 +43,12 @@ const ProjectCard: FC<Props> = ({ project }) => {
         {/* Technologies */}
         {technologies?.length ? (
           <div className='flex flex-col gap-y-6 mb-4'>
-            <h4
-              className={cn(
-                'sr-only',
-                // 'font-medium text-gray-11 text-center border border-gray-5 border-x-0',
-              )}
-            >
-              Technologies
-            </h4>
-            <ul className='flex flex-wrap justify-around gap-2 w-full max-w-xs mx-auto'>
-              {technologies?.map((tech) => (
-                <li key={tech?.id}>
-                  <TechnologyBadge technology={tech} size='sm' />
-                </li>
-              ))}
-            </ul>
+            <h4 className='sr-only'>Technologies</h4>
+            <TechnologiesGroup
+              technologies={technologies}
+              expandable={false}
+              showText={false}
+            />
           </div>
         ) : null}
         {/* CTA */}

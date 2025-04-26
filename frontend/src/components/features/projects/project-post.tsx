@@ -1,4 +1,4 @@
-import TechnologyBadge from './technology-badge'
+import TechnologiesGroup from './technologies-group'
 import { Project } from './types'
 import { FC } from 'react'
 
@@ -37,19 +37,12 @@ const ProjectPost: FC<Props> = ({ project }) => {
 
         {/* Technologies */}
         {technologies?.length ? (
-          <div className='flex flex-col gap-y-6 md:col-span-2 lg:col-span-2 w-11/12 md:w-10/12 lg:w-11/12 mx-auto'>
-            <h5 className='font-medium text-gray-11 text-center border border-gray-5 border-x-0'>
-              Technologies
-            </h5>
-            <div className='flex flex-wrap justify-around gap-8'>
-              {technologies?.map((tech) => (
-                <TechnologyBadge
-                  key={tech?.id}
-                  technology={tech}
-                  size='sm'
-                  showText
-                />
-              ))}
+          <div className='flex flex-col gap-2 md:col-span-2 lg:col-span-2 w-11/12 md:w-10/12 lg:w-11/12 mx-auto'>
+            <div className='flex flex-col gap-y-6'>
+              <h5 className='font-medium text-gray-11 text-center border border-gray-5 border-x-0'>
+                Technologies
+              </h5>
+              <TechnologiesGroup technologies={technologies} />
             </div>
           </div>
         ) : null}

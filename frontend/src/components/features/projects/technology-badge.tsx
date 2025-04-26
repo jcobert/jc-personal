@@ -7,7 +7,7 @@ import { cn } from '@/utils/style'
 
 import Tooltip from '@/components/layout/tooltip'
 
-type Props = {
+export type TechnologyBadgeProps = {
   technology: Technology | undefined
   showText?: boolean
   size?: '2xs' | 'xs' | 'sm' | 'md' | 'lg'
@@ -15,7 +15,11 @@ type Props = {
   className?: string
 }
 
-const BadgeIcon: FC<Props> = ({ technology, showText, size }) => {
+const BadgeIcon: FC<TechnologyBadgeProps> = ({
+  technology,
+  showText,
+  size,
+}) => {
   const { image } = technology || {}
   if (!image) return null
   return (
@@ -37,7 +41,7 @@ const BadgeIcon: FC<Props> = ({ technology, showText, size }) => {
   )
 }
 
-const TechnologyBadge: FC<Props> = (props) => {
+const TechnologyBadge: FC<TechnologyBadgeProps> = (props) => {
   const { technology, showText = false, size = 'md', tooltip = true } = props
   const { displayName, image } = technology || {}
 
