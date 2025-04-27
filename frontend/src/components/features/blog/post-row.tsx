@@ -9,8 +9,9 @@ import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
 import { cn } from '@/utils/style'
 
-import RichText from '@/components/general/block-content/rich-text'
 import Link from '@/components/general/link'
+import BlocksContent from '@/components/general/rich-text/blocks-content'
+import Markdown from '@/components/general/rich-text/markdown'
 import Tag from '@/components/general/tag'
 
 type Props = {
@@ -18,7 +19,16 @@ type Props = {
 }
 
 const PostRow: FC<Props> = ({ post }) => {
-  const { title, body, createdAt, image, slug, technologies, tags } = post || {}
+  const {
+    title,
+    body,
+    bodyMarkdown,
+    createdAt,
+    image,
+    slug,
+    technologies,
+    tags,
+  } = post || {}
 
   const postLink = `/blog/${slug}`
 
@@ -95,10 +105,17 @@ const PostRow: FC<Props> = ({ post }) => {
           </div>
 
           {/* Body */}
-          <RichText
-            content={body}
-            className='fade-out-b max-h-28 w-full overflow-hidden'
-          />
+          {bodyMarkdown ? (
+            <Markdown
+              className='fade-out-b max-h-28 w-full overflow-hidden'
+              content={bodyMarkdown}
+            />
+          ) : (
+            <BlocksContent
+              content={body}
+              className='fade-out-b max-h-28 w-full overflow-hidden'
+            />
+          )}
         </div>
 
         <div className='flex flex-col gap-8'>

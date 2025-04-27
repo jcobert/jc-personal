@@ -6,7 +6,8 @@ import { getStrapiImageUrl } from '@/lib/strapi/utils'
 import { getPositionInSequence } from '@/utils/general'
 import { cn } from '@/utils/style'
 
-import RichText from '@/components/general/block-content/rich-text'
+import BlocksContent from '@/components/general/rich-text/blocks-content'
+import Markdown from '@/components/general/rich-text/markdown'
 
 type Props = {
   content: Block | undefined
@@ -14,7 +15,7 @@ type Props = {
 }
 
 const ContentBlock: FC<Props> = ({ content, seq }) => {
-  const { body, image } = content || {}
+  const { body, bodyMarkdown, image } = content || {}
   const position = getPositionInSequence(seq + 1, 4)
 
   if (!content) return null
@@ -34,7 +35,12 @@ const ContentBlock: FC<Props> = ({ content, seq }) => {
         ])}
         style={{ backgroundImage: `url(${getStrapiImageUrl(image?.url)})` }}
       />
-      <RichText content={body} />
+
+      {bodyMarkdown ? (
+        <Markdown content={bodyMarkdown} />
+      ) : (
+        <BlocksContent content={body} />
+      )}
     </div>
   )
 }

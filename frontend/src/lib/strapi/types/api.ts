@@ -1603,6 +1603,7 @@ export interface components {
                     documentId?: string;
                 }[];
             };
+            bodyMarkdown?: string;
         };
         SharedOpenGraphComponent: {
             id?: number;

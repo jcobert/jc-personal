@@ -23,6 +23,9 @@
         "videos",
         "audios"
       ]
+    },
+    "bodyMarkdown": {
+      "type": "richtext"
     }
   }
 }

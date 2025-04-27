@@ -4,8 +4,8 @@ import { FC } from 'react'
 
 import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
-import RichText from '@/components/general/block-content/rich-text'
-import Markdown from '@/components/general/markdown/markdown'
+import BlocksContent from '@/components/general/rich-text/blocks-content'
+import Markdown from '@/components/general/rich-text/markdown'
 
 type Props = {
   project?: Project | null
@@ -53,7 +53,7 @@ const ProjectPost: FC<Props> = ({ project }) => {
       {bodyMarkdown ? (
         <Markdown className='mx-auto' content={bodyMarkdown} />
       ) : (
-        <RichText className='mx-auto' content={body} />
+        <BlocksContent className='mx-auto' content={body} />
       )}
     </div>
   )

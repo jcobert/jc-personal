@@ -8,9 +8,9 @@ import { getStrapiImageUrl } from '@/lib/strapi/utils'
 import { fullName } from '@/utils/string'
 
 import Avatar from '@/components/general/avatar'
-import RichText from '@/components/general/block-content/rich-text'
 import Divider from '@/components/general/divider'
-import Markdown from '@/components/general/markdown/markdown'
+import BlocksContent from '@/components/general/rich-text/blocks-content'
+import Markdown from '@/components/general/rich-text/markdown'
 import Tag from '@/components/general/tag'
 
 type Props = {
@@ -97,7 +97,7 @@ const BlogPost: FC<Props> = ({ post }) => {
       {bodyMarkdown ? (
         <Markdown className='mx-auto' content={bodyMarkdown} />
       ) : (
-        <RichText className='mx-auto' content={body} />
+        <BlocksContent className='mx-auto' content={body} />
       )}
     </div>
   )
