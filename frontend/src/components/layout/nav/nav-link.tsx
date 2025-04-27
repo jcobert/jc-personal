@@ -1,38 +1,42 @@
-import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import NextLink from 'next/link'
-import { FC } from 'react'
+import { ComponentProps, FC } from 'react'
 import { RxBorderSolid } from 'react-icons/rx'
 import { TfiLineDotted } from 'react-icons/tfi'
 
+import { isObject } from '@/utils/general'
 import { cn } from '@/utils/style'
 
 import { useNavigationMenu } from '@/hooks/use-navigation-menu'
 
-export type NavLinkProps = NavigationMenu.NavigationMenuLinkProps & {
+export type NavLinkProps = ComponentProps<typeof NextLink> & {
   /** When `true`, indicators will be shown for active and hovered links, respectively. Default is `false`. */
   withIndicators?: boolean
 }
 
 export const navLinkClassName =
-  'text-brand-primary text-lg transition block select-none px-3 py-2 font-medium leading-none no-underline data-[active]:text-brand-dark hover:text-brand-light rounded [&:not([data-active])]:hover:bg-brand-2 data-[active]:bg-brand-1__'
+  'text-brand-primary text-lg transition block select-none px-3 py-2 font-medium leading-none no-underline data-[active=true]:text-brand-dark hover:text-brand-light rounded [&:not([data-active=true])]:hover:bg-brand-2'
 
 const NavLink: FC<NavLinkProps> = ({
   href = '',
   className,
+  children,
   withIndicators = false,
   ...props
 }) => {
+  const url = (isObject(href) ? href?.href || href?.pathname : href) || ''
+
   const { isActivePath } = useNavigationMenu()
-  const isActive = isActivePath(href)
+  const isActive = isActivePath(url)
 
   return (
     <div className={cn(withIndicators && 'flex flex-col items-center')}>
-      <NextLink href={href} passHref legacyBehavior>
-        <NavigationMenu.Link
-          className={cn(navLinkClassName, 'peer', className)}
-          active={isActive}
-          {...props}
-        />
+      <NextLink
+        data-active={isActive}
+        className={cn(navLinkClassName, 'peer', className)}
+        href={url}
+        {...props}
+      >
+        {children}
       </NextLink>
       {withIndicators ? (
         <>
