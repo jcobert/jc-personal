@@ -32,7 +32,7 @@ const HomePage: FC = async () => {
   return (
     <PageLayout className='flex flex-col gap-12 sm:gap-16 md:gap-24'>
       <section className='md:pt-8'>
-        <div className='prose max-w-none flex flex-col gap-8 max-md:mx-auto'>
+        <div className='prose prose-p:my-0 max-w-none flex flex-col gap-8 max-md:mx-auto'>
           <div className='flex max-w-2xl items-center md:items-end max-md:flex-col gap-x-8 gap-y-4'>
             <h1 className='max-sm:text-[2.625rem] sm:text-6xl text-balance'>
               {heading}

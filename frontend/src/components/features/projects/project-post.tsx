@@ -1,8 +1,6 @@
 import TechnologiesGroup from './technologies-group'
 import { Project } from './types'
 import { FC } from 'react'
-import { FaClipboard } from 'react-icons/fa6'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
 import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
@@ -22,7 +20,7 @@ const ProjectPost: FC<Props> = ({ project }) => {
   return (
     <div className='flex flex-col gap-12'>
       <div className='grid grid-cols-1 lg:grid-rows-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-5'>
-        <div className='flex flex-col gap-y-2 md:gap-y-5 lg:col-span-2 prose'>
+        <div className='flex flex-col gap-y-2 md:gap-y-5 lg:col-span-2 prose prose-p:my-0'>
           <h1 className='max-sm:text-center'>{title}</h1>
           <p>{shortDescription}</p>
         </div>
@@ -52,9 +50,11 @@ const ProjectPost: FC<Props> = ({ project }) => {
         ) : null}
       </div>
 
-      <Markdown className='mx-auto' content={bodyMarkdown} />
-
-      {/* <RichText className='mx-auto' content={body} /> */}
+      {bodyMarkdown ? (
+        <Markdown className='mx-auto' content={bodyMarkdown} />
+      ) : (
+        <RichText className='mx-auto' content={body} />
+      )}
     </div>
   )
 }

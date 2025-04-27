@@ -96,8 +96,8 @@ export default {
               },
             },
             p: {
-              marginTop: '0',
-              marginBottom: '0',
+              // marginTop: '0',
+              // marginBottom: '0',
               textWrap: 'pretty',
             },
             h1: {
@@ -124,20 +124,20 @@ export default {
             h4: {
               fontSize: theme('fontSize.xl'),
               fontWeight: theme('fontWeight.bold'),
-              marginTop: '0',
+              // marginTop: '0',
               color: theme('colors.brand-dark'),
               textWrap: 'balance',
             },
             h5: {
               fontSize: theme('fontSize.lg'),
               fontWeight: theme('fontWeight.bold'),
-              marginTop: '0',
+              // marginTop: '0',
               textWrap: 'pretty',
             },
             h6: {
               fontSize: theme('fontSize.base'),
               fontWeight: theme('fontWeight.bold'),
-              marginTop: '0',
+              // marginTop: '0',
               textWrap: 'pretty',
             },
           },

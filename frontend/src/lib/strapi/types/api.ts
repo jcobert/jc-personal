@@ -2556,6 +2556,7 @@ export interface components {
                 featured?: boolean;
                 /** @example string or id */
                 author?: number | string;
+                bodyMarkdown?: string;
                 locale?: string;
                 localizations?: (number | string)[];
             };
@@ -2940,6 +2941,7 @@ export interface components {
                     documentId?: string;
                 }[];
             };
+            bodyMarkdown?: string;
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
@@ -3019,6 +3021,7 @@ export interface components {
                     id?: number;
                     documentId?: string;
                 };
+                bodyMarkdown?: string;
                 /** Format: date-time */
                 createdAt?: string;
                 /** Format: date-time */

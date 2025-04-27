@@ -10,6 +10,7 @@ import { fullName } from '@/utils/string'
 import Avatar from '@/components/general/avatar'
 import RichText from '@/components/general/block-content/rich-text'
 import Divider from '@/components/general/divider'
+import Markdown from '@/components/general/markdown/markdown'
 import Tag from '@/components/general/tag'
 
 type Props = {
@@ -17,8 +18,16 @@ type Props = {
 }
 
 const BlogPost: FC<Props> = ({ post }) => {
-  const { title, body, image, technologies, tags, createdAt, author } =
-    post || {}
+  const {
+    title,
+    body,
+    bodyMarkdown,
+    image,
+    technologies,
+    tags,
+    createdAt,
+    author,
+  } = post || {}
 
   if (!post) return null
 
@@ -85,7 +94,11 @@ const BlogPost: FC<Props> = ({ post }) => {
 
       <Divider className='w-full' />
 
-      <RichText className='mx-auto' content={body} />
+      {bodyMarkdown ? (
+        <Markdown className='mx-auto' content={bodyMarkdown} />
+      ) : (
+        <RichText className='mx-auto' content={body} />
+      )}
     </div>
   )
 }
