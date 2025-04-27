@@ -1,9 +1,18 @@
 import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 import { NavItem } from '@/utils/nav'
 
 export const useNavigationMenu = () => {
   const pathname = usePathname()
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  // Close menu when new page is loaded.
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [pathname])
+
   /**
    * Returns whether provided path is the active path.
    * Dynamic routes are treated as a match.
@@ -34,12 +43,12 @@ export const useNavigationMenu = () => {
   }
 
   /** Returns whether nav item (or one of it's inner menu links) contains the active path. */
-  const isActive = (item: NavItem) => {
+  const isActiveItem = (item: NavItem) => {
     return (
       isActivePath(item?.url) ||
       !!item?.menu?.links?.some((link) => isActivePath(link?.url))
     )
   }
 
-  return { isActive, isActivePath }
+  return { isActiveItem, isActivePath, isMenuOpen, setIsMenuOpen }
 }

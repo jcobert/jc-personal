@@ -19,7 +19,7 @@ type Props = {
 }
 
 const DesktopNav: FC<Props> = ({ navItems, className, children }) => {
-  const { isActive } = useNavigationMenu()
+  const { isActiveItem } = useNavigationMenu()
 
   return (
     <div
@@ -50,7 +50,7 @@ const DesktopNav: FC<Props> = ({ navItems, className, children }) => {
                     <NavLink
                       href={item?.url}
                       className={cn(
-                        isActive(item) && 'font-semibold !text-brand-dark',
+                        isActiveItem(item) && 'font-semibold !text-brand-dark',
                         'min-w-[5.5rem] text-center',
                         'font-heading',
                       )}

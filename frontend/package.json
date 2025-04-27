@@ -25,6 +25,7 @@
     "types:gen": "yarn strapi:gen-content-types && yarn strapi:gen-api-types"
   },
   "dependencies": {
+    "@bprogress/next": "^3.2.12",
     "@hookform/resolvers": "^4.1.1",
     "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-alert-dialog": "^1.1.6",
@@ -59,7 +60,6 @@
     "graphql-request": "^7.1.2",
     "lodash": "^4.17.21",
     "next": "^15.3",
-    "next-nprogress-bar": "^2.4.7",
     "next-themes": "^0.4.4",
     "openapi-fetch": "^0.13.5",
     "qs": "^6.14.0",

@@ -1,11 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { CgClose } from 'react-icons/cg'
 import { RxHamburgerMenu } from 'react-icons/rx'
 
-import { NavItem } from '@/utils/nav'
+import { NavItem, homeUrl } from '@/utils/nav'
 import { cn } from '@/utils/style'
 
 import Accordion from '@/components/layout/accordion'
@@ -20,9 +20,8 @@ type Props = {
 }
 
 const MobileNav: FC<Props> = ({ navItems, className }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-
-  const { isActive } = useNavigationMenu()
+  const { isMenuOpen, setIsMenuOpen, isActiveItem, isActivePath } =
+    useNavigationMenu()
 
   return (
     <div
@@ -48,7 +47,7 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
         <button
           className='w-fit ml-auto'
           onClick={() => {
-            setIsMenuOpen((prev) => !prev)
+            setIsMenuOpen(true)
           }}
         >
           <RxHamburgerMenu className='text-3xl' />
@@ -71,15 +70,17 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
           {/* Logo */}
           <LogoLink
             className='relative left-[calc(50%-1rem)]'
-            onClickCapture={() => {
-              setIsMenuOpen(false)
+            onClick={() => {
+              if (isActivePath(homeUrl())) {
+                setIsMenuOpen(false)
+              }
             }}
           />
           {/* Hamburger */}
           <button
             className='w-fit ml-auto'
             onClick={() => {
-              setIsMenuOpen((prev) => !prev)
+              setIsMenuOpen(false)
             }}
           >
             <CgClose className='text-3xl rounded' />
@@ -98,7 +99,7 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
                   key={item?.id}
                   className={cn([
                     'text-right text-xl border-gray-10/15 pb-2 flex justify-end text-gray-11',
-                    isActive(item) && 'text-brand-dark',
+                    isActiveItem(item) && 'text-brand-dark',
                     !isLast && 'border-b',
                   ])}
                 >
@@ -106,7 +107,11 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
                     <Link
                       className='w-full font-semibold py-2'
                       href={item?.url}
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={() => {
+                        if (isActivePath(item?.url)) {
+                          setIsMenuOpen(false)
+                        }
+                      }}
                     >
                       {item?.name}
                     </Link>
@@ -116,7 +121,7 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
                       className='border-none pr-0 w-full rounded-none'
                       triggerClassName={cn([
                         '!justify-end rounded-none font-semibold text-xl text-gray-11 data-[state=open]:font-bold hover:bg-background bg-background p-0',
-                        isActive(item) && 'text-brand-dark',
+                        isActiveItem(item) && 'text-brand-dark',
                       ])}
                       itemClassName='!p-0 -mr-2'
                       contentClassName='bg-gray-11/5'
@@ -130,7 +135,11 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
                                   key={`${item?.id}-menu`}
                                   className='w-full font-medium text-gray-11 pr-8 py-2'
                                   href={item?.url}
-                                  onClick={() => setIsMenuOpen(false)}
+                                  onClick={() => {
+                                    if (isActivePath(item?.url)) {
+                                      setIsMenuOpen(false)
+                                    }
+                                  }}
                                 >
                                   {`All ${item?.name}`}
                                 </Link>
@@ -140,7 +149,11 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
                                   key={link?.id}
                                   className='w-full font-medium text-gray-11 pr-8 py-2'
                                   href={link?.url}
-                                  onClick={() => setIsMenuOpen(false)}
+                                  onClick={() => {
+                                    if (isActivePath(link?.url)) {
+                                      setIsMenuOpen(false)
+                                    }
+                                  }}
                                 >
                                   {link?.name}
                                 </Link>

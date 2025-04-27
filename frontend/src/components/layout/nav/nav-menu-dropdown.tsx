@@ -17,7 +17,7 @@ type Props = {
 }
 
 const NavMenuDropdown: FC<Props> = ({ item, className }) => {
-  const { isActive } = useNavigationMenu()
+  const { isActiveItem } = useNavigationMenu()
 
   if (!item) return null
 
@@ -33,7 +33,7 @@ const NavMenuDropdown: FC<Props> = ({ item, className }) => {
       >
         <span
           className={cn(
-            isActive(item) &&
+            isActiveItem(item) &&
               'font-bold text-brand-dark group-hover:text-white transition-colors',
             'min-w-16 text-center',
           )}
@@ -126,7 +126,7 @@ const NavMenuDropdown: FC<Props> = ({ item, className }) => {
                       <p
                         className={cn(
                           'font-normal text-gray-10 text-pretty md:min-w-72 transition',
-                          !isActive(subItem) &&
+                          !isActiveItem(subItem) &&
                             'group-hover/submenuitem:text-white',
                         )}
                       >
