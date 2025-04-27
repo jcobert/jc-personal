@@ -21,7 +21,7 @@ export const exists = (
 }
 
 /** Returns whether the value is a common object. Arrays and `Date` instances return `false`. */
-export const isObject = (val: unknown): boolean => {
+export const isObject = (val: unknown): val is object => {
   if (!val) return false
   return (
     typeof val === 'object' && !Array.isArray(val) && !(val instanceof Date)

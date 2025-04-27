@@ -49,13 +49,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <QueryProvider>
           <ThemeProvider>
-            <ProgressProvider />
-            <ToasterOven />
-            <div className='flex flex-col h-full min-h-dvh'>
-              <Header />
-              <div className='grow'>{children}</div>
-              <Footer />
-            </div>
+            <ProgressProvider>
+              <ToasterOven />
+              <div className='flex flex-col h-full min-h-dvh'>
+                <Header />
+                <div className='grow'>{children}</div>
+                <Footer />
+              </div>
+            </ProgressProvider>
           </ThemeProvider>
         </QueryProvider>
       </body>
