@@ -15,14 +15,16 @@ export const projectPageMeta = (slug: string, project: Project | undefined) => {
     title: `Projects - ${title}`,
     description: shortDescription,
     url: canonicalUrl(`/projects/${slug}`),
-    images: [
-      {
-        url: image?.url || '',
-        width: image?.width,
-        height: image?.height,
-        alt: image?.alternativeText,
-      },
-    ],
+    images: image?.url
+      ? [
+          {
+            url: image?.url || '',
+            width: image?.width,
+            height: image?.height,
+            alt: image?.alternativeText,
+          },
+        ]
+      : undefined,
   })
 }
 

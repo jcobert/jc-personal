@@ -17,14 +17,16 @@ export const projectsPageMeta = (data: ProjectsPage | undefined) => {
     description: metaDescription || description,
     url: canonicalUrl('/projects'),
     keywords,
-    images: [
-      {
-        url: getStrapiImageUrl(metaImage?.url),
-        width: metaImage?.width,
-        height: metaImage?.height,
-        alt: metaImage?.alternativeText,
-      },
-    ],
+    images: metaImage?.url
+      ? [
+          {
+            url: getStrapiImageUrl(metaImage?.url),
+            width: metaImage?.width,
+            height: metaImage?.height,
+            alt: metaImage?.alternativeText,
+          },
+        ]
+      : undefined,
     openGraph: {
       title: openGraph?.ogTitle,
       description: openGraph?.ogDescription,

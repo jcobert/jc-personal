@@ -21,14 +21,16 @@ export const postPageMeta = (slug: string, post: Post | undefined) => {
       name: fullName(author?.firstName, author?.lastName),
       url: siteConfig?.url,
     },
-    images: [
-      {
-        url: image?.url || '',
-        width: image?.width,
-        height: image?.height,
-        alt: image?.alternativeText,
-      },
-    ],
+    images: image?.url
+      ? [
+          {
+            url: image?.url || '',
+            width: image?.width,
+            height: image?.height,
+            alt: image?.alternativeText,
+          },
+        ]
+      : undefined,
     openGraph: { type: 'article', publishedTime: publishedAt?.toString() },
   })
 }

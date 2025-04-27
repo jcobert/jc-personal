@@ -17,14 +17,16 @@ export const contactPageMeta = (data: ContactPage | undefined) => {
     description: metaDescription || description,
     url: canonicalUrl('/contact'),
     keywords,
-    images: [
-      {
-        url: getStrapiImageUrl(metaImage?.url),
-        width: metaImage?.width,
-        height: metaImage?.height,
-        alt: metaImage?.alternativeText,
-      },
-    ],
+    images: metaImage?.url
+      ? [
+          {
+            url: getStrapiImageUrl(metaImage?.url),
+            width: metaImage?.width,
+            height: metaImage?.height,
+            alt: metaImage?.alternativeText,
+          },
+        ]
+      : undefined,
     openGraph: {
       title: openGraph?.ogTitle,
       description: openGraph?.ogDescription,
