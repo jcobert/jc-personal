@@ -1,0 +1,25 @@
+import { MetadataRoute } from 'next'
+
+const manifest = (): MetadataRoute.Manifest => ({
+  name: 'Josh Cobert',
+  short_name: 'JC',
+  icons: [
+    {
+      src: '/web-app-manifest-192x192.png',
+      sizes: '192x192',
+      type: 'image/png',
+      purpose: 'maskable',
+    },
+    {
+      src: '/web-app-manifest-512x512.png',
+      sizes: '512x512',
+      type: 'image/png',
+      purpose: 'maskable',
+    },
+  ],
+  background_color: '#FDFDFF',
+  theme_color: '#484d92',
+  display: 'standalone',
+})
+
+export default manifest
