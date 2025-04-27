@@ -1,17 +1,21 @@
 import TechnologiesGroup from './technologies-group'
 import { Project } from './types'
 import { FC } from 'react'
+import { FaClipboard } from 'react-icons/fa6'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
 import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
 import RichText from '@/components/general/block-content/rich-text'
+import Markdown from '@/components/general/markdown/markdown'
 
 type Props = {
   project?: Project | null
 }
 
 const ProjectPost: FC<Props> = ({ project }) => {
-  const { title, shortDescription, body, image, technologies } = project || {}
+  const { title, shortDescription, body, bodyMarkdown, image, technologies } =
+    project || {}
 
   if (!project) return null
 
@@ -48,7 +52,9 @@ const ProjectPost: FC<Props> = ({ project }) => {
         ) : null}
       </div>
 
-      <RichText className='mx-auto' content={body} />
+      <Markdown className='mx-auto' content={bodyMarkdown} />
+
+      {/* <RichText className='mx-auto' content={body} /> */}
     </div>
   )
 }

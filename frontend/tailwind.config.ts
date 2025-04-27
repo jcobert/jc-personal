@@ -77,6 +77,9 @@ export default {
             blockquote: {
               color: theme('colors.gray.700'),
             },
+            pre: {
+              padding: 0,
+            },
             li: {
               color: theme('colors.gray.950'),
               '&::marker': {
