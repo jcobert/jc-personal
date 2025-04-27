@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   // },
   openGraph: { ...baseOpenGraph },
   twitter: { ...baseTwitter },
+  appleWebApp: { title: siteConfig.title },
 }
 
 const quicksand = Quicksand({

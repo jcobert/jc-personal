@@ -12,7 +12,7 @@ export const GET = async (request: Request) => {
     // Base logo image
     const logoData = (await fetch(
       new URL(
-        `${process.env.NEXT_PUBLIC_SITE_BASE_URL}/images/logo.png`,
+        `${process.env.NEXT_PUBLIC_SITE_BASE_URL}/jc-website-logo.png`,
         import.meta.url,
       ),
     ).then((res) => res.arrayBuffer())) as string
@@ -74,8 +74,18 @@ export const GET = async (request: Request) => {
             <img
               alt={siteConfig?.title}
               src={logoData}
-              style={{ margin: '0 30px', width: '80%' }}
+              style={{ width: '20%' }}
             />
+          </div>
+
+          <div
+            style={{
+              padding: '24px 0 0 0',
+              fontSize: '42px',
+              color: '#484d92',
+            }}
+          >
+            joshcobert.com
           </div>
 
           <div
@@ -84,7 +94,7 @@ export const GET = async (request: Request) => {
               width: '20%',
               border: '2px solid rgb(130, 135, 151, 0.65)',
               borderRadius: '4px',
-              marginTop: '32px',
+              marginTop: '36px',
             }}
           />
 
@@ -95,12 +105,12 @@ export const GET = async (request: Request) => {
                 fontSize: 80,
                 fontStyle: 'normal',
                 letterSpacing: '-0.025em',
-                marginTop: 30,
+                marginTop: 24,
                 padding: '0 120px',
                 lineHeight: 1.4,
                 whiteSpace: 'pre-wrap',
                 backgroundImage:
-                  'linear-gradient(to bottom right, rgb(228, 97, 105), rgb(228, 97, 105, 0.75))',
+                  'linear-gradient(to bottom right, #484d92, #3a3e81)',
                 backgroundClip: 'text',
                 color: 'transparent',
               }}

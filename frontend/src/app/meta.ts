@@ -8,25 +8,38 @@ import { canonicalUrl } from '@/configuration/site'
 import { websiteJsonLd } from '@/configuration/structured-data'
 
 export const homePageMeta = (data: HomePage | undefined) => {
-  const { heading, description, profilePhoto, seo } = data || {}
+  const { heading, description, seo } = data || {}
   const { metaTitle, metaDescription, metaImage, keywords, openGraph } =
     seo || {}
 
-  const image = metaImage || profilePhoto
+  const image = metaImage // || profilePhoto
 
   return generatePageMeta({
     title: metaTitle || heading,
     description: metaDescription || description,
     url: canonicalUrl(),
     keywords,
-    images: [
-      {
-        url: getStrapiImageUrl(image?.url),
-        width: image?.width,
-        height: image?.height,
-        alt: image?.alternativeText,
-      },
-    ],
+    images: image?.url
+      ? [
+          {
+            url: getStrapiImageUrl(image?.url),
+            width: image?.width,
+            height: image?.height,
+            alt: image?.alternativeText,
+          },
+        ]
+      : undefined,
+    // images: [
+    //   {
+    //     url: buildOgImage({
+    //       url: image?.url,
+    //       height: image?.height,
+    //       width: image?.width,
+    //       alt: image?.alternativeText,
+    //       title: metaTitle || heading,
+    //     }),
+    //   },
+    // ],
     openGraph: {
       title: openGraph?.ogTitle,
       description: openGraph?.ogDescription,
