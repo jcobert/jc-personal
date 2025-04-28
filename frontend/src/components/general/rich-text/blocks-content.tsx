@@ -1,14 +1,17 @@
-import { BlocksContent, BlocksRenderer } from '@strapi/blocks-react-renderer'
+import {
+  BlocksRenderer,
+  BlocksContent as Content,
+} from '@strapi/blocks-react-renderer'
 import { FC } from 'react'
 
 import { cn } from '@/utils/style'
 
 type Props = {
-  content?: BlocksContent
+  content?: Content
   className?: string
 }
 
-const RichText: FC<Props> = ({ content, className }) => {
+const BlocksContent: FC<Props> = ({ content, className }) => {
   if (!content) return null
 
   return (
@@ -45,4 +48,4 @@ const RichText: FC<Props> = ({ content, className }) => {
   )
 }
 
-export default RichText
+export default BlocksContent

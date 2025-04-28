@@ -29,7 +29,7 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
       data-open={isMenuOpen}
       className={cn([
         'md:hidden',
-        'border-b border-gray-4 shadow-sm sticky top-0 bg-white/50 backdrop-blur-lg',
+        'border-b border-gray-4 shadow-sm sticky top-0 bg-white/50 backdrop-blur-lg z-50',
         className,
       ])}
     >

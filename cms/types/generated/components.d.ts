@@ -9,6 +9,7 @@ export interface ContentContentBlock extends Struct.ComponentSchema {
   };
   attributes: {
     body: Schema.Attribute.Blocks;
+    bodyMarkdown: Schema.Attribute.RichText;
     heading: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
   };

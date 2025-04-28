@@ -542,6 +542,7 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
   attributes: {
     author: Schema.Attribute.Relation<'oneToOne', 'api::person.person'>;
     body: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    bodyMarkdown: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -578,6 +579,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
   };
   attributes: {
     body: Schema.Attribute.Blocks;
+    bodyMarkdown: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

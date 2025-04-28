@@ -8,8 +8,9 @@ import { getStrapiImageUrl } from '@/lib/strapi/utils'
 import { fullName } from '@/utils/string'
 
 import Avatar from '@/components/general/avatar'
-import RichText from '@/components/general/block-content/rich-text'
 import Divider from '@/components/general/divider'
+import BlocksContent from '@/components/general/rich-text/blocks-content'
+import Markdown from '@/components/general/rich-text/markdown'
 import Tag from '@/components/general/tag'
 
 type Props = {
@@ -17,8 +18,16 @@ type Props = {
 }
 
 const BlogPost: FC<Props> = ({ post }) => {
-  const { title, body, image, technologies, tags, createdAt, author } =
-    post || {}
+  const {
+    title,
+    body,
+    bodyMarkdown,
+    image,
+    technologies,
+    tags,
+    createdAt,
+    author,
+  } = post || {}
 
   if (!post) return null
 
@@ -30,16 +39,17 @@ const BlogPost: FC<Props> = ({ post }) => {
         </div>
 
         {/* Image */}
-        {image?.url ? (
-          <div className='w-full'>
-            <div
-              className='h-60 w-11/12 sm:w-full max-w-lg mx-auto md:h-72 lg:h-72 bg-center bg-cover border border-gray-5 rounded shadow-md md:shadow-lg'
-              style={{
-                backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
-              }}
-            />
-          </div>
-        ) : null}
+        <div className='w-full'>
+          <div
+            className='h-60 w-11/12 sm:w-full max-w-lg mx-auto md:h-72 lg:h-72 bg-center bg-cover bg-no-repeat border border-gray-5 rounded shadow-md md:shadow-lg'
+            style={{
+              backgroundImage: `url(${getStrapiImageUrl(image?.url) || '/jc-website-logo.png'})`,
+              ...(!image?.url
+                ? { backgroundSize: '40%', backgroundPosition: 'center' }
+                : {}),
+            }}
+          />
+        </div>
 
         {createdAt || author ? (
           <div className='flex items-center gap-2'>
@@ -85,7 +95,11 @@ const BlogPost: FC<Props> = ({ post }) => {
 
       <Divider className='w-full' />
 
-      <RichText className='mx-auto' content={body} />
+      {bodyMarkdown ? (
+        <Markdown className='mx-auto' content={bodyMarkdown} />
+      ) : (
+        <BlocksContent className='mx-auto' content={body} />
+      )}
     </div>
   )
 }

@@ -55,6 +55,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::person.person"
+    },
+    "bodyMarkdown": {
+      "type": "richtext"
     }
   }
 }
