@@ -5,6 +5,8 @@ import { FaAngleRight } from 'react-icons/fa6'
 
 import { getStrapiImageUrl } from '@/lib/strapi/utils'
 
+import { cn } from '@/utils/style'
+
 import Link from '@/components/general/link'
 
 type Props = {
@@ -33,9 +35,14 @@ const ProjectCard: FC<Props> = ({ project }) => {
         <Link
           aria-hidden
           href={projectLink}
-          className='max-w-xs aspect-video bg-cover border border-gray-5 hover:border-brand-6 shadow-sm w-full mx-auto lg:flex-initial'
+          className={cn(
+            'max-w-xs aspect-video bg-cover border border-gray-5 hover:border-brand-6 shadow-sm w-full mx-auto lg:flex-initial bg-no-repeat',
+          )}
           style={{
-            backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
+            backgroundImage: `url(${getStrapiImageUrl(image?.url) || '/jc-website-logo.png'})`,
+            ...(!image?.url
+              ? { backgroundSize: '40%', backgroundPosition: 'center' }
+              : {}),
           }}
         />
         {/* Description */}

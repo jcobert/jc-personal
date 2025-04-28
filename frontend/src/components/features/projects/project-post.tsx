@@ -26,16 +26,17 @@ const ProjectPost: FC<Props> = ({ project }) => {
         </div>
 
         {/* Image */}
-        {image?.url ? (
-          <div className='lg:col-start-3 lg:col-span-3 lg:row-span-2 w-full'>
-            <div
-              className='h-60 w-11/12 sm:w-full max-w-xl mx-auto md:h-52 lg:h-72 bg-cover border border-gray-5 shadow-md md:shadow-lg'
-              style={{
-                backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
-              }}
-            />
-          </div>
-        ) : null}
+        <div className='lg:col-start-3 lg:col-span-3 lg:row-span-2 w-full'>
+          <div
+            className='h-60 w-11/12 sm:w-full max-w-xl mx-auto md:h-52 lg:h-72 bg-cover bg-no-repeat border border-gray-5 shadow-md md:shadow-lg'
+            style={{
+              backgroundImage: `url(${getStrapiImageUrl(image?.url) || '/jc-website-logo.png'})`,
+              ...(!image?.url
+                ? { backgroundSize: '40%', backgroundPosition: 'center' }
+                : {}),
+            }}
+          />
+        </div>
 
         {/* Technologies */}
         {technologies?.length ? (

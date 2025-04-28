@@ -31,9 +31,12 @@ const PostCard: FC<Props> = ({ post }) => {
           </div>
           {/* Image */}
           <div
-            className='max-w-xs aspect-video bg-cover border border-gray-5 group-hover/link:border-brand-8 shadow-sm w-full mx-auto lg:flex-initial'
+            className='max-w-xs aspect-video bg-cover bg-no-repeat border border-gray-5 group-hover/link:border-brand-8 shadow-sm w-full mx-auto lg:flex-initial'
             style={{
-              backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
+              backgroundImage: `url(${getStrapiImageUrl(image?.url) || '/jc-website-logo.png'})`,
+              ...(!image?.url
+                ? { backgroundSize: '40%', backgroundPosition: 'center' }
+                : {}),
             }}
           />
         </Link>

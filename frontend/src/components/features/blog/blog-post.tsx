@@ -39,16 +39,17 @@ const BlogPost: FC<Props> = ({ post }) => {
         </div>
 
         {/* Image */}
-        {image?.url ? (
-          <div className='w-full'>
-            <div
-              className='h-60 w-11/12 sm:w-full max-w-lg mx-auto md:h-72 lg:h-72 bg-center bg-cover border border-gray-5 rounded shadow-md md:shadow-lg'
-              style={{
-                backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
-              }}
-            />
-          </div>
-        ) : null}
+        <div className='w-full'>
+          <div
+            className='h-60 w-11/12 sm:w-full max-w-lg mx-auto md:h-72 lg:h-72 bg-center bg-cover bg-no-repeat border border-gray-5 rounded shadow-md md:shadow-lg'
+            style={{
+              backgroundImage: `url(${getStrapiImageUrl(image?.url) || '/jc-website-logo.png'})`,
+              ...(!image?.url
+                ? { backgroundSize: '40%', backgroundPosition: 'center' }
+                : {}),
+            }}
+          />
+        </div>
 
         {createdAt || author ? (
           <div className='flex items-center gap-2'>

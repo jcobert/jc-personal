@@ -28,17 +28,16 @@ const ProjectRow: FC<Props> = ({ project }) => {
       )}
     >
       <div className='max-sm:w-full w-36 flex-none'>
-        {image?.url ? (
-          <div
-            aria-hidden
-            className='max-w-36 h-32 bg-cover border group-hover:border-brand-6 shadow-sm w-full mx-auto lg:flex-initial'
-            style={{
-              backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
-            }}
-          />
-        ) : (
-          <div className='h-52 w-full flex items-center justify-center rounded bg-gray-1'></div>
-        )}
+        <div
+          aria-hidden
+          className='max-w-36 h-32 bg-cover bg-no-repeat border group-hover:border-brand-6 shadow-sm w-full mx-auto lg:flex-initial'
+          style={{
+            backgroundImage: `url(${getStrapiImageUrl(image?.url) || '/jc-website-logo.png'})`,
+            ...(!image?.url
+              ? { backgroundSize: '50%', backgroundPosition: 'center' }
+              : {}),
+          }}
+        />
       </div>
 
       <div className='flex flex-col gap-2 max-sm:items-center'>

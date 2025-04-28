@@ -57,9 +57,15 @@ const PostRow: FC<Props> = ({ post }) => {
               </div>
               {/* Image */}
               <div
-                className='w-full max-w-md h-52 rounded bg-cover bg-center bg-no-repeat border border-gray-5 shadow-md group-hover/link:border-brand-8 transition'
+                className={cn(
+                  'w-full max-sm:min-w-[80vw] max-md:min-w-[60vw] max-lg:min-w-[40vw] max-w-md h-52 rounded bg-cover bg-center bg-no-repeat border border-gray-5 shadow-md group-hover/link:border-brand-8 transition',
+                  !image?.url && 'sm:aspect-video bg-contain',
+                )}
                 style={{
-                  backgroundImage: `url(${getStrapiImageUrl(image?.url)})`,
+                  backgroundImage: `url(${getStrapiImageUrl(image?.url) || '/jc-website-logo.png'})`,
+                  ...(!image?.url
+                    ? { backgroundSize: '40%', backgroundPosition: 'center' }
+                    : {}),
                 }}
               />
             </Link>
