@@ -2547,7 +2547,7 @@ export interface components {
         PostRequest: {
             data: {
                 title: string;
-                body: unknown;
+                body?: unknown;
                 slug: string;
                 /** @example string or id */
                 image?: number | string;
@@ -2558,6 +2558,8 @@ export interface components {
                 /** @example string or id */
                 author?: number | string;
                 bodyMarkdown?: string;
+                /** Format: date */
+                dateOfWork?: string;
                 locale?: string;
                 localizations?: (number | string)[];
             };
@@ -2577,7 +2579,7 @@ export interface components {
             id?: number;
             documentId?: string;
             title: string;
-            body: unknown;
+            body?: unknown;
             slug: string;
             image?: {
                 id?: number;
@@ -2943,6 +2945,8 @@ export interface components {
                 }[];
             };
             bodyMarkdown?: string;
+            /** Format: date */
+            dateOfWork?: string;
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
@@ -3023,6 +3027,8 @@ export interface components {
                     documentId?: string;
                 };
                 bodyMarkdown?: string;
+                /** Format: date */
+                dateOfWork?: string;
                 /** Format: date-time */
                 createdAt?: string;
                 /** Format: date-time */
@@ -3066,6 +3072,8 @@ export interface components {
                 featured?: boolean;
                 technologies?: (number | string)[];
                 bodyMarkdown?: string;
+                /** Format: date */
+                dateOfWork?: string;
                 locale?: string;
                 localizations?: (number | string)[];
             };
@@ -3380,6 +3388,8 @@ export interface components {
                 }[];
             }[];
             bodyMarkdown?: string;
+            /** Format: date */
+            dateOfWork?: string;
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
@@ -3458,6 +3468,8 @@ export interface components {
                     documentId?: string;
                 }[];
                 bodyMarkdown?: string;
+                /** Format: date */
+                dateOfWork?: string;
                 /** Format: date-time */
                 createdAt?: string;
                 /** Format: date-time */

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-04-27T23:40:01.498Z"
+    "x-generation-date": "2025-04-28T22:54:57.066Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -8204,7 +8204,6 @@
           "data": {
             "required": [
               "title",
-              "body",
               "slug"
             ],
             "type": "object",
@@ -8267,6 +8266,10 @@
               "bodyMarkdown": {
                 "type": "string"
               },
+              "dateOfWork": {
+                "type": "string",
+                "format": "date"
+              },
               "locale": {
                 "type": "string"
               },
@@ -8327,7 +8330,6 @@
         "type": "object",
         "required": [
           "title",
-          "body",
           "slug"
         ],
         "properties": {
@@ -9355,6 +9357,10 @@
           "bodyMarkdown": {
             "type": "string"
           },
+          "dateOfWork": {
+            "type": "string",
+            "format": "date"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -9579,6 +9585,10 @@
                 "bodyMarkdown": {
                   "type": "string"
                 },
+                "dateOfWork": {
+                  "type": "string",
+                  "format": "date"
+                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
@@ -9719,6 +9729,10 @@
               },
               "bodyMarkdown": {
                 "type": "string"
+              },
+              "dateOfWork": {
+                "type": "string",
+                "format": "date"
               },
               "locale": {
                 "type": "string"
@@ -10612,6 +10626,10 @@
           "bodyMarkdown": {
             "type": "string"
           },
+          "dateOfWork": {
+            "type": "string",
+            "format": "date"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -10827,6 +10845,10 @@
                 },
                 "bodyMarkdown": {
                   "type": "string"
+                },
+                "dateOfWork": {
+                  "type": "string",
+                  "format": "date"
                 },
                 "createdAt": {
                   "type": "string",

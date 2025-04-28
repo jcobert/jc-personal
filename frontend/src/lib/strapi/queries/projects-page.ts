@@ -8,7 +8,7 @@ export type ProjectsPage = WithSeo<
 >
 
 export const getProjectsPage = async (): Promise<ProjectsPage | undefined> => {
-  const res = await strapiFetch<ProjectsPage>(
+  const res = await strapiFetch<ProjectsPage, 'one'>(
     getStrapiApiPath('/projects-page'),
     {
       seo: true,

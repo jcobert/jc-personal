@@ -16,7 +16,7 @@ export type ContactPage = WithSeo<
 >
 
 export const getContactPage = async () => {
-  const res = await strapiFetch<ContactPage>(
+  const res = await strapiFetch<ContactPage, 'one'>(
     getStrapiApiPath('/contact-page'),
     {
       query: {
