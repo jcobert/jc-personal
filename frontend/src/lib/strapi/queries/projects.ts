@@ -17,7 +17,7 @@ export const getProjects = async <
   TSlug extends string | undefined = undefined,
   TDocumentId extends string | undefined = undefined,
 >(
-  options?: StrapiFetchOptions<Response>['query'] & {
+  options?: StrapiFetchOptions<Project>['query'] & {
     slug?: TSlug
     documentId?: TDocumentId
   },
@@ -29,12 +29,15 @@ export const getProjects = async <
   ) satisfies StrapiApiPath
 
   const res = await strapiFetch<
-    TDocumentId extends string ? Project : Project[]
+    // TDocumentId extends string ? Project : Project[],
+    Project,
+    Response<TSlug, TDocumentId> extends any[] ? 'many' : 'one'
   >(getStrapiApiPath(path, { id: documentId }), {
     query: {
       'populate[image]': true,
       'populate[technologies][populate][image]': true,
       filters: { slug, ...filters },
+      sort: ['dateOfWork:desc'],
     },
   })
 

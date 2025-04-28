@@ -23,13 +23,14 @@ export type StrapiFetchResponse<TData> = {
 }
 
 export type StrapiFetchOptions<
-  TData extends Record<string, unknown> | Record<string, unknown>[],
+  TData extends Record<string, unknown>,
+  // TFields extends Record<string, unknown>,
 > = {
   query?: {
-    fields?: keyof (TData extends any[] ? TData[number] : TData)[]
-    sort?: keyof (TData extends any[] ? TData[number] : TData)[]
+    fields?: (keyof TData)[]
+    sort?: (keyof TData | `${Extract<keyof TData, string>}:${'asc' | 'desc'}`)[]
     filters?: {
-      [key in keyof (TData extends any[] ? TData[number] : TData)]?: unknown
+      [key in keyof TData]?: unknown
     }
     pagination?: {
       limit?: number
@@ -44,8 +45,9 @@ export type StrapiFetchOptions<
 
 /** Fetches data from the provided Strapi endpoint. */
 export const strapiFetch = async <
-  TData extends Record<string, unknown> | Record<string, unknown>[],
-  // TQuery = Record<string, unknown>,
+  // TData extends Record<string, unknown> | Record<string, unknown>[],
+  TData extends Record<string, unknown>,
+  TScope extends 'one' | 'many' = 'many',
 >(
   path: string,
   options?: StrapiFetchOptions<TData>,
@@ -62,6 +64,8 @@ export const strapiFetch = async <
 
   const baseUrl = process.env.CMS_BASE_URL || ''
   const url = new URL(`/api${path}${query}`, baseUrl)
-  const res = await fetch.GET<StrapiFetchResponse<TData>>({ url: url.href })
+  const res = await fetch.GET<
+    StrapiFetchResponse<TScope extends 'many' ? TData[] : TData>
+  >({ url: url.href })
   return res?.data
 }

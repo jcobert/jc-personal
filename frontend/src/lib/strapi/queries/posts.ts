@@ -13,7 +13,7 @@ export const getPosts = async <
   TSlug extends string | undefined = undefined,
   TDocumentId extends string | undefined = undefined,
 >(
-  options?: StrapiFetchOptions<Response>['query'] & {
+  options?: StrapiFetchOptions<Post>['query'] & {
     slug?: TSlug
     documentId?: TDocumentId
   },
@@ -22,19 +22,20 @@ export const getPosts = async <
 
   const path = (documentId ? '/posts/{id}' : '/posts') satisfies StrapiApiPath
 
-  const res = await strapiFetch<TDocumentId extends string ? Post : Post[]>(
-    getStrapiApiPath(path, { id: documentId }),
-    {
-      query: {
-        'populate[image]': true,
-        'populate[tags][populate]': '*',
-        'populate[technologies][populate][image]': true,
-        'populate[author][populate][photo]': true,
-        filters: { slug, ...filters },
-        ...params,
-      },
+  const res = await strapiFetch<
+    Post,
+    Response<TSlug, TDocumentId> extends any[] ? 'many' : 'one'
+  >(getStrapiApiPath(path, { id: documentId }), {
+    query: {
+      'populate[image]': true,
+      'populate[tags][populate]': '*',
+      'populate[technologies][populate][image]': true,
+      'populate[author][populate][photo]': true,
+      filters: { slug, ...filters },
+      sort: ['dateOfWork:desc'],
+      ...params,
     },
-  )
+  })
 
   if (slug) {
     return res?.data?.[0]

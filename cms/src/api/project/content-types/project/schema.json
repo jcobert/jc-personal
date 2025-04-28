@@ -57,6 +57,9 @@
     },
     "bodyMarkdown": {
       "type": "richtext"
+    },
+    "dateOfWork": {
+      "type": "date"
     }
   }
 }

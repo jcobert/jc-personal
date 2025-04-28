@@ -28,11 +28,14 @@ export type AboutPage = WithSeo<
 >
 
 export const getAboutPage = async (): Promise<AboutPage | undefined> => {
-  const res = await strapiFetch<AboutPage>(getStrapiApiPath('/about-page'), {
-    query: {
-      'populate[contentBlocks][populate][image]': true,
+  const res = await strapiFetch<AboutPage, 'one'>(
+    getStrapiApiPath('/about-page'),
+    {
+      query: {
+        'populate[contentBlocks][populate][image]': true,
+      },
+      seo: true,
     },
-    seo: true,
-  })
+  )
   return res?.data
 }

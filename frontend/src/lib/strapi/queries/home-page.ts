@@ -13,11 +13,14 @@ export type HomePage = WithSeo<
 >
 
 export const getHomePage = async (): Promise<HomePage | undefined> => {
-  const res = await strapiFetch<HomePage>(getStrapiApiPath('/home-page'), {
-    query: {
-      'populate[profilePhoto]': true,
+  const res = await strapiFetch<HomePage, 'one'>(
+    getStrapiApiPath('/home-page'),
+    {
+      query: {
+        'populate[profilePhoto]': true,
+      },
+      seo: true,
     },
-    seo: true,
-  })
+  )
   return res?.data
 }

@@ -8,8 +8,11 @@ export type BlogPage = WithSeo<
 >
 
 export const getBlogPage = async (): Promise<BlogPage | undefined> => {
-  const res = await strapiFetch<BlogPage>(getStrapiApiPath('/blog-page'), {
-    seo: true,
-  })
+  const res = await strapiFetch<BlogPage, 'one'>(
+    getStrapiApiPath('/blog-page'),
+    {
+      seo: true,
+    },
+  )
   return res?.data
 }

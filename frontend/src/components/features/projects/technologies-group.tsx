@@ -64,7 +64,7 @@ const TechnologiesGroup: FC<Props> = ({
           </>
         ) : null}
       </div>
-      {technologies?.length > 3 && !techExpanded ? (
+      {technologies?.length > limit && !techExpanded ? (
         <>
           {!expandable ? (
             <span className='sr-only'>{`+ ${hiddenCount} more technologies.`}</span>
@@ -76,7 +76,7 @@ const TechnologiesGroup: FC<Props> = ({
             variant={expandable ? 'secondary' : 'tertiary'}
             className={cn(
               'p-2 size-fit min-w-0 !min-h-0 flex-none self-center text-sm font-medium',
-              !expandable && 'p-0'
+              !expandable && 'p-0',
             )}
             onClick={() => {
               setTechExpanded((prev) => !prev)
