@@ -36,17 +36,25 @@ const TechnologiesGroup: FC<Props> = ({
       <div
         className={cn('flex flex-wrap justify-around w-full gap-8', className)}
       >
-        {sortBy(technologies, (t) => t?.displayName)
-          ?.slice(0, !techExpanded ? limit : undefined)
-          ?.map((tech) => (
-            <TechnologyBadge
-              key={tech?.id}
-              technology={tech}
-              size='sm'
-              showText
-              {...badgeProps}
-            />
-          ))}
+        <ul
+          className={cn(
+            'flex flex-wrap justify-around w-full gap-8',
+            className,
+          )}
+        >
+          {sortBy(technologies, (t) => t?.displayName)
+            ?.slice(0, !techExpanded ? limit : undefined)
+            ?.map((tech) => (
+              <li key={tech?.id} className='leading-none'>
+                <TechnologyBadge
+                  technology={tech}
+                  size='sm'
+                  showText
+                  {...badgeProps}
+                />
+              </li>
+            ))}
+        </ul>
         {technologies?.length > limit && techExpanded ? (
           <>
             <Button

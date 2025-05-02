@@ -11,7 +11,7 @@ const Footer: FC = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <div className='w-full bg-gray-9 pb-safe mt-8 print:hidden'>
+    <div className='w-full bg-gray-11 pb-safe mt-8 print:hidden'>
       <div aria-hidden className='h-px w-full border-b border-gray-7' />
 
       <div className='flex max-md:px-4 max-md:flex-col items-center py-8 mx-auto text-white w-full md:layout md:py-2 gap-8 md:justify-between'>

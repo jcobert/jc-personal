@@ -31,6 +31,8 @@ const PostCard: FC<Props> = ({ post }) => {
           </div>
           {/* Image */}
           <div
+            role='img'
+            aria-label={image?.alternativeText}
             className='max-w-xs aspect-video bg-cover bg-no-repeat border border-gray-5 group-hover/link:border-brand-8 shadow-sm w-full mx-auto lg:flex-initial'
             style={{
               backgroundImage: `url(${getStrapiImageUrl(image?.url) || '/jc-website-logo.png'})`,

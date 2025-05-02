@@ -33,7 +33,6 @@ const ProjectCard: FC<Props> = ({ project }) => {
       <div className='flex flex-1 py-6 flex-col gap-y-6 text-left px-8 md:py-8 justify-between'>
         {/* Preview Image */}
         <Link
-          aria-hidden
           href={projectLink}
           className={cn(
             'max-w-xs aspect-video bg-cover border border-gray-5 hover:border-brand-6 shadow-sm w-full mx-auto lg:flex-initial bg-no-repeat',
@@ -44,13 +43,15 @@ const ProjectCard: FC<Props> = ({ project }) => {
               ? { backgroundSize: '40%', backgroundPosition: 'center' }
               : {}),
           }}
-        />
+        >
+          <span className='sr-only'>{title}</span>
+        </Link>
         {/* Description */}
         <p className='sm:text-lg text-pretty grow'>{shortDescription}</p>
         {/* Technologies */}
         {technologies?.length ? (
           <div className='flex flex-col gap-y-6 mb-4'>
-            <h4 className='sr-only'>Technologies</h4>
+            <span className='sr-only'>Technologies</span>
             <TechnologiesGroup
               technologies={technologies}
               expandable={false}

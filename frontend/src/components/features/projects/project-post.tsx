@@ -42,9 +42,9 @@ const ProjectPost: FC<Props> = ({ project }) => {
         {technologies?.length ? (
           <div className='flex flex-col gap-2 md:col-span-2 lg:col-span-2 w-11/12 md:w-10/12 lg:w-11/12 mx-auto'>
             <div className='flex flex-col gap-y-6'>
-              <h5 className='font-medium text-gray-11 text-center border border-gray-5 border-x-0'>
+              <h2 className='font-medium text-gray-11 text-center border border-gray-5 border-x-0'>
                 Technologies
-              </h5>
+              </h2>
               <TechnologiesGroup technologies={technologies} />
             </div>
           </div>

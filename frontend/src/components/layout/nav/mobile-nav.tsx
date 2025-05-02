@@ -45,6 +45,7 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
 
         {/* Hamburger */}
         <button
+          aria-label='navigation menu'
           className='w-fit ml-auto'
           onClick={() => {
             setIsMenuOpen(true)
@@ -78,6 +79,7 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
           />
           {/* Hamburger */}
           <button
+            aria-label='close navigation menu'
             className='w-fit ml-auto'
             onClick={() => {
               setIsMenuOpen(false)
@@ -87,15 +89,15 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
           </button>
         </div>
 
-        <div className='px-8 pt-4 overflow-y-auto pb-16 h-dvh flex flex-col'>
+        <nav className='px-8 pt-4 overflow-y-auto pb-16 h-dvh flex flex-col'>
           {/* Links */}
-          <div className='flex flex-col gap-6 mt-6 pb-safe flex-1'>
+          <ul className='flex flex-col gap-6 mt-6 pb-safe flex-1'>
             {navItems?.map((item, i) => {
               const hasMenu = !!item?.menu?.links?.length
               const isLast = i === navItems.length - 1
 
               return (
-                <div
+                <li
                   key={item?.id}
                   className={cn([
                     'text-right text-xl border-gray-10/15 pb-2 flex justify-end text-gray-11',
@@ -164,11 +166,11 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
                       ]}
                     />
                   )}
-                </div>
+                </li>
               )
             })}
-          </div>
-        </div>
+          </ul>
+        </nav>
       </Drawer>
     </div>
   )
