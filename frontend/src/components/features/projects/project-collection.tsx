@@ -9,6 +9,8 @@ import { FC } from 'react'
 
 import { cn } from '@/utils/style'
 
+import AnimateOnScroll from '@/components/animation/animate-on-scroll'
+
 type Props = {
   projects: Project[] | undefined
   className?: string
@@ -22,7 +24,15 @@ const ProjectGrid: FC<Props> = ({ projects, className }) => {
         className,
       )}
     >
-      {projects?.map((proj) => <ProjectCard key={proj?.id} project={proj} />)}
+      {projects?.map((proj) => (
+        <AnimateOnScroll
+          key={proj?.id}
+          animations={['slideInFromBottom', 'fadeIn']}
+          threshold={0}
+        >
+          <ProjectCard project={proj} />
+        </AnimateOnScroll>
+      ))}
     </div>
   )
 }
@@ -30,7 +40,14 @@ const ProjectGrid: FC<Props> = ({ projects, className }) => {
 const ProjectList: FC<Props> = ({ projects, className }) => {
   return (
     <div className={cn('flex flex-col gap-8', className)}>
-      {projects?.map((proj) => <ProjectRow key={proj?.id} project={proj} />)}
+      {projects?.map((proj) => (
+        <AnimateOnScroll
+          key={proj?.id}
+          animations={['slideInFromBottom', 'fadeIn']}
+        >
+          <ProjectRow project={proj} />
+        </AnimateOnScroll>
+      ))}
     </div>
   )
 }

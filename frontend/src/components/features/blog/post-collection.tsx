@@ -10,6 +10,7 @@ import { FC } from 'react'
 
 import { cn } from '@/utils/style'
 
+import AnimateOnScroll from '@/components/animation/animate-on-scroll'
 import Button from '@/components/general/button'
 import Divider from '@/components/general/divider'
 import NoResults from '@/components/general/no-results'
@@ -28,7 +29,16 @@ const PostGrid: FC<Props> = ({ posts, className }) => {
         className,
       )}
     >
-      {posts?.map((p) => <PostCard key={p?.id} post={p} />)}
+      {posts?.map((p) => (
+        <AnimateOnScroll
+          key={p?.id}
+          animations={['slideInFromBottom', 'fadeIn']}
+          threshold={0.1}
+          className='flex flex-col gap-6'
+        >
+          <PostCard post={p} />
+        </AnimateOnScroll>
+      ))}
     </div>
   )
 }
@@ -38,10 +48,15 @@ const PostList: FC<Props> = ({ posts, className }) => {
   return (
     <div className={cn('flex flex-col gap-6', className)}>
       {posts?.map((p, i) => (
-        <div key={p?.id} className='flex flex-col gap-6'>
+        <AnimateOnScroll
+          key={p?.id}
+          animations={['slideInFromBottom', 'fadeIn']}
+          threshold={0.1}
+          className='flex flex-col gap-6'
+        >
           <PostRow post={p} />
           {i < posts?.length - 1 ? <Divider className='my-2' /> : null}
-        </div>
+        </AnimateOnScroll>
       ))}
     </div>
   )

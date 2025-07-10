@@ -5,7 +5,6 @@ import { ReactNode } from 'react'
 import { cn } from '@/utils/style'
 
 import ProgressProvider from '@/providers/progress-provider'
-import QueryProvider from '@/providers/query-provider'
 import ThemeProvider from '@/providers/theme-provider'
 
 import Footer from '@/components/layout/footer'
@@ -47,17 +46,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en' suppressHydrationWarning className={fontVars}>
       <body>
-        <QueryProvider>
-          <ThemeProvider>
-            <ProgressProvider>
-              <div className='flex flex-col h-full min-h-dvh'>
-                <Header />
-                <div className='grow'>{children}</div>
-                <Footer />
-              </div>
-            </ProgressProvider>
-          </ThemeProvider>
-        </QueryProvider>
+        <ThemeProvider>
+          <ProgressProvider>
+            <div className='flex flex-col h-full min-h-dvh'>
+              <Header />
+              <div className='grow'>{children}</div>
+              <Footer />
+            </div>
+          </ProgressProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

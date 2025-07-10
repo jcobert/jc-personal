@@ -27,7 +27,7 @@ const Popover: FC<Props> = ({
         sideOffset={5}
         {...contentProps}
         className={cn(
-          'bg-white rounded border dark:border-gray-9 p-4 shadow dark:bg-black',
+          'bg-white rounded border dark:border-gray-9 p-4 shadow dark:bg-black z-50',
           contentProps?.className,
         )}
       >
