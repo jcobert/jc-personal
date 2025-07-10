@@ -18,6 +18,8 @@ const Drawer: FC<Props> = ({
   closeButton = true,
   className = '',
   overlay = true,
+  title,
+  description,
 }) => {
   return (
     <>
@@ -33,7 +35,10 @@ const Drawer: FC<Props> = ({
               className,
             ])}
           >
-            <Dialog.Title></Dialog.Title>
+            <Dialog.Title className='sr-only'>{title}</Dialog.Title>
+            <Dialog.Description className='sr-only'>
+              {description}
+            </Dialog.Description>
             {closeButton && (
               <Dialog.Close
                 className='absolute top-2 right-2 p-2'

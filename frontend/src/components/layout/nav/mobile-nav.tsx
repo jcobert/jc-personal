@@ -61,6 +61,8 @@ const MobileNav: FC<Props> = ({ navItems, className }) => {
         onOpenChange={setIsMenuOpen}
         overlay={false}
         closeButton={false}
+        title='Menu'
+        description='Navigation menu'
       >
         <div
           className={cn(

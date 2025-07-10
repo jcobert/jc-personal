@@ -5,6 +5,7 @@ import { FC } from 'react'
 import { getHomePage } from '@/lib/strapi/queries/home-page'
 import { getProjects } from '@/lib/strapi/queries/projects'
 
+import AnimateOnScroll from '@/components/animation/animate-on-scroll'
 import ProfilePhoto from '@/components/features/home-page/profile-photo'
 import ProjectCard from '@/components/features/projects/project-card'
 import Divider from '@/components/general/divider'
@@ -55,7 +56,15 @@ const HomePage: FC = async () => {
 
             <div className='flex flex-col gap-12'>
               <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12'>
-                {projects?.map((p) => <ProjectCard key={p?.id} project={p} />)}
+                {projects?.map((p) => (
+                  <AnimateOnScroll
+                    key={p?.id}
+                    animations={['slideInFromBottom', 'fadeIn']}
+                    threshold={0}
+                  >
+                    <ProjectCard project={p} />
+                  </AnimateOnScroll>
+                ))}
                 <div className='md:max-w-2xl rounded md:border xl:border-none bg-brand-1 border-gray-4 flex items-center xl:col-start-2'>
                   <Link
                     href='/projects'

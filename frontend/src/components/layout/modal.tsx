@@ -10,6 +10,7 @@ export type ModalProps = {
   closeButton?: boolean
   className?: string
   title?: ReactNode
+  description?: string
   titleClassName?: string
 } & Pick<Dialog.DialogProps, 'open' | 'onOpenChange'>
 
