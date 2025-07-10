@@ -49,7 +49,14 @@ const TechnologyBadge: FC<TechnologyBadgeProps> = (props) => {
 
   if (!showText) {
     return tooltip ? (
-      <Tooltip content={displayName} trigger={<BadgeIcon {...props} />} />
+      <>
+        <span className='sr-only'>{displayName}</span>
+        <Tooltip
+          content={displayName}
+          trigger={<BadgeIcon {...props} />}
+          triggerProps={{ 'aria-hidden': true }}
+        />
+      </>
     ) : (
       <BadgeIcon {...props} />
     )

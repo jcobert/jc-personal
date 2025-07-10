@@ -2,7 +2,7 @@
 
 import TechnologyBadge, { TechnologyBadgeProps } from './technology-badge'
 import { sortBy } from 'lodash'
-import { FC, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import { FaAngleUp } from 'react-icons/fa'
 
 import { Technology } from '@/lib/strapi/types/common'
@@ -25,36 +25,57 @@ const TechnologiesGroup: FC<Props> = ({
   className,
   ...badgeProps
 }) => {
-  const [techExpanded, setTechExpanded] = useState(false)
+  const [expanded, setExpanded] = useState<boolean | null>(null)
+
+  const expandButtonRef = useRef<HTMLButtonElement>(null)
+  const collapseButtonRef = useRef<HTMLButtonElement>(null)
 
   const hiddenCount = (technologies || []).length - limit
+
+  // Handles expand toggle focus.
+  useEffect(() => {
+    if (expanded) {
+      collapseButtonRef?.current?.focus()
+    } else if (expanded !== null) {
+      expandButtonRef?.current?.focus()
+    }
+  }, [expanded])
 
   if (!technologies?.length) return null
 
   return (
-    <div className={cn('flex gap-x-8 gap-y-2', techExpanded && 'flex-col')}>
+    <div className={cn('flex gap-x-8 gap-y-2', expanded && 'flex-col')}>
       <div
         className={cn('flex flex-wrap justify-around w-full gap-8', className)}
       >
-        {sortBy(technologies, (t) => t?.displayName)
-          ?.slice(0, !techExpanded ? limit : undefined)
-          ?.map((tech) => (
-            <TechnologyBadge
-              key={tech?.id}
-              technology={tech}
-              size='sm'
-              showText
-              {...badgeProps}
-            />
-          ))}
-        {technologies?.length > limit && techExpanded ? (
+        <ul
+          className={cn(
+            'flex flex-wrap justify-around w-full gap-8',
+            className,
+          )}
+        >
+          {sortBy(technologies, (t) => t?.displayName)
+            ?.slice(0, !expanded ? limit : undefined)
+            ?.map((tech) => (
+              <li key={tech?.id} className='leading-none'>
+                <TechnologyBadge
+                  technology={tech}
+                  size='sm'
+                  showText
+                  {...badgeProps}
+                />
+              </li>
+            ))}
+        </ul>
+        {technologies?.length > limit && expanded ? (
           <>
             <Button
+              ref={collapseButtonRef}
               aria-label='Hide additional technologies.'
               variant='tertiary'
               className='py-2 px-4 size-fit min-w-0 !min-h-0 self-center text-sm font-medium'
               onClick={() => {
-                setTechExpanded((prev) => !prev)
+                setExpanded(false)
               }}
             >
               <span>Hide</span>
@@ -64,12 +85,13 @@ const TechnologiesGroup: FC<Props> = ({
           </>
         ) : null}
       </div>
-      {technologies?.length > limit && !techExpanded ? (
+      {technologies?.length > limit && !expanded ? (
         <>
           {!expandable ? (
             <span className='sr-only'>{`+ ${hiddenCount} more technologies.`}</span>
           ) : null}
           <Button
+            ref={expandButtonRef}
             aria-hidden={!expandable}
             inert={!expandable}
             aria-label={`+ ${hiddenCount} more technologies. Click to show all.`}
@@ -79,7 +101,7 @@ const TechnologiesGroup: FC<Props> = ({
               !expandable && 'p-0',
             )}
             onClick={() => {
-              setTechExpanded((prev) => !prev)
+              setExpanded(true)
             }}
           >
             {`+ ${hiddenCount}`}

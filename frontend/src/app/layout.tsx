@@ -10,7 +10,6 @@ import ThemeProvider from '@/providers/theme-provider'
 
 import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
-import ToasterOven from '@/components/toast/toast-container'
 
 import { baseOpenGraph, baseTwitter } from '@/configuration/seo'
 import { siteConfig } from '@/configuration/site'
@@ -51,7 +50,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <QueryProvider>
           <ThemeProvider>
             <ProgressProvider>
-              <ToasterOven />
               <div className='flex flex-col h-full min-h-dvh'>
                 <Header />
                 <div className='grow'>{children}</div>
