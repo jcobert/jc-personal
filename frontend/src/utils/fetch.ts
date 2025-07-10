@@ -1,5 +1,3 @@
-import { ZodFieldErrors } from '@/utils/zod'
-
 export enum FetchErrorCode {
   AUTH = 'AUTH',
   NOT_FOUND = 'NOT_FOUND',
@@ -18,7 +16,6 @@ export type FetchResponse<TData = any> = {
   error?: {
     code?: FetchErrorCode
     message?: string
-    details?: ZodFieldErrors | null
   }
 }
 
