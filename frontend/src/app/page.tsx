@@ -61,6 +61,7 @@ const HomePage: FC = async () => {
                     key={p?.id}
                     animations={['slideInFromBottom', 'fadeIn']}
                     threshold={0}
+                    className='flex'
                   >
                     <ProjectCard project={p} />
                   </AnimateOnScroll>
