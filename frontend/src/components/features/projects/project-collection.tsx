@@ -29,6 +29,7 @@ const ProjectGrid: FC<Props> = ({ projects, className }) => {
           key={proj?.id}
           animations={['slideInFromBottom', 'fadeIn']}
           threshold={0}
+          className='flex'
         >
           <ProjectCard project={proj} />
         </AnimateOnScroll>
